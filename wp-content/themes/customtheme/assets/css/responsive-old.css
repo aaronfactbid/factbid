@@ -1,0 +1,59 @@
+/* APPLYING MEDIA QUERIES */
+@media (max-width: 768px) {
+    .logo {
+       width:150px;
+      }
+    .carousel-caption-text{
+      font-size: 20px;
+      padding-bottom: 0.25rem;
+  
+    }
+    .page-footer img {
+      width: 50px;
+    }
+    .search-area-footer{
+      padding-bottom: 1.5rem;
+    }
+    .container-fluid.option-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .option-cols{
+      width: 100%;
+      display: block;
+    }
+    
+    
+    
+    
+}
+@media (min-width: 768px) {
+    img.alignnone.size-medium.wp-image-20 {
+      width: 50%;
+      height: 50%;
+    }
+    
+    
+}
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .text {font-size: 12px}
+    
+}
+@media only screen and (min-width: 300px) {
+  .search-bar input[type="text"]{
+    width: 70%;
+  }
+}
+
+@media (max-width: 1366.67px) {
+    .logo { width:200px;}
+    
+}
+
+@media (min-width: 576px){
+  .modal-dialog {
+  max-width: 1000px;
+  }
+}

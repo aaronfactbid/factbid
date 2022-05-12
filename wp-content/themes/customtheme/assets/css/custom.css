@@ -1,0 +1,205 @@
+/* home page */
+/* options bar */
+.fl-sort select{
+    
+    display: flex;
+    width: 50%;
+}
+.container-fluid.option-bar { 
+    background: #466bb8;
+    color: #ffff;
+    display: flex;
+    padding-top:20px;
+    padding-bottom:20px;
+    font-size: 14px;}
+.option-cols.search-form {
+    display: contents;
+}
+/* .search-form { display: inline-block; } */
+.option-bar-search {
+    float: left;
+    width: auto;
+    background: #ffffff;
+    color: #0d6efd;
+    font-size: 14px;
+    border: 1px solid white;
+    border-left: none;
+    cursor: pointer;
+}
+.option-bar-search-area {
+    border: 1px solid white;
+    float: left;
+    width: 60%;
+    background: #466bb8;
+}
+.option-cols select {
+    background: #466bb8;
+    font-size: 12px;
+    color: #fff;
+    width: 100%;
+    border: 1px solid;
+    padding: 0.1rem;
+}
+.option-cols select:hover{
+    opacity: 0.9px;
+}
+.option-cols span.lable {
+    font-size: 14px;
+}
+.option-cols span {
+    margin-left: 2px;
+}
+.option-cols { 
+    display: flex;
+    padding-left: 10px;
+}
+.bid_count {
+    display: flex;
+    justify-content: center;
+    padding: 0 8px;
+}
+/* profile */
+.profile-edit {
+    float: right;
+    cursor: pointer;
+    box-shadow: 2px -1px 4px 0px #0505053d;
+}
+.user_edit-pf {
+    padding: 0.7rem;
+}
+
+p.email-input-type-1 {
+    display: flex;
+}
+p.email-input-type-1 .form-control , .email-input-type-2 {
+    width: 50%;
+}
+form.edit-form-data {
+    padding-bottom: 80px !important;
+    padding: 40px 40px;
+}
+.card-body.reset-password-card{
+    padding: 60px;
+}
+form#password_reset_form { 
+    padding-top: 40px;
+}
+.like_b:hover, .unlike_b:hover { opacity: 0.8;}
+
+button.btn.btn-collp-btn {
+    float: right;
+    background: #08399f26;
+}
+
+div#collapse-div {
+    background: #466bb8;
+    display: flex;
+    position: absolute;
+}
+
+.btn-collp-btn-news{
+    float: right;
+}
+.claim-create-main{
+    padding-top: 40px;
+    padding-bottom: 100px;
+}
+.radio-btn-area, .payment-method, .listing-claim {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.payment-method .form-check {
+    border: none;
+    display: flex;
+    align-items: start;
+    justify-content: flex-start;
+}
+.payment-method .form-check  label.form-check-label {
+    padding-right: 40px;
+    width:190px;
+}
+/* .col.payment-mth {
+    display: flex;
+} */
+.payment-method .form-check input.form-control {
+    margin-bottom: 10px;
+}
+ol.claim-list {
+    border: 1px solid #e1e7f4;
+}
+.btn-edit-post {
+    display: flex;
+}
+a.edit-create-claim, a.post-create-claim {
+    padding: 5px;
+    border: 1px solid;
+    text-decoration: none;
+    margin: 5px;
+}
+.claim-create-main .check-box-area .form-check .form-check-input,
+.claim-create-main .radio-btn-area .form-check-input {margin-left: -20px;}
+.claim-create-main .check-box-area label,
+.claim-create-main .radio-btn-area label {color:#ffffff; margin-left:40px;}
+
+.edit_post_links { float: right; }
+.edit-factbid, .post-factbid, .create-child-factbid, .btn.edit-claim, .btn.post-claim { border: 2px solid #0d6efd; color: #0d6efd;}
+
+.popular-news-box{ padding:5px 0 5px 15px; border-left: 2px solid #466BB8; width: 100%; height: 65px;}
+.popular-news-li{ margin: 6px;}
+
+.single-page-claim { background: #fff; height: 220px; padding: 70px; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+.respon-header-sb-cnt { padding-right: 20px; color: #0321ff;}
+.claim-btn span { padding-right: 10px; }
+ol.listing-response-ol { color: #c0ceeb; font-size: 13px; border: 2px solid #c0ceeb36; width: 50%; }
+button.btn.btn-primary.create-claim,
+button.btn.btn-primary.update-claim { float: right; margin-top:20px;}
+
+
+.othertabs-facts-header {
+    
+    height: 200px;
+    padding: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.othertabs-facts-header .middled-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.othertabs-facts-header h1 {
+    color: #ffffff;
+}
+
+.othertabs-facts-header .edit-factbid, .othertabs-facts-header .post-factbid, .othertabs-facts-header .create-child-factbid {
+    /* border: 2px solid #0d6efd; */
+    background-color: #fff;
+    border: none;
+    color: #0d6efd;
+    font-weight: 500;
+}
+button.btn.btn-primary.create-claim { float: right;}
+.form-check.claim-check-box {
+    border: 1.5px solid #466bb829;
+    width: 50%;
+}
+.form-check.claim-radio-box {
+    background: #6d8ac7a3;
+    border: 1.5px solid #466bb829;
+    width: 60%;
+}
+
+.social-media-icons a {
+    padding-right: 10px;
+}
+.social-media-icons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.footer-contents p {
+    padding-left: 0;
+}
+div.nsl-container .nsl-button-default div.nsl-button-label-container { text-align: start !important;}
