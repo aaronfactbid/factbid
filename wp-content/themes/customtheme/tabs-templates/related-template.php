@@ -63,7 +63,7 @@
                 <div class="card-flyer">
                         <div class="text-box">
                                 <div class="card card-text-bottom card-gradient-bottom card-inverse text-bottom">
-                                        <img class="card-img-top"  src="<?php echo $post_image; ?>" alt="" />
+                                <a href="<?=$link?>"><img class="card-img-top"  src="<?php echo $post_image; ?>" alt="" /></a>
                                         <div class="card-image-overlay">
                                                 <span class="card-title"><?php echo $claimed; ?></span>
                                         </div>

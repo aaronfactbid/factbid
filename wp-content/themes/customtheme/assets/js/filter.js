@@ -174,8 +174,9 @@ jQuery(document).ready(function(){
 	        });
 	        s.done(function(response){
 				console.log(response);
-	 			var origin   = window.location.origin; 
-				window.location.href = origin+"/"+pfactbid;
+	 			// var origin   = window.location.origin; 
+				// window.location.href = origin+"/"+pfactbid;
+				window.location.href = response;
 	            	
 	            });   
 	        s.fail(function(response){
@@ -251,7 +252,8 @@ jQuery(document).ready(function(){
 	        s.done(function(response){
 				console.log('came');
 				console.log(response);
-				location.reload();
+				// location.reload();
+				window.location.href = response;
 	            	
 	            });   
 	        s.fail(function(response){

@@ -45,8 +45,9 @@ jQuery(document).ready(function(){
 			method:'POST',
 			success:function(result){
 				console.log(result);
-				var origin   = window.location.origin; 
-				window.location.href = origin+"/browse";
+				// var origin   = window.location.origin; 
+				// window.location.href = origin+"/browse";
+				window.location.href = result;
 			}
 			});
 	});
@@ -135,8 +136,9 @@ jQuery(document).ready(function(){
 			},
 			method:'POST',
 			success:function(result){
-				var origin   = window.location.origin; 
-				window.location.href = origin+"/browse";
+				// var origin   = window.location.origin; 
+				// window.location.href = origin+"/browse";
+				window.location.href = result;
 			}
 			});
 	});

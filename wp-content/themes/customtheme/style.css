@@ -876,3 +876,7 @@ span.post-claim { pointer-events: none; background-color: #cccccc;}
 .ajax-loader{
 	margin:200px auto;
 }
+tr.child-bid { background-color: #cecece69; }
+tr.child-bid th,
+tr.child-bid td { padding:3px; }
+tr.child-bid td a.btn-bidView { padding: 3px 5px; font-size: 12px; }

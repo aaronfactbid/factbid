@@ -7,7 +7,7 @@
 ?>
 <?php 
 
-            if(is_user_logged_in()){
+        if(is_user_logged_in()){
             $cuser = wp_get_current_user();
 
 
@@ -46,15 +46,15 @@
                     {
                         $reg_errors->add('field', 'Required form field is missing');
                     }    
-                    if ( 6 > strlen( $username ) )
+                    if ( 6 > strlen( $susername ) )
                     {
                         $reg_errors->add('username_length', 'Username too short. At least 6 characters is required' );
                     }
-                    if ( username_exists( $username ) )
+                    if ( username_exists( $susername ) )
                     {
                         $reg_errors->add('user_name', 'The username you entered already exists!');
                     }
-                    if ( ! validate_username( $username ) )
+                    if ( ! validate_username( $susername ) )
                     {
                         $reg_errors->add( 'username_invalid', 'The username you entered is not valid!' );
                     } 
@@ -85,7 +85,7 @@
                     $user = wp_update_user( $userdata );
                     $wpdb->update(
                         $wpdb->users, 
-                        ['user_login' => $username], 
+                        ['user_login' => $username, 'display_name'=> $username], 
                         ['ID' => $cuser->ID]
                     );
                     update_user_meta($cuser->ID, "facebook", $sfacebook);
@@ -216,7 +216,7 @@
                                         <lable class="text-right">Username :</lable>
                                     </div>
                                     <div class="col-6 ">
-                                        <input type="text" name="fusername" class="form-control" placeholder="Enter Username" aria-label="Enter Username" value="<?php echo $cuser->user_login;?>" readonly>
+                                        <input type="text" name="fusername" class="form-control" placeholder="Enter Username" aria-label="Enter Username" value="<?php echo $cuser->user_login;?>">
                                         <input type="hidden" name="old_username" value="<?php echo $cuser->user_login;?>">
                                     </div>
                                 </div>

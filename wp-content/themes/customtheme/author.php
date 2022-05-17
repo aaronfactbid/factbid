@@ -60,7 +60,12 @@
                 </div>
                 <?php } ?>
 
-                    <h3 class="user_name"><?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname . ' #' . $cuser->ID; ?></h3>
+                    <h3 class="user_name">
+                        <?php // echo $cuser->user_firstname . ' ' . $cuser->user_lastname . ' #' . $cuser->ID; ?>
+                        <?php
+                            echo factbid_get_author_name($cuser->ID). ' #' . $cuser->ID;
+                        ?>
+                    </h3>
 
                     <div class="row profile-data">
                         <div class="col-sm-6">

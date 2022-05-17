@@ -174,6 +174,7 @@ function create_factbid (){
         );        
     $attachment_id = $_POST['image'];
     $post_id = wp_insert_post($new_post);
+    $link_to_claim = get_permalink($post_id);
     update_post_meta($post_id, "if_claimed", $if_claimed);
     update_post_meta($post_id, "if_unclaimed", $if_unclaimed);
     update_post_meta($post_id, "acceptable_claim", $acceptable_claim);
@@ -237,7 +238,7 @@ function create_factbid (){
     $res = $wpdb->insert( $tablename, $data);
 
     if($res == 1){
-        echo 1;
+        echo esc_url(home_url('/'. strval($id_factbid)));
     }
     else{
         echo $wpdb->last_error;
@@ -294,6 +295,7 @@ function edit_factbid (){
         );        
 
     $post_id = wp_update_post($new_post);
+    $link_to_claim = get_permalink($post_id);
     $attachment_id = $_POST['image'];
     update_post_meta($post_id, "if_claimed", $if_claimed);
     update_post_meta($post_id, "if_unclaimed", $if_unclaimed);
@@ -328,20 +330,20 @@ function edit_factbid (){
     'country' => $_POST['country'],
     'language' => $_POST['language'],
     'priority' => $_POST['priority'],
-    'bids_count' => '',
-    'bids_total' => '',
-    'bids_accepted' => '',
-    'bids_paid' => '',
-    'claims_total' => '',
-    'view_count' => '',
-    'comment_count' => '',
-    'thumbs_up' => '',
-    'thumbs_down' => '',
+    // 'bids_count' => '',
+    // 'bids_total' => '',
+    // 'bids_accepted' => '',
+    // 'bids_paid' => '',
+    // 'claims_total' => '',
+    // 'view_count' => '',
+    // 'comment_count' => '',
+    // 'thumbs_up' => '',
+    // 'thumbs_down' => '',
     'title' => $_POST['title'],
-    'subtitle' => '',
-    'result_claimed' => '',
-    'result_unclaimed' => '',
-    'claims_acceptable' => ''
+    // 'subtitle' => '',
+    // 'result_claimed' => '',
+    // 'result_unclaimed' => '',
+    // 'claims_acceptable' => ''
 
     
     
@@ -350,7 +352,9 @@ function edit_factbid (){
     $res = $wpdb->update( $tablename, $data, $where);
 
     if($res == 1){
-        echo 1;
+        // echo 1;
+        $res_fact = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%d",$post_id));
+        echo esc_url(home_url('/'. strval($res_fact[0]->id_factbid)));
     }
     else{
         echo $wpdb->last_error;

@@ -28,6 +28,7 @@
                     wp_register('', ''); // Display "Site Admin" link.
                 }
                 ?>
+                <div class="forget-password-area"><a href="<?php echo esc_url(home_url('/forget-password')); ?>">Forget Password </a> </div>
                 <div class="create-new-account"><a href="<?php echo esc_url(home_url('/register')); ?>"><input type="button" name="create-account" class="create-account btn btn-success" value="Create account"></a></div>
         </div>
     </div>

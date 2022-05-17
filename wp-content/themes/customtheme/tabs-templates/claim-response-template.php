@@ -1,15 +1,32 @@
 <!-- view body section -->
 <div class="container">
     <div class="bid-view-table">
-        <?php if(is_user_logged_in()): ?>
-        <button type="button" class="btn crate-bit" data-bs-toggle="modal" data-bs-target="#responseModal" >
+        <?php if(is_user_logged_in()): 
+            global $wpdb;
+            $bid_factbid_id = (int)$res[0]->id_factbid;
+            $user_id = get_current_user_id();
+            $bid = $wpdb->get_results( 
+            $wpdb->prepare(
+            "SELECT id_bid FROM ct_bid WHERE id_factbid = %d AND id_user = %d AND id_bid_next IS NULL",
+            $bid_factbid_id,$user_id
+            )
+            );
+            $disabled ='';
+            if(empty($bid)){
+                $disabled = "disabled";
+            }
+            ?>
+        <button type="button" class="btn crate-bit" data-bs-toggle="modal" data-bs-target="#responseModal" <?php echo $disabled;?>>
         Create New Response
         </button>
         <?php else: ?>
         <a href="<?php echo esc_url(home_url('/sign-in')); ?>" class="btn crate-bit">
         Create New Response
         </a>
-        <?php endif; ?>
+        <?php 
+        
+        endif;
+        ?>
         <!-- Modal -->
         <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -28,19 +45,19 @@
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status2" value="2">
+                                <input class="form-check-input" type="radio" name="status" id="status2" value="4">
                                 <label class="form-check-label" for="status2">
                                 <strong>Accepted & paid already</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status3" value="3">
+                                <input class="form-check-input" type="radio" name="status" id="status3" value="2">
                                 <label class="form-check-label" for="status3">
                                 <strong>Rejected</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status4" value="4">
+                                <input class="form-check-input" type="radio" name="status" id="status4" value="3">
                                 <label class="form-check-label" for="status4">
                                 <strong>Need more information</strong>
                                 </label>
@@ -50,7 +67,7 @@
                                 <strong>Amount</strong>
                             </label>
                             <div class="col-auto">
-                                <input type="text" id="amount" class="form-control"> 
+                                <input type="number" id="amount" class="form-control"> 
                             </div>
                         </div>    
                         
@@ -223,7 +240,7 @@
                                 <strong>Amount</strong>
                             </label>
                             <div class="col-auto">
-                                <input type="text" id="amount" class="form-control" value="<?php echo $response->amount_paid;?>"> 
+                                <input type="number" id="amount" class="form-control" value="<?php echo $response->amount_paid;?>"> 
                             </div>
                         </div>    
                         

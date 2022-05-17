@@ -61,11 +61,16 @@
                 </div>
                 <?php } ?>
 
-                    <h3 class="user_name"><?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname . ' #' . $cuser->ID; ?></h3>
+                    <h3 class="user_name">
+                        <?php // echo factbid_get_author_name($cuser->ID) . ' #' . $cuser->ID; ?>
+                        <?php
+                            echo factbid_get_author_name($cuser->ID). ' #' . $cuser->ID;
+                        ?>
+                    </h3>
 
                     <div class="row profile-data">
                         <div class="col-sm-6">
-                            <p><strong>Name: </strong><?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname; ?></p>
+                            <p><strong>Name: </strong><?php echo factbid_get_author_name($cuser->ID) ?></p>
                             <p><strong>Languages:</strong>
                                 <?php 
                                     $lang =  get_user_meta($cuser->ID, "languages", true);
@@ -78,15 +83,7 @@
                             <p><strong>Country: </strong><?php echo get_user_meta($cuser->ID, "country", true); ?></p>
                             <?php 
                                 $show_email = get_user_meta($cuser->ID, "show_email", true);
-                                if($show_email == "show"){
-                                    $emailid = $cuser->user_email;
-                                } else if($show_email == "alternate"){
-                                    $emailid = get_user_meta($cuser->ID, "alternate_email", true);
-                                } else if($show_email == "hide") {
-                                    $emailid = "This user's Privacy settings doesn't allow to show email ID";
-                                } else {
-                                    $emailid = $cuser->user_email;
-                                }
+                                $emailid = $cuser->user_email;
                             ?>
                             <p><strong>Email: </strong><?php echo $emailid; ?></p>
                             <p><strong>Website: </strong><?php echo $cuser->user_url; ?></p>
@@ -144,6 +141,9 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="claim-tab" data-bs-toggle="tab" data-bs-target="#claimsTab" type="button" role="tab" aria-controls="claimsTab" aria-selected="false">Claims</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="response-tab" data-bs-toggle="tab" data-bs-target="#responseTab" type="button" role="tab" aria-controls="responseTab" aria-selected="false">Response</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="postList">
@@ -241,6 +241,41 @@
                                     <td><?php echo $claim->id_factbid; ?></td>
                                     <td><?php echo $claim->title; ?></td>
                                     <td><a class="btn btn-primary" href="<?php echo get_the_permalink($claim->post_id); ?>">View</a></td>
+                                </tr>
+                                <?php
+                                    endforeach;
+                                    else:
+                                        echo "<tr><td colspan='4'>No Claims Yet</td></tr>";
+                                    endif;
+                                ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="tab-pane fade" id="responseTab" role="tabpanel" aria-labelledby="response-tab">
+                        <table class="table table-success table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>SL No.</th>
+                                    <th>FactBid ID</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    
+                                    $responses = $wpdb->get_results($wpdb->prepare("SELECT id_factbid, status FROM ct_response WHERE id_user = %d",$cuser->ID));
+                                    $c = 0;
+                                    if(!empty($responses)):
+                                    foreach($responses as $response):
+                                        $c++;
+                                ?>
+                                <tr>
+                                    <td><?php echo $c; ?></td>
+                                    <td><?php echo $response->id_factbid; ?></td>
+                                    <td><?php echo $response->status; ?></td>
+                                    <td><a class="btn btn-primary" href="<?php echo esc_url(home_url('/responses/')).$response->id_responsep; ?>">View</a></td>
                                 </tr>
                                 <?php
                                     endforeach;

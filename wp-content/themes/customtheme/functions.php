@@ -726,6 +726,7 @@ function create_claim (){
         );        
 
         $post_id = wp_insert_post($new_post);
+        $link_to_claim = get_permalink($post_id);
         update_post_meta($post_id, "claim_comments", $_POST['comments']);
         $res = $wpdb->insert('ct_claim',array(
             'id_user'=>$user_id,
@@ -749,7 +750,7 @@ function create_claim (){
             'subtitle'=>sanitize_textarea_field($_POST['subtitle'])
         ));
         $i++;
-        echo $wpdb->last_error;
+        echo $link_to_claim;
     }
     
     $factbid_messages->add('Add Claim', 'Your Claims added Successfully.');
@@ -834,6 +835,7 @@ function update_claim (){
         );        
 
         $post_id = wp_update_post($new_post);
+        $link_to_claim = get_permalink($post_id);
         update_post_meta($post_id, "claim_comments", $_POST['comments']);
         $tablename = 'ct_claim';
         $data=array(
@@ -861,7 +863,8 @@ function update_claim (){
         $where = [ 'post_id' => $old_post_id ];
         $res = $wpdb->update( $tablename, $data, $where);
         $i++;
-        echo $wpdb->last_error;
+        // echo $wpdb->last_error;
+        echo $link_to_claim;
     }
 
     $factbid_messages->add('Add Claim', 'Your Claims Updated Successfully.');
@@ -934,15 +937,21 @@ function add_response (){
             $amount = $amount+$aba;
         }
     }
- 
+    $bid_factbid_id = (int)$_REQUEST['id_factbid'];
+    $bid = $wpdb->get_results( 
+        $wpdb->prepare(
+            "SELECT id_bid FROM ct_bid WHERE id_factbid = %d AND id_user = %d AND id_bid_next IS NULL",
+            $bid_factbid_id,$user_id
+        )
+    );
 
     $json_payment = json_encode($payment_data);
     $results = $wpdb->get_results($wpdb->prepare("SELECT id_response FROM ct_response WHERE id_claim=%d AND id_user=%d",$_REQUEST['id_claim'],$user_id));
     if(empty($results)){
          $res = $wpdb->insert('ct_response',array(
-            'id_response_next'=>'',
-            'id_response_prev'=>'',
-            'id_bid'=>0,
+            'id_response_next'=>NULL,
+            'id_response_prev'=>NUll,
+            'id_bid'=>$bid[0]->id_bid,
             'id_claim'=>$_REQUEST['id_claim'],
             'id_factbid'=>$_REQUEST['id_factbid'],
             'id_user'=>$user_id,
@@ -956,9 +965,6 @@ function add_response (){
     else{
         $res1 = $wpdb->get_results($wpdb->prepare("SELECT MAX(id_response) as max_id FROM ct_response WHERE id_claim=%d AND id_user=%d",$_REQUEST['id_claim'],$user_id));
         $prev = $res1[0]->max_id;
-        // $res2 = $wpdb->insert('ct_response',array('id_factbid'=>$pfactbid,'id_user'=>$user_id, 'date'=>$date,'amount'=>$amount,'comments'=>$bid_comments,'status'=>1,'visibility'=>$visibility,'conditions'=>$bid_conditions,'id_bid_prev' => $prev));
-        // $last_id = $wpdb->insert_id;
-        // $res3 = $wpdb->query($wpdb->prepare("UPDATE ct_bid SET id_bid_next=$last_id WHERE id_bid=%d",$prev));
         $res = $wpdb->insert('ct_response',array(
             'id_response_prev'=>$prev,
             'id_bid'=>0,
@@ -974,8 +980,21 @@ function add_response (){
         $last_id = $wpdb->insert_id;
         $res3 = $wpdb->query($wpdb->prepare("UPDATE ct_response SET id_response_next=$last_id WHERE id_response=%d",$prev));
     }
-    
-       
+    $count_resp1 = $wpdb->get_results($wpdb->prepare("SELECT COUNT(id_response) AS bidders_accepted FROM `ct_response` WHERE status = 'Accepted' AND id_factbid=%d AND id_response_next IS NULL",$_REQUEST['id_factbid']));
+       ;
+    $bidders_accepted = $count_resp1[0]->bidders_accepted;
+    $count_resp2 = $wpdb->get_results($wpdb->prepare("SELECT COUNT(id_response) AS bidders_rejected FROM `ct_response` WHERE status = 'Rejected' AND id_response_next IS NULL"));
+       ;
+     $bidders_rejected = $count_resp2[0]->bidders_rejected;
+    $count_resp3 = $wpdb->get_results($wpdb->prepare("SELECT COUNT(id_response) AS bidders_pending FROM `ct_response` WHERE status = 'Pending' AND id_response_next IS NULL"));
+       ;
+    $bidders_pending = $count_resp3[0]->bidders_pending;
+    $count_resp4 = $wpdb->get_results($wpdb->prepare("SELECT COUNT(id_response) AS bidders_paid FROM `ct_response` WHERE status = 'Paid' AND id_response_next IS NULL"));
+       ;
+    $bidders_paid = $count_resp4[0]->bidders_paid;
+
+//       $res4 = $wpdb->query($wpdb->prepare("UPDATE ct_claim SET bidders_accepted=$bidders_accepted,bidders_rejected=$bidders_rejected,bidders_pending=$bidders_pending,bidders_paid=$bidders_paid WHERE id_claim=%d",$_REQUEST['id_claim']));
+$res4 = $wpdb->query($wpdb->prepare("UPDATE ct_claim SET bidders_accepted=$bidders_accepted,bidders_rejected=$bidders_rejected,bidders_pending=$bidders_pending,bidders_paid=$bidders_paid WHERE id_claim=%d",$_REQUEST['id_claim']));
     
         echo $wpdb->last_error;
 
@@ -1209,12 +1228,31 @@ function add_my_forms( $forms ) {
 }
 add_filter( 'cptch_add_form', 'add_my_forms' );
 
-add_filter('wp_authenticate_user', 'factbid_auth_login',10,2);
+add_filter('wp_authenticate_user', 'factbid_auth_login',2,2);
 
 function factbid_auth_login ($user, $password) {
     global $factbid_messages;
     $factbid_messages = new WP_Error;
     //do any extra validation stuff here
+    $user_activation_status = get_user_meta($user->ID, 'user_activation_status', true);
+
+    if ($user_activation_status == 0 && $user->ID != 1) {
+        $error = "Please Verify Your Email First";
+        wp_redirect( home_url("/sign-in?errordata=" . $error) ); 
+        exit;
+        $user_verification_settings = get_option('user_verification_settings');
+
+        $email_verification_enable = isset($user_verification_settings['email_verification']['enable']) ? $user_verification_settings['email_verification']['enable'] : 'yes';
+
+        if ($email_verification_enable != 'yes') {
+            $error = "Please Verify Your Email First";
+            wp_redirect( home_url("/sign-in?errordata=" . $error) ); 
+            exit;
+        }
+        
+    }
+
+
     $error = apply_filters( 'cptch_verify', true, 'string', 'sign-in' );
     if ( true === $error ) { /* the CAPTCHA answer is right */
         return $user;
@@ -1712,3 +1750,34 @@ function monitor_jquery_ajax_requests() {
 //     $delete7 = $wpdb->query("TRUNCATE TABLE `ct_factbidreporting`");
 //     // $delete8 = $wpdb->query("TRUNCATE TABLE `ct_profilerating`");
 // });
+
+
+function factbid_rename_permalink($url, $post) {
+    
+    if ( 'facts' == get_post_type( $post ) ) {
+        $nwurl = esc_url(home_url('/')) . $post->post_name;
+        return $nwurl;
+    }
+    return $url;
+
+}
+
+add_filter( 'post_type_link', 'factbid_rename_permalink', 10, 2 );
+add_filter( 'page_link', 'factbid_rename_permalink', 10, 2 );
+add_filter( 'post_link', 'factbid_rename_permalink', 10, 2 );
+
+/**
+ * Change Usernames if Social Login
+ */
+add_filter('nsl_registration_user_data', function($userData, $provider){
+    $sanitized_user_login = $provider->getAuthUserData('first_name') . $provider->getAuthUserData('last_name');
+    if ($sanitized_user_login === false) {
+        $sanitized_user_login = $provider->getAuthUserData('username');
+        if ($sanitized_user_login === false) {
+            $sanitized_user_login = $provider->getAuthUserData('name');
+        }
+    }
+    $userData['username'] = $sanitized_user_login.md5(uniqid(rand()));
+            
+    return $userData;
+},10,2);
