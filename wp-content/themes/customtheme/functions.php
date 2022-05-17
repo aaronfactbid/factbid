@@ -1781,3 +1781,70 @@ add_filter('nsl_registration_user_data', function($userData, $provider){
             
     return $userData;
 },10,2);
+
+
+add_action( 'admin_enqueue_scripts', 'misha_include_js' );
+
+function misha_include_js() {
+
+	// I recommend to add additional conditions just to not to load the scipts on each page
+	
+	if ( ! did_action( 'wp_enqueue_media' ) ) {
+		wp_enqueue_media();
+	}
+ 
+ 	wp_enqueue_script( 'myuploadscript', get_stylesheet_directory_uri() . '/assets/js/adminscript.js', array( 'jquery' ) );
+}
+
+add_action('admin_menu', 'factbid_settings_page');
+function factbid_settings_page() {
+    add_menu_page(
+       __( 'Site Settings', 'textdomain' ),
+       __( 'Site Settings','textdomain' ),
+       'manage_options',
+       'factbid-site-settings',
+       'factbid_site_settings_callback',
+       ''
+   );
+}
+
+function factbid_site_settings_callback() {
+    $image_id = 0;
+
+    $html = "<h1>Site Settings</h1><hr/>";
+    $html .= "<h4>Slider Settings</h4><hr/>";
+    $html .= "<form method='POST' action='/'>";
+    for($i=1; $i<=3; $i++){
+        $html .= "<fieldset>";
+        $html .= "<div class='form-group'><label for='slider_img$i'>Slider $i Image: </label>";
+        if( $image = wp_get_attachment_image_src( $image_id ) ) {
+
+            $html .= '<a href="#" class="misha-upl"><img src="' . $image[0] . '" /></a>
+                  <a href="#" class="misha-rmv">Remove image</a><br/>
+                  <input type="hidden" name="misha-img'.$i.'" value="' . $image_id . '">';
+        
+        } else {
+        
+            $html .= '<a href="#" class="misha-upl">Upload image</a>
+                  <a href="#" class="misha-rmv" style="display:none">Remove image</a><br/>
+                  <input type="hidden" name="misha-img'.$i.'" value="">';
+        
+        } 
+
+
+
+        // $html .= "<input type='file' name='slider_img$i' id='slider_img$i'><br/>";
+        $html .= "</div>";
+        $html .= "<div class='form-group'><label for='slider_video$i'>Slider $i Video: </label>";
+        $html .= "<input type='text' name='slider_video$i' id='slider_video$i'></div><br/>";
+        $html .= "<div class='form-group'><label for='slider_text$i'>Slider $i Text: </label>";
+        $html .= "<textarea name='slider_text$i' id='slider_text$i'></textarea></div><br/>";
+        $html .= "</fieldset><hr/>";
+    }
+    
+    
+    $html .= "</form>";
+    echo $html;
+}
+
+// add_action('admin_action_save_settings');
