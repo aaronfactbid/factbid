@@ -3,7 +3,7 @@
     <div class="bid-view-table">
         <?php if(is_user_logged_in()): 
             global $wpdb;
-            $bid_factbid_id = (int)$res[0]->id_factbid;
+            $bid_factbid_id = $res[0]->id_factbid;
             $user_id = get_current_user_id();
             $bid = $wpdb->get_results( 
             $wpdb->prepare(

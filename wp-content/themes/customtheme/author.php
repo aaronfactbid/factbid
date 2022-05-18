@@ -66,7 +66,23 @@
                             echo factbid_get_author_name($cuser->ID). ' #' . $cuser->ID;
                         ?>
                     </h3>
+                     <?php 
+                            global $wpdb;
+                            $profile = $wpdb->get_results($wpdb->prepare("SELECT verified FROM ct_profile WHERE id_user=%d",$cuser->ID));
+                            if($profile[0]->verified == "Link Verified"):
 
+
+                        ?>
+                        <div class="verified-tick" style="top:26px">
+                            <img width="40" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png">
+                        </div>
+                        <?php else: ?>
+                            <?php if(current_user_can('administrator')){ ?>
+                            <div class="verified-tick" style="top:64px">
+                            <button class="btn btn-light btn-sm" id="verify" data-user="<?php echo $cuser->ID;?>">Verify</button>
+                            </div>
+                            <?php } ?>
+                        <?php endif; ?>
                     <div class="row profile-data">
                         <div class="col-sm-6">
                             <p><strong>Name: </strong><?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname; ?></p>

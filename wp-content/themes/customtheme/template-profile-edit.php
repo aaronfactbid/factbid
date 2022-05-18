@@ -100,7 +100,14 @@
                     if($semail_show == "alternate"){
                         update_user_meta($cuser->ID, "alternate_email", $salternate_email);
                     }
-
+                    $profile = $wpdb->get_results($wpdb->prepare("SELECT verified FROM ct_profile WHERE id_user=%d",$cuser->ID));
+                    if($profile[0]->verified != "Link Verified"){
+                        $res = $wpdb->update('ct_profile',array(
+                                'verify_url'=> $swebsite,
+                                'verified'=> 'Link posted'
+                            ),array('id_user' => $cuser->ID));
+                    }
+                    
                 }
                 $signUpSuccess='<p style="color:#466bb8; text-aling:left;"><strong>Success</strong>: Your Profile has been successfully saved..!!!<br /></p>';
 

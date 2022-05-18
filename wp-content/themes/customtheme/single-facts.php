@@ -30,7 +30,7 @@
     $bid_data = $wpdb->get_results( 
         $wpdb->prepare(
             "SELECT * FROM ct_bid WHERE id_factbid = %d AND id_bid_next IS NULL",
-            $factbid_id
+            $res[0]->id_factbid
         )
     );
     $total_bids = count($bid_data);

@@ -1,10 +1,17 @@
 <div class="bid-data-body">
+        <?php
+                if($res[0]->nobid != 1 || $res[0]->nobid != "1"){
+        ?>
         <span class="sub-cont"> <strong>Bids: <?php echo $total_bids; ?>  </strong> </span>
         <span class="sub-cont"> <strong> Total: $<?php echo $total_bid_amount; ?> </strong> </span>
+        
         <!-- Button trigger modal -->
         <button type="button" class="btn crate-bit" data-bs-toggle="modal" data-bs-target="#bidModal">
         Create New Bid
         </button>
+        <?php
+                }
+        ?>
 </div>
 
 <!-- Modal -->
@@ -97,7 +104,7 @@
 
                                         ?>
                                         
-                                        <button type="button" class="btn place-bid" data-factbid="<?php echo $factbid_id;?>" data-user="<?php echo $user_id;?>">Place bid</button>
+                                        <button type="button" class="btn place-bid" data-factbid="<?php echo $res[0]->id_factbid;?>" data-user="<?php echo $user_id;?>">Place bid</button>
                                         <button type="button" class="btn cancel-bid" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
                                 </div>
 
@@ -110,6 +117,10 @@
 <!-- view body section -->
 <div class="container">
         <div class="bid-view-table">
+                <?php
+                        if($res[0]->nobid != 1 || $res[0]->nobid != "1"){
+                ?>
+                
                 <div class="select-option">
                         <span >Sort</span>
 
@@ -136,7 +147,7 @@
                                                 
                                                 $wpdb->prepare(
                                                         "SELECT * FROM ct_bid WHERE id_factbid = %d AND id_bid_next IS NULL",
-                                                        $factbid_id
+                                                        $res[0]->id_factbid
                                                     )
                                             );
                                         foreach($bids_data as $bid){
@@ -177,5 +188,10 @@
                                 <?php } ?>
                         </tbody>                        
                 </table>
+                <?php
+                        } else {
+                                echo "<h2 class='text-center'>No Bids Allowed.</h2>";
+                        }
+                ?>
         </div>
 </div>

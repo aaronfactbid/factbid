@@ -73,7 +73,7 @@
                                     
                                     if($res[0]->nobid == 1 || $res[0]->nobid == "1"){
                                             $results = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%f",$res[0]->id_factbid_parent));
-                                            $post_title = get_the_title($results[0]->id_factbid);
+                                            $post_title = get_the_title($results[0]->post_id);
                                     } else {
                                             $results = $res;
                                             $post_title = get_the_title($post_id);
@@ -121,7 +121,7 @@
 
                             ?>
                             
-                            <button type="button" class="btn place-bid" data-bidid="<?php echo $bid->id_bid; ?>" data-factbid="<?php echo $factbid_id;?>" data-user="<?php echo $user_id;?>">Place bid</button>
+                            <button type="button" class="btn place-bid" data-bidid="<?php echo $bid->id_bid; ?>" data-factbid="<?php echo $bid->id_factbid;?>" data-user="<?php echo $user_id;?>">Place bid</button>
                     
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                                         
                                         if($res[0]->nobid == 1 || $res[0]->nobid == "1"){
                                                 $results = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%f",$res[0]->id_factbid_parent));
-                                                $post_title = get_the_title($results[0]->id_factbid);
+                                                $post_title = get_the_title($results[0]->post_id);
                                         } else {
                                                 $results = $res;
                                                 $post_title = get_the_title($post_id);

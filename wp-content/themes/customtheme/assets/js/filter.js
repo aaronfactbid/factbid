@@ -666,4 +666,31 @@ jQuery(':radio[name="status"]').change(function() {
 			}
 		});
 	});
+	jQuery("#verify").on("click",function(e){
+		e.preventDefault();
+		var id_user = jQuery(this).data('user');
+		jQuery.ajax({
+			url:my_ajax_object.ajaxurl,
+			data:{
+				'action':'verify_website',
+				'id_user':id_user
+			},
+			method:'POST',
+			success:function(result){
+			
+				if(result != "success"){
+					
+					var html = "<div class='errorM'>";
+					
+						html += '<small><em>'+result+'</em></small>';
+					
+					html += "</div>";
+					jQuery(html).insertAfter('.title-bar');
+				}
+				else{
+					location.reload();
+				}
+			}
+		});
+	});	
 });

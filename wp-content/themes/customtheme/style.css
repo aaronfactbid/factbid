@@ -880,3 +880,5 @@ tr.child-bid { background-color: #cecece69; }
 tr.child-bid th,
 tr.child-bid td { padding:3px; }
 tr.child-bid td a.btn-bidView { padding: 3px 5px; font-size: 12px; }
+.verified-tick { position: absolute; top: 57px; left: 18px;}
+.content-area {position:relative;}

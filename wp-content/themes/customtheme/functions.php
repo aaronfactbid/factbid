@@ -835,7 +835,6 @@ function update_claim (){
         );        
 
         $post_id = wp_update_post($new_post);
-        $link_to_claim = get_permalink($post_id);
         update_post_meta($post_id, "claim_comments", $_POST['comments']);
         $tablename = 'ct_claim';
         $data=array(
@@ -863,8 +862,7 @@ function update_claim (){
         $where = [ 'post_id' => $old_post_id ];
         $res = $wpdb->update( $tablename, $data, $where);
         $i++;
-        // echo $wpdb->last_error;
-        echo $link_to_claim;
+        echo $wpdb->last_error;
     }
 
     $factbid_messages->add('Add Claim', 'Your Claims Updated Successfully.');
@@ -967,7 +965,7 @@ function add_response (){
         $prev = $res1[0]->max_id;
         $res = $wpdb->insert('ct_response',array(
             'id_response_prev'=>$prev,
-            'id_bid'=>0,
+            'id_bid'=>$bid[0]->id_bid,
             'id_claim'=>$_REQUEST['id_claim'],
             'id_factbid'=>$_REQUEST['id_factbid'],
             'id_user'=>$user_id,
@@ -993,7 +991,6 @@ function add_response (){
        ;
     $bidders_paid = $count_resp4[0]->bidders_paid;
 
-//       $res4 = $wpdb->query($wpdb->prepare("UPDATE ct_claim SET bidders_accepted=$bidders_accepted,bidders_rejected=$bidders_rejected,bidders_pending=$bidders_pending,bidders_paid=$bidders_paid WHERE id_claim=%d",$_REQUEST['id_claim']));
 $res4 = $wpdb->query($wpdb->prepare("UPDATE ct_claim SET bidders_accepted=$bidders_accepted,bidders_rejected=$bidders_rejected,bidders_pending=$bidders_pending,bidders_paid=$bidders_paid WHERE id_claim=%d",$_REQUEST['id_claim']));
     
         echo $wpdb->last_error;
@@ -1781,3 +1778,85 @@ add_filter('nsl_registration_user_data', function($userData, $provider){
             
     return $userData;
 },10,2);
+
+
+add_action( 'admin_enqueue_scripts', 'misha_include_js' );
+
+function misha_include_js() {
+
+	// I recommend to add additional conditions just to not to load the scipts on each page
+	
+	if ( ! did_action( 'wp_enqueue_media' ) ) {
+		wp_enqueue_media();
+	}
+ 
+ 	wp_enqueue_script( 'myuploadscript', get_stylesheet_directory_uri() . '/assets/js/adminscript.js', array( 'jquery' ) );
+}
+
+add_action('admin_menu', 'factbid_settings_page');
+function factbid_settings_page() {
+    add_menu_page(
+       __( 'Site Settings', 'textdomain' ),
+       __( 'Site Settings','textdomain' ),
+       'manage_options',
+       'factbid-site-settings',
+       'factbid_site_settings_callback',
+       ''
+   );
+}
+
+function factbid_site_settings_callback() {
+    $image_id = 0;
+
+    $html = "<h1>Site Settings</h1><hr/>";
+    $html .= "<h4>Slider Settings</h4><hr/>";
+    $html .= "<form method='POST' action='/'>";
+    for($i=1; $i<=3; $i++){
+        $html .= "<fieldset>";
+        $html .= "<div class='form-group'><label for='slider_img$i'>Slider $i Image: </label>";
+        if( $image = wp_get_attachment_image_src( $image_id ) ) {
+
+            $html .= '<a href="#" class="misha-upl"><img src="' . $image[0] . '" /></a>
+                  <a href="#" class="misha-rmv">Remove image</a><br/>
+                  <input type="hidden" name="misha-img'.$i.'" value="' . $image_id . '">';
+        
+        } else {
+        
+            $html .= '<a href="#" class="misha-upl">Upload image</a>
+                  <a href="#" class="misha-rmv" style="display:none">Remove image</a><br/>
+                  <input type="hidden" name="misha-img'.$i.'" value="">';
+        
+        } 
+
+
+
+        // $html .= "<input type='file' name='slider_img$i' id='slider_img$i'><br/>";
+        $html .= "</div>";
+        $html .= "<div class='form-group'><label for='slider_video$i'>Slider $i Video: </label>";
+        $html .= "<input type='text' name='slider_video$i' id='slider_video$i'></div><br/>";
+        $html .= "<div class='form-group'><label for='slider_text$i'>Slider $i Text: </label>";
+        $html .= "<textarea name='slider_text$i' id='slider_text$i'></textarea></div><br/>";
+        $html .= "</fieldset><hr/>";
+    }
+    
+    
+    $html .= "</form>";
+    echo $html;
+}
+add_action( 'wp_ajax_verify_website', 'verify_website' );
+add_action( 'wp_ajax_nopriv_verify_website', 'verify_website' );
+function verify_website() {
+    global $wpdb;
+    $factbid_messages = new WP_Error;
+    $id_user = $_POST['id_user'];
+    $res = $wpdb->update('ct_profile',array(
+                            'verified'=> 'Link Verified'
+                        ),array('id_user' => $id_user)); 
+    if($res == 1){
+        echo "success";
+    }
+    else{
+        echo $wpdb->last_error;
+    }
+    wp_die();
+}

@@ -59,15 +59,22 @@
                     <a href="<?php echo esc_url(home_url('/edit-profile'));?>" class="btn btn-light btn-sm profile-edit">Edit</a>
                     <a href="<?php echo esc_url( wp_logout_url(home_url()) ); ?>" class="btn btn-light btn-sm logout">Logout</a>
                 </div>
+
                 <?php } ?>
 
-                    <h3 class="user_name">
-                        <?php // echo factbid_get_author_name($cuser->ID) . ' #' . $cuser->ID; ?>
-                        <?php
-                            echo factbid_get_author_name($cuser->ID). ' #' . $cuser->ID;
-                        ?>
-                    </h3>
+                    <h3 class="user_name"><?php echo factbid_get_author_name($cuser->ID) . ' #' . $cuser->ID; ?></h3>
+                        
+                        <?php 
+                            $profile = $wpdb->get_results($wpdb->prepare("SELECT verified FROM ct_profile WHERE id_user=%d",$cuser->ID));
+                            if($profile[0]->verified == "Link Verified"):
 
+
+                        ?>
+                        <div class="verified-tick">
+                            <img width="40" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png">
+                        </div>
+                        <?php endif;?>
+                    </div>
                     <div class="row profile-data">
                         <div class="col-sm-6">
                             <p><strong>Name: </strong><?php echo factbid_get_author_name($cuser->ID) ?></p>
