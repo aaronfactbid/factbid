@@ -627,11 +627,11 @@ function add_bid (){
 
     
 
-    $results = $wpdb->get_results($wpdb->prepare("SELECT id_bid FROM ct_bid WHERE id_factbid=%d AND id_user=%d",$pfactbid,$user_id));
+    $results = $wpdb->get_results($wpdb->prepare("SELECT id_bid FROM ct_bid WHERE id_factbid=%f AND id_user=%d",$pfactbid,$user_id));
     if(empty($results)){
         $res = $wpdb->insert('ct_bid',array('id_factbid'=>$pfactbid,'id_user'=>$user_id, 'date'=>$date,'amount'=>$amount,'comments'=>$bid_comments,'status'=>1,'visibility'=>$visibility,'conditions'=>$bid_conditions));
     } else {
-        $res1 = $wpdb->get_results($wpdb->prepare("SELECT MAX(id_bid) as max_id FROM ct_bid WHERE id_factbid=%d AND id_user=%d",$pfactbid,$user_id));
+        $res1 = $wpdb->get_results($wpdb->prepare("SELECT MAX(id_bid) as max_id FROM ct_bid WHERE id_factbid=%f AND id_user=%d",$pfactbid,$user_id));
         $prev = $res1[0]->max_id;
         $res2 = $wpdb->insert('ct_bid',array('id_factbid'=>$pfactbid,'id_user'=>$user_id, 'date'=>$date,'amount'=>$amount,'comments'=>$bid_comments,'status'=>1,'visibility'=>$visibility,'conditions'=>$bid_conditions,'id_bid_prev' => $prev));
         $last_id = $wpdb->insert_id;
