@@ -41,36 +41,36 @@
     $claims_data = $wpdb->get_results( 
       $wpdb->prepare(
           "SELECT * FROM ct_claim WHERE id_factbid = %f",
-          $factbid_id
+          $res[0]->id_factbid
       )
     );
     $total_claims = count($claims_data);
 
-    $related_facts = array();
-    $factbid_array = $wpdb->get_results( 
-        $wpdb->prepare(
-            "SELECT id_factbid FROM ct_factbid 
-            WHERE id_factbid_parent=%d 
-            OR (id_factbid_parent=%d AND id_factbid_parent!= 0)", 
-            $res[0]->id_factbid, 
-            $res[0]->id_factbid_parent
-        ));
-    foreach($factbid_array as $factbid_ids){
-        $related_facts[] = $factbid_ids->id_factbid;
-    }
-    $related_facts[] = $res[0]->id_factbid;
-    $related_facts = array_unique($related_facts);
+    // $related_facts = array();
+    // $factbid_array = $wpdb->get_results( 
+    //     $wpdb->prepare(
+    //         "SELECT id_factbid FROM ct_factbid 
+    //         WHERE id_factbid_parent=%d 
+    //         OR (id_factbid_parent=%d AND id_factbid_parent!= 0)", 
+    //         $res[0]->id_factbid, 
+    //         $res[0]->id_factbid_parent
+    //     ));
+    // foreach($factbid_array as $factbid_ids){
+    //     $related_facts[] = $factbid_ids->id_factbid;
+    // }
+    // $related_facts[] = $res[0]->id_factbid;
+    // $related_facts = array_unique($related_facts);
 
-    $villes = array_map(function($v) {
-        return "'" . esc_sql($v) . "'";
-    }, $related_facts);
-    $villes = implode(',', $villes);
+    // $villes = array_map(function($v) {
+    //     return "'" . esc_sql($v) . "'";
+    // }, $related_facts);
+    // $villes = implode(',', $villes);
 
-    $claim_num = $wpdb->get_results(
-          "SELECT * FROM ct_claim 
-          WHERE id_factbid IN ($villes)"
-    );
-    $total_claims = count($claim_num);
+    // $claim_num = $wpdb->get_results(
+    //       "SELECT * FROM ct_claim 
+    //       WHERE id_factbid IN ($villes)"
+    // );
+    // $total_claims = count($claim_num);
     
   ?>
 <!-- About area -->
