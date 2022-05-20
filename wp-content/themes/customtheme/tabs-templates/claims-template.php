@@ -1,12 +1,23 @@
 <div class="container">
     <div class="claims-data-body">
+        <?php
+                if($res[0]->nobid != 1 || $res[0]->nobid != "1"){
+        ?>
         <span class="claims-sub-cont"> <strong>Bids: <?php echo $total_bids; ?> $<?php echo $total_bid_amount; ?> </strong> </span>
         <span class="claims-sub-cont"> <strong>Claims: <?php echo $total_claims; ?> </strong> </span>
         <!-- <span class="claims-sub-cont"> <strong>Total: <?php //echo $total_claims + $total_bids; ?>  </strong> </span> -->
-        <a href="<?php echo esc_url(home_url('/create-claim?id=')) . $post_id; ?>" class="btn btn-primary create-claim-page" >Create New Claim</a>
+       <!--  <a href="<?php echo esc_url(home_url('/create-claim?id=')) . $post_id; ?>" class="btn btn-primary create-claim-page" >Create New Claim</a> -->
+        
+            <?php echo show_create_claim_button($post_id); ?>
+        
+        <?php
+                }
+        ?>
     </div>
         <div class="claims-view-table container">
-                
+            <?php
+              if($res[0]->nobid != 1 || $res[0]->nobid != "1"){
+            ?>  
                 <table class="table">
                         <thead>
                                 <tr>
@@ -54,5 +65,10 @@
                                 <?php unset($userNameshow); } ?>
                         </tbody>                        
                 </table>
+                <?php
+                    } else {
+                            echo "<h2 class='text-center'>No Claims Allowed.</h2>";
+                    }
+                ?>      
         </div>
 </div>

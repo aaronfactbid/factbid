@@ -1083,6 +1083,7 @@ function report_factbid(){
         $user = get_user_by( 'id', $user_id );
         $username = $user->user_login;
         $headers = 'From: ' . get_bloginfo( "name" ) . ' <' . get_bloginfo( "admin_email" ) . '>' . "\r\n";
+        
         $subject = "FactBid - User Reported a Factbid";
         $text = 'The User - ' . $username . ' has reported the factbid.';
         $text .= get_permalink($factbid_post_id);
@@ -1544,7 +1545,27 @@ function show_create_factbid_button() {
     }
     return $html;
 }
-
+function show_create_claim_button($post_id) {
+    global $wpdb;
+    $html = '';
+    $user_id = get_current_user_id();
+    if($user_id == '' || $user_id == 0) {
+        $html .= '<a class="btn btn-primary create-claim-page" href="' . esc_url(home_url('/create-claim?id=')) .$post_id. '">Create Claim</a>';
+        
+    } else {
+        $results = $wpdb->get_results($wpdb->prepare("SELECT post_status FROM ct_profile WHERE id_user=%d",$user_id));
+        $post_status = $results[0]->post_status;
+        if($post_status == "Approved"){
+            $html .= '<a class="btn btn-primary create-claim-page" href="' . esc_url(home_url('/create-claim?id=')) .$post_id. '">Create Claim</a>';
+        } else {
+            $html .= '<a class="btn btn-primary create-claim-page" data-bs-toggle="modal" data-bs-target="#factBidPermission" href="' . esc_url(home_url('/create-claim?id=')) .$post_id. '">Create Claim</a>';
+            $rp = file_get_contents(locate_template( "popups/ask-permission.php", false, true, $args = array('user_id' => $user_id) ));
+            $rpl = str_replace("{{ user_id }}", $user_id, $rp);
+            $html .= $rpl;
+        }
+    }
+    return $html;
+}
 add_action( 'wp_ajax_factbid_update_post_request', 'factbid_update_post_request' );
 add_action( 'wp_ajax_nopriv_factbid_update_post_request', 'factbid_update_post_request' );
 function factbid_update_post_request() {
@@ -1573,6 +1594,7 @@ function factbid_update_post_request() {
         }
         $username = $fname . ' ' . $lname;
         $headers = 'From: ' . get_bloginfo( "name" ) . ' <' . get_bloginfo( "admin_email" ) . '>' . "\r\n";
+        
         $subject = "FactBid - Request for access";
         $text = 'The User - ' . $username . ' has requested to allow him to create Factbid.';
         $text .= 'You can Approve the request from the following link.';
@@ -1860,3 +1882,4 @@ function verify_website() {
     }
     wp_die();
 }
+

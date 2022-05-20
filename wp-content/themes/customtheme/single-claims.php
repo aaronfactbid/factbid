@@ -10,6 +10,7 @@
       $user_id = get_current_user_id();
 
     $post_id = get_the_id();
+
     $res = $wpdb->get_results($wpdb->prepare("SELECT * FROM ct_claim WHERE post_id=%d",$post_id));
     $tab_class="";
     $tab_status=1;
@@ -18,14 +19,25 @@
       $tab_class='disabled';
       $tab_status = 0;
     }
+
      if(!empty($claim_num)){$total_claims =count($claim_num);}
-    $claim_factbid = $wpdb->get_results($wpdb->prepare("SELECT * FROM ct_factbid WHERE id_factbid=%d",$res[0]->id_factbid));
+     $id_factbid = $res[0]->id_factbid;
+    $claim_factbid = $wpdb->get_results($wpdb->prepare("SELECT * FROM ct_factbid WHERE id_factbid=%f",$id_factbid));
+   
+    $id_claims =  $wpdb->get_results($wpdb->prepare("SELECT id_claim FROM ct_claim WHERE id_factbid=%f ORDER BY id_claim",$id_factbid),ARRAY_A);
+    $claims =[];
+    foreach($id_claims as $id_claim){
+      array_push($claims,$id_claim['id_claim']);
+    }
+
+   $claim_no = array_search($res[0]->id_claim, $claims)+1;
+    
 
 ?>
     <div class="single-page-claim">
       <div class="container">
         <div class="middled-block">
-          <h1 class="title_left"><?php the_title(); ?> to the FactBid <?php echo $res[0]->id_factbid; ?> <a href="<?php echo get_the_permalink($claim_factbid[0]->post_id); ?>"> <?php echo $claim_factbid[0]->title; ?></a></h1>
+          <h1 class="title_left">Claim <?php echo $claim_no; ?> to the FactBid <?php echo $res[0]->id_factbid; ?> <a href="<?php echo get_the_permalink($claim_factbid[0]->post_id); ?>"> <?php echo $claim_factbid[0]->title; ?></a></h1>
           <!-- About header and Discuss-->
           <div id="about-header-area" class="show">
             <div class="like_unlike">

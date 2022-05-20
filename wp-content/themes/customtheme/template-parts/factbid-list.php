@@ -92,7 +92,7 @@
                 </div>
               </div>
               <div class="text-container">
-                <h6><a href="'.$link.'">'.$title.'</a></h6>
+                <h6><a href="'.$link.'">'.$result->id_factbid.'&nbsp;'.$title.'</a></h6>
                 <div class="meta-content"><p><small>'.$date. ' - ' . $author_name . ' </small></p>
                 '.display_rating($author).'</div>
                 <p class="w3-opacity">'.$content.'</p>

@@ -287,7 +287,7 @@
                                 <?php
                                     endforeach;
                                     else:
-                                        echo "<tr><td colspan='4'>No Claims Yet</td></tr>";
+                                        echo "<tr><td colspan='4'>No Responses Yet</td></tr>";
                                     endif;
                                 ?>
                             </tbody>

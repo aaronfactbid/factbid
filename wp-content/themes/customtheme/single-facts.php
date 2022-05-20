@@ -29,7 +29,7 @@
     }
     $bid_data = $wpdb->get_results( 
         $wpdb->prepare(
-            "SELECT * FROM ct_bid WHERE id_factbid = %d AND id_bid_next IS NULL",
+            "SELECT * FROM ct_bid WHERE id_factbid = %f AND id_bid_next IS NULL",
             $res[0]->id_factbid
         )
     );
@@ -40,7 +40,7 @@
     }
     $claims_data = $wpdb->get_results( 
       $wpdb->prepare(
-          "SELECT * FROM ct_claim WHERE id_factbid = %d",
+          "SELECT * FROM ct_claim WHERE id_factbid = %f",
           $factbid_id
       )
     );

@@ -7,7 +7,7 @@
             $user_id = get_current_user_id();
             $bid = $wpdb->get_results( 
             $wpdb->prepare(
-            "SELECT id_bid FROM ct_bid WHERE id_factbid = %d AND id_user = %d AND id_bid_next IS NULL",
+            "SELECT id_bid FROM ct_bid WHERE id_factbid = %f AND id_user = %d AND id_bid_next IS NULL",
             $bid_factbid_id,$user_id
             )
             );
