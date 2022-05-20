@@ -18,7 +18,7 @@
             }
             
         ?>
-        <small><?php echo $userNameshow; ?></small>
+        <small><?php echo show_verified($bid_child_data->id_user) . $userNameshow; ?></small>
     </td>
     <td><small>$<?php echo $bid_child_data->amount; ?></small></td>
     <td><small><?php echo $status; ?></small></td>

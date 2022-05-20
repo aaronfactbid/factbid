@@ -23,7 +23,7 @@ class Fact {
 			`post_date` datetime NOT NULL,
 			`post_request` text NOT NULL,
 			`verify_url` varchar(255) NOT NULL,
-			`verified` enum('Unverified','Link posted','Link Valid') NOT NULL
+			`verified` enum('Unverified','Link posted','Link Valid','Link Verified') NOT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 			COMMIT";
 

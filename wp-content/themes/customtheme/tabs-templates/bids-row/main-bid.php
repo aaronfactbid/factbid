@@ -18,7 +18,7 @@
             }
             
         ?>
-        <?php echo $userNameshow; ?>
+        <?php echo show_verified($bid->id_user) . $userNameshow; ?>
     </td>
     <td>$<?php echo $bid->amount; ?></td>
     <td><?php echo $status; ?></td>

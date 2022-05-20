@@ -188,7 +188,7 @@
                             foreach($responses as $response){
                             $user = get_user_by('id', $response->id_user);
                         $html = '<tr>
-                            <td>'.$user->user_nicename.'</td>
+                            <td>'.show_verified($response->id_user) . $user->user_nicename.'</td>
                             <td class="status-text">'.$response->status.'</td>
                             <td>'.$response->amount_paid.'</td>
                             <td>

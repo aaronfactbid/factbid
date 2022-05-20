@@ -54,7 +54,7 @@
 
                                 <tr>
                                     <td><?php echo get_the_date( 'd-m-Y', $claim->post_id ); ?></td>
-                                    <td><?php echo $userNameshow; ?></td>
+                                    <td><?php echo show_verified($claim->id_user) . $userNameshow; ?></td>
                                     <td><?php echo $claim->bidders_accepted; ?> </td>
                                     <td><?php echo $claim->bidders_rejected; ?></td>
                                     <td><?php echo $claim->bidders_pending; ?></td>

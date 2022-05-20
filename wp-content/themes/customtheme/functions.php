@@ -1883,3 +1883,12 @@ function verify_website() {
     wp_die();
 }
 
+function show_verified($user_id){
+    global $wpdb;
+    $html = "";
+    $profile = $wpdb->get_results($wpdb->prepare("SELECT verified FROM ct_profile WHERE id_user=%d",$user_id));
+    if($profile[0]->verified == "Link Verified"){
+        $html .= '<img title="Verified" alt="Verified" class="verified" width="15" height="auto" src="'.get_template_directory_uri() . '/assets/images/verified-profile.png"> ';
+    }
+    return $html;
+}
