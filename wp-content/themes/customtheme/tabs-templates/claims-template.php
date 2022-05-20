@@ -37,6 +37,7 @@
                         </thead>                                                                                                                        
                         <tbody>
                             <?php
+                            global $wpdb;
                                 $claims_data = $wpdb->get_results( 
                                     $wpdb->prepare(
                                         "SELECT * FROM ct_claim 
