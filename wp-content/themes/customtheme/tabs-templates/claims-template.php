@@ -40,7 +40,7 @@
                                 $claims_data = $wpdb->get_results( 
                                     $wpdb->prepare(
                                         "SELECT * FROM ct_claim 
-                                        WHERE id_factbid =%01.2f",
+                                        WHERE id_factbid =%f",
                                         $res[0]->id_factbid
                                     )
                                   );
