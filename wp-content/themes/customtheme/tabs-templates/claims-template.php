@@ -40,11 +40,11 @@
                                 $claims_data = $wpdb->get_results( 
                                     $wpdb->prepare(
                                         "SELECT * FROM ct_claim 
-                                        WHERE id_factbid =%f",
+                                        WHERE id_factbid =%01.2f",
                                         $res[0]->id_factbid
                                     )
                                   );
-                                
+                                print_r($claims_data);
                                 foreach($claims_data as $claim) {
                                     $claim_user = get_user_by('id', $claim->id_user);
                                         if($claim->visibility != 1){
