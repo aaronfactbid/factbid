@@ -27,7 +27,7 @@
                         $response_user = get_user_by( 'id', $response->id_user );
                         // $status = get_bid_status($response->status);
                         $status = $response->status;
-                        $factbid = $wpdb->get_results($wpdb->prepare("SELECT title FROM ct_factbid WHERE id_factbid = %d",$response->id_factbid));
+                        $factbid = $wpdb->get_results($wpdb->prepare("SELECT title FROM ct_factbid WHERE id_factbid = %f",$response->id_factbid));
                         $claim = $wpdb->get_results($wpdb->prepare("SELECT title, post_id FROM ct_claim WHERE id_claim = %d",$response->id_claim));
                         if ( ! empty( $response_user ) ) {
                             $userName = $response_user->first_name . ' ' . $response_user->last_name;

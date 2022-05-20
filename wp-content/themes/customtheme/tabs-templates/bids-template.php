@@ -53,9 +53,7 @@
                                         </thead>
                                         <tbody>
                                         <?php
-                                                // $parent_id = $res[0]->id_factbid_parent;
                                                 $parent_id = $factbid_id;
-                                                // $results = $wpdb->get_results($wpdb->prepare("SELECT c.id_factbid,p.post_name,p.post_title FROM ct_factbid as c JOIN wp_posts as p WHERE c.post_id=p.id AND (c.id_factbid_parent=%d OR c.id_factbid=%d)",$parent_id,$parent_id));
                                                 if($res[0]->nobid == 1 || $res[0]->nobid == "1"){
                                                         $results = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%f",$res[0]->id_factbid_parent));
                                                         $post_title = get_the_title($results[0]->id_factbid);
@@ -151,22 +149,11 @@
                                                     )
                                             );
                                         foreach($bids_data as $bid){
-                                                $bid_user = get_user_by( 'id', $bid->id_user );
+                                                // $bid_user = get_user_by( 'id', $bid->id_user );
+                                                $userName = factbid_get_author_name($bid->id_user);
                                                 $status = get_bid_status($bid->status);
-                                                $userName = "";
-                                                if ( ! empty( $bid_user ) ) {
-                                                        
-                                                        $fname = $bid_user->first_name;
-                                                        $lname = $bid_user->last_name;
-                                                        $userName = $fname . " " . $lname;
-
-                                                        if($userName == ""){
-                                                                $userName = $bid_user->display_name;
-                                                        }
-                                                        if($userName == ""){
-                                                                $userName = $bid_user->user_login;
-                                                        }
-                                                }
+                                                
+                                                
                                 ?>
 
                                 <?php 

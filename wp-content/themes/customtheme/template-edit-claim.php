@@ -13,7 +13,7 @@
     
         if($factbid_id && $claims_id){
             $claims = $wpdb->get_results($wpdb->prepare("SELECT * FROM ct_claim WHERE post_id = %d",$claims_id));
-            $res = $wpdb->get_results($wpdb->prepare("SELECT thumbs_up,thumbs_down,id_factbid_parent,id_factbid,post_id FROM ct_factbid WHERE id_factbid = %d",$factbid_id));
+            $res = $wpdb->get_results($wpdb->prepare("SELECT thumbs_up,thumbs_down,id_factbid_parent,id_factbid,post_id FROM ct_factbid WHERE id_factbid = %f",$factbid_id));
             
             
             foreach($claims as $claimD):

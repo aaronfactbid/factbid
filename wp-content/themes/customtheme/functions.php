@@ -935,10 +935,10 @@ function add_response (){
             $amount = $amount+$aba;
         }
     }
-    $bid_factbid_id = (int)$_REQUEST['id_factbid'];
+    $bid_factbid_id = $_REQUEST['id_factbid'];
     $bid = $wpdb->get_results( 
         $wpdb->prepare(
-            "SELECT id_bid FROM ct_bid WHERE id_factbid = %d AND id_user = %d AND id_bid_next IS NULL",
+            "SELECT id_bid FROM ct_bid WHERE id_factbid = %f AND id_user = %f AND id_bid_next IS NULL",
             $bid_factbid_id,$user_id
         )
     );
@@ -978,7 +978,7 @@ function add_response (){
         $last_id = $wpdb->insert_id;
         $res3 = $wpdb->query($wpdb->prepare("UPDATE ct_response SET id_response_next=$last_id WHERE id_response=%d",$prev));
     }
-    $count_resp1 = $wpdb->get_results($wpdb->prepare("SELECT COUNT(id_response) AS bidders_accepted FROM `ct_response` WHERE status = 'Accepted' AND id_factbid=%d AND id_response_next IS NULL",$_REQUEST['id_factbid']));
+    $count_resp1 = $wpdb->get_results($wpdb->prepare("SELECT COUNT(id_response) AS bidders_accepted FROM `ct_response` WHERE status = 'Accepted' AND id_factbid=%f AND id_response_next IS NULL",$_REQUEST['id_factbid']));
        ;
     $bidders_accepted = $count_resp1[0]->bidders_accepted;
     $count_resp2 = $wpdb->get_results($wpdb->prepare("SELECT COUNT(id_response) AS bidders_rejected FROM `ct_response` WHERE status = 'Rejected' AND id_response_next IS NULL"));
@@ -1713,7 +1713,7 @@ function get_bid_count($factbid_id){
     global $wpdb;
     $bid_data = $wpdb->get_results( 
         $wpdb->prepare(
-            "SELECT * FROM ct_bid WHERE id_factbid = %f",
+            "SELECT * FROM ct_bid WHERE id_factbid = %f AND id_bid_next IS NULL",
             $factbid_id
         )
     );

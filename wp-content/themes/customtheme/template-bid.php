@@ -26,7 +26,7 @@
                         $bid = $bids[0];
                         $bid_user = get_user_by( 'id', $bid->id_user );
                         $status = get_bid_status($bid->status);
-                        $factbid = $wpdb->get_results($wpdb->prepare("SELECT title FROM ct_factbid WHERE id_factbid = %d",$bid->id_factbid));
+                        $factbid = $wpdb->get_results($wpdb->prepare("SELECT title FROM ct_factbid WHERE id_factbid = %f",$bid->id_factbid));
                         if ( ! empty( $bid_user ) ) {
                             $userName = $bid_user->first_name . ' ' . $bid_user->last_name;
                         }

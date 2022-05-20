@@ -35,7 +35,7 @@
                         
                         if($parent_post_id !=0 || $parent_post_id != "0"){
                                 $parent_post_data = $wpdb->get_results(
-                                        $wpdb->prepare("SELECT post_id FROM ct_factbid WHERE id_factbid=%d",$parent_post_id));
+                                        $wpdb->prepare("SELECT post_id FROM ct_factbid WHERE id_factbid=%f",$parent_post_id));
                                 $title_parent = get_the_title($parent_post_data[0]->post_id);
                         } else {
                                 $title_parent = "No Parent Found";
