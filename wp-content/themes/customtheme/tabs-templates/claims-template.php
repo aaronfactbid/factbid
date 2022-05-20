@@ -37,7 +37,6 @@
                         </thead>                                                                                                                        
                         <tbody>
                             <?php
-                            global $wpdb;
                                 $claims_data = $wpdb->get_results( 
                                     $wpdb->prepare(
                                         "SELECT * FROM ct_claim 
@@ -45,6 +44,7 @@
                                         $res[0]->id_factbid
                                     )
                                   );
+                                echo "came";
                                 print_r($claims_data);
                                 foreach($claims_data as $claim) {
                                     $claim_user = get_user_by('id', $claim->id_user);
