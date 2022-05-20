@@ -46,13 +46,12 @@
                                   );
                                 
                                 foreach($claims_data as $claim) {
-                                   // $claim_user = get_user_by('id', $claim->id_user);
                                     $claim_user = factbid_get_author_name($claim->id_user);
                                         if($claim->visibility != 1){
                                             $userNameshow = "Anonymous";
                                         } else {
                                             $userNameshow = $claim_user;
-                                        }
+                                }
                             ?>
 
                                 <tr>
