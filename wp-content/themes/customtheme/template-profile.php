@@ -272,7 +272,7 @@
                             <tbody>
                                 <?php
                                     
-                                    $responses = $wpdb->get_results($wpdb->prepare("SELECT id_factbid, status FROM ct_response WHERE id_user = %d",$cuser->ID));
+                                    $responses = $wpdb->get_results($wpdb->prepare("SELECT id_response,id_factbid, status FROM ct_response WHERE id_user = %d",$cuser->ID));
                                     $c = 0;
                                     if(!empty($responses)):
                                     foreach($responses as $response):
@@ -282,7 +282,7 @@
                                     <td><?php echo $c; ?></td>
                                     <td><?php echo $response->id_factbid; ?></td>
                                     <td><?php echo $response->status; ?></td>
-                                    <td><a class="btn btn-primary" href="<?php echo esc_url(home_url('/responses/')).$response->id_responsep; ?>">View</a></td>
+                                    <td><a class="btn btn-primary" href="<?php echo esc_url(home_url('/responses/')).$response->id_response; ?>">View</a></td>
                                 </tr>
                                 <?php
                                     endforeach;

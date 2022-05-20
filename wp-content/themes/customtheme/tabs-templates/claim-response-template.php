@@ -201,7 +201,7 @@
                     </tr>';
                         echo $html1;
                         ?>
-                        <div class="modal fade" id="responseModal12" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="responseModal<?php echo $response->id_response;?>" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content container">
                     <div class="modal-header">
