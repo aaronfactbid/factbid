@@ -219,6 +219,22 @@
                         </div>
 
                     <div class="mb-3">
+                        <label for="q3" class="form-label">What is an acceptable claim?</label>
+                        <?php
+                            $accept_claim = get_post_meta($factbid_data->post_id, "acceptable_claim", true);
+                            $content   = $accept_claim;
+                            $editor_id = 'acceptable_claim';
+                            $settings  = array( 
+                                'media_buttons' => true, 
+                                'textarea_name'=> 'acceptable_claim',
+                                'textarea_rows' => 5
+
+                            ); 
+                            wp_editor($content, $editor_id, $settings); 
+                        ?>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="q1" class="form-label">What will it prove if claimed?</label>
                         <?php
                             $if_claim = get_post_meta($factbid_data->post_id, "if_claimed", true);
@@ -243,21 +259,6 @@
                             $settings  = array( 
                                 'media_buttons' => true, 
                                 'textarea_name'=> 'if_unclaimed',
-                                'textarea_rows' => 5
-
-                            ); 
-                            wp_editor($content, $editor_id, $settings); 
-                        ?>
-                    </div>
-                    <div class="mb-3">
-                        <label for="q3" class="form-label">What is an acceptable claim?</label>
-                        <?php
-                            $accept_claim = get_post_meta($factbid_data->post_id, "acceptable_claim", true);
-                            $content   = $accept_claim;
-                            $editor_id = 'acceptable_claim';
-                            $settings  = array( 
-                                'media_buttons' => true, 
-                                'textarea_name'=> 'acceptable_claim',
                                 'textarea_rows' => 5
 
                             ); 

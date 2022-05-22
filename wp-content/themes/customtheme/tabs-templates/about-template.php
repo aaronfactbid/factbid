@@ -3,6 +3,14 @@
 ?>
 <div class="content-area">
     <div class="sub-cnt">
+        <h5 class="contents-heading">What is an acceptable claim:</h5>
+        <?php
+            $acceptable_claim = get_post_meta($postId, "acceptable_claim", true);
+            echo apply_filters('the_content', $acceptable_claim);
+        ?>
+    </div>
+
+    <div class="sub-cnt">
         <h5 class="contents-heading">What will it prove if claimed:</h5>
             <?php
                 $if_claimed = get_post_meta($postId, "if_claimed", true);
@@ -18,13 +26,6 @@
         ?>
     </div>
 
-    <div class="sub-cnt">
-        <h5 class="contents-heading">What is an acceptable claim:</h5>
-        <?php
-            $acceptable_claim = get_post_meta($postId, "acceptable_claim", true);
-            echo apply_filters('the_content', $acceptable_claim);
-        ?>
-    </div>
 
     <div class="sub-cnt ">
         <h5 class="contents-heading">Description:</h5>
