@@ -8,11 +8,14 @@ get_header();
     <div id="card-block" class="row align-items-center text-center">
         <div class="col-md-12"><div class="card-body forget-password-card">  
            <h4>Forgot Password?</h4>
-            <form id="password_forget_form" action="<?php echo esc_url(home_url('/forgot-password')); ?>" method="post" name="password_forget">
-                
-                 <input type="email" name="emailid" class="text form-control" placeholder="email address" required /> <br />
-                 <input type="submit" name="forget-password" class="btn btn-primary" value="Submit" />
-            </form>
+            <?php if (have_posts()):
+                while(have_posts()):
+                    the_post();
+                    the_content();
+
+                endwhile;
+            endif;
+            ?>
         </div>
     </div>
 </div>
