@@ -1,4 +1,20 @@
 jQuery(document).ready(function(){
+	function get_tinymce_content(id) {
+		var returnItem = "";
+		if (jQuery("#wp-"+id+"-wrap").hasClass("tmce-active")){
+			returnItem = tinyMCE.get(id).getContent();
+			console.log("Visual " + returnItem);
+			return returnItem;
+		}else{
+			item = "#"+id;
+			console.log("item " + item);
+			returnItem = jQuery(item).val();
+			console.log("TEXT " + returnItem);
+			return returnItem;
+		}
+	
+	}
+
 	jQuery('#create_factbid').on('click',function(e){
 		e.preventDefault();
 		var parent = jQuery('#factbid-form #parent').val();
@@ -14,13 +30,13 @@ jQuery(document).ready(function(){
 		var language = jQuery('#factbid-form #language').val();
 		var nobid = jQuery('input[name="nobid"]:checked').val();
 
-		var description = tinyMCE.get('description').getContent();
-		var if_claimed = tinyMCE.get('if_claimed').getContent();
-		var if_unclaimed = tinyMCE.get('if_unclaimed').getContent();
-		var acceptable_claim = tinyMCE.get('acceptable_claim').getContent();
+		var description = get_tinymce_content('description');
+		var if_claimed = get_tinymce_content('if_claimed');
+		var if_unclaimed = get_tinymce_content('if_unclaimed');
+		var acceptable_claim = get_tinymce_content('acceptable_claim');
+
 		// var footnote = tinyMCE.get('footnote').getContent();
 		var footnote = "";
-
 		jQuery.ajax({
 			url:my_ajax_object.ajaxurl,
 			data:{'action':'create_factbid',
@@ -103,15 +119,17 @@ jQuery(document).ready(function(){
 		var language = jQuery('#factbid-form #language').val();
 		var nobid = jQuery('input[name="nobid"]:checked').val();
 
-		var description = tinyMCE.get('description').getContent();
-		var if_claimed = tinyMCE.get('if_claimed').getContent();
-		var if_unclaimed = tinyMCE.get('if_unclaimed').getContent();
-		var acceptable_claim = tinyMCE.get('acceptable_claim').getContent();
+		var description = get_tinymce_content('description');
+		var if_claimed = get_tinymce_content('if_claimed');
+		var if_unclaimed = get_tinymce_content('if_unclaimed');
+		var acceptable_claim = get_tinymce_content('acceptable_claim');
+
+
+		
 		// var footnote = tinyMCE.get('footnote').getContent();
 		var footnote = "";
 
 		var old_post_id = jQuery('input[name="old_post_id"]').val();
-
 		jQuery.ajax({
 			url:my_ajax_object.ajaxurl,
 			data:{'action':'edit_factbid',
@@ -178,5 +196,6 @@ jQuery(function($){
 		button.next().val(''); // emptying the hidden field
 		button.hide().prev().html('Upload image');
 	});
+
 
 });

@@ -40,7 +40,7 @@ function factbid_include_js() {
     if ( ! did_action( 'wp_enqueue_media' ) ) {
         wp_enqueue_media();
     }
-    wp_enqueue_script( 'myuploadscript', get_stylesheet_directory_uri() . '/customscript.js', array( 'jquery' ) );
+    // wp_enqueue_script( 'myuploadscript', get_stylesheet_directory_uri() . '/customscript.js', array( 'jquery' ) );
 }
 
 
