@@ -171,6 +171,7 @@ function create_factbid (){
           'post_status' => 'publish',
           'post_title' => $_POST['title'], 
           'post_content' => $description,
+          'post_author' => $user_id
         );        
     $attachment_id = $_POST['image'];
     $post_id = wp_insert_post($new_post);
@@ -238,7 +239,7 @@ function create_factbid (){
     $res = $wpdb->insert( $tablename, $data);
 
     if($res == 1){
-        echo esc_url(home_url('/'. strval($id_factbid)));
+        echo esc_url(home_url('/'. strval(number_format($id_factbid, 2))));
     }
     else{
         echo $wpdb->last_error;
@@ -289,7 +290,6 @@ function edit_factbid (){
     $new_post = array(
           'ID' => $old_post_id,
           'post_type' => 'facts',
-          'post_status' => 'publish',
           'post_title' => $_POST['title'], 
           'post_content' => $description,
         );        
@@ -354,7 +354,7 @@ function edit_factbid (){
     if($res == 1){
         // echo 1;
         $res_fact = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%d",$post_id));
-        echo esc_url(home_url('/'. strval($res_fact[0]->id_factbid)));
+        echo esc_url(home_url('/'. strval(number_format($res_fact[0]->id_factbid, 2))));
     }
     else{
         echo $wpdb->last_error;
@@ -371,11 +371,19 @@ function post_factbid (){
     global $wpdb;
     $tablename='ct_factbid';
     $factbid_id = $_POST['factbid_id'];
+    $post_id = $wpdb->get_results($wpdb->prepare("SELECT post_id FROM ct_factbid WHERE id_factbid=%f",$factbid_id));
     $where = [ 'id_factbid' => $factbid_id ];
     $data = array(
         'status'=> 5
     );
     $res = $wpdb->update( $tablename, $data, $where);
+    $new_post = array(
+        'ID' => $post_id[0]->post_id,
+        'post_type' => 'facts',
+        'post_status' => 'publish'
+      );     
+    $nwpost_id = wp_update_post($new_post);
+
     if($res == 1){
         echo 1;
     }

@@ -72,7 +72,7 @@
                                         <div class="body-section">
                                                 <small><a href="#"> Parent Bid: <?php echo $title_parent; ?> </a></small>
                                                 <h6><?php echo $title; ?></h6>
-                                                <div class="meta-content"><p><small><?php echo get_the_date( 'd-M-Y', $related_result->post_id ); ?> - <?php the_author_meta( 'user_nicename' , $author_id ); ?> </small></p>
+                                                <div class="meta-content"><p><small><?php echo get_the_date( 'd-M-Y', $related_result->post_id ); ?> - <?php echo show_verified($author_id) . get_the_author_meta( 'user_nicename' , $author_id ); ?> </small></p>
                                                         <?php echo display_rating($author_id); ?>
                                                 </div>
                                                 <div class="related-sm-btn">

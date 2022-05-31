@@ -467,7 +467,7 @@ function filter_facts (){
             </div>
             <div class="text-container">
               <h6><a href="'.$link.'">'.$title.'</a></h6>
-              <div class="meta-content"><p><small>'.$date. ' - ' . $author_name . ' </small></p>
+              <div class="meta-content"><p><small>'.$date. ' - ' . show_verified($author) . $author_name . ' </small></p>
                 '.display_rating($author).'</div>
               <p class="w3-opacity">'.$content.'</p>
             </div>
@@ -1469,38 +1469,39 @@ function display_rating($profile_id = '') {
 }
 
 function factbid_get_author_name($user_id) {
-    $fname = get_the_author_meta('first_name', $user_id);
-    $lname = get_the_author_meta('last_name', $user_id);
-    $full_name = '';
+    // $fname = get_the_author_meta('first_name', $user_id);
+    // $lname = get_the_author_meta('last_name', $user_id);
+    // $full_name = '';
 
-    if( empty($fname) && empty($lname)){
-        $full_name = get_the_author_meta('display_name', $user_id);
-    } else if( empty($fname)){
-        $full_name = $lname;
-    } elseif( empty( $lname )){
-        $full_name = $fname;
-    } else {
-        //both first name and last name are present
-        $full_name = "{$fname} {$lname}";
-    }
-
+    // if( empty($fname) && empty($lname)){
+    //     $full_name = get_the_author_meta('display_name', $user_id);
+    // } else if( empty($fname)){
+    //     $full_name = $lname;
+    // } elseif( empty( $lname )){
+    //     $full_name = $fname;
+    // } else {
+    //     //both first name and last name are present
+    //     $full_name = "{$fname} {$lname}";
+    // }
+    $full_name = get_the_author_meta('user_login', $user_id);
     return $full_name;
 }
 function factbid_get_author_link($user_id) {
-    $fname = get_the_author_meta('first_name', $user_id);
-    $lname = get_the_author_meta('last_name', $user_id);
-    $full_name = '';
+    // $fname = get_the_author_meta('first_name', $user_id);
+    // $lname = get_the_author_meta('last_name', $user_id);
+    // $full_name = '';
 
-    if( empty($fname) && empty($lname)){
-        $full_name = get_the_author_meta('display_name', $user_id);
-    } else if( empty($fname)){
-        $full_name = $lname;
-    } elseif( empty( $lname )){
-        $full_name = $fname;
-    } else {
-        //both first name and last name are present
-        $full_name = "{$fname} {$lname}";
-    }
+    // if( empty($fname) && empty($lname)){
+    //     $full_name = get_the_author_meta('display_name', $user_id);
+    // } else if( empty($fname)){
+    //     $full_name = $lname;
+    // } elseif( empty( $lname )){
+    //     $full_name = $fname;
+    // } else {
+    //     //both first name and last name are present
+    //     $full_name = "{$fname} {$lname}";
+    // }
+    $full_name = get_the_author_meta('user_login', $user_id);
     $link = get_author_posts_url( $user_id );
     $html = "<a href='".esc_url($link)."' class='author_link'>".$full_name."</a>";
 

@@ -18,10 +18,16 @@
           
         }
         else{
+          $post_count = 10;
+          if(is_front_page()){
+            $post_count = 10;
+          } else {
+            $post_count = -1;
+          }
             
                 query_posts(array( 
                 'post_type' => 'facts',
-                'showposts' => 10,
+                'showposts' => $post_count,
                 'orderby' => 'date', 
                 'order' => 'DESC',
                 ) );
@@ -93,7 +99,7 @@
               </div>
               <div class="text-container">
                 <h6><a href="'.$link.'">'.$result->id_factbid.'&nbsp;'.$title.'</a></h6>
-                <div class="meta-content"><p><small>'.$date. ' - ' . $author_name . ' </small></p>
+                <div class="meta-content"><p><small>'.$date. ' - ' . show_verified($author) . $author_name . ' </small></p>
                 '.display_rating($author).'</div>
                 <p class="w3-opacity">'.$content.'</p>
               </div>

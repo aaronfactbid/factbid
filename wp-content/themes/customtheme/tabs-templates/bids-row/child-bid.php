@@ -5,7 +5,8 @@
                     echo "<small class='change-flag'>Changed</small>";
             }
         ?>
-        <small><?php echo $bid_child_data->date; ?></small>
+        <small><?php echo date( "Y-m-d",strtotime($bid_child_data->date)); ?></small>
+        
     </th>
     <td>
         <?php 

@@ -10,7 +10,7 @@
     $post_id = get_the_id();
     $wpdb->query($wpdb->prepare("UPDATE ct_factbid SET view_count=view_count+1 WHERE post_id=%d",$post_id));
 
-    $res = $wpdb->get_results($wpdb->prepare("SELECT nobid, thumbs_up,thumbs_down,id_factbid_parent,id_factbid,status,visibility FROM ct_factbid WHERE post_id = %d",$post_id));
+    $res = $wpdb->get_results($wpdb->prepare("SELECT nobid, thumbs_up,thumbs_down,id_factbid_parent,id_factbid,type,status,country,language,visibility,topics FROM ct_factbid WHERE post_id = %d",$post_id));
     $tab_class="";
     $tab_status=1;
     $status_code = (int)trim($res[0]->status);
@@ -71,11 +71,48 @@
                   $date = get_the_date('d-M-Y', $post_id);
                   $author_name = factbid_get_author_link($author);
 
+                  $fb_types = $res[0]->type;
+                  $fb_type = "";
+                  $type_options = get_option("fact_bid_type", true);
+                  foreach($type_options as $key => $type_option){
+                    if($fb_types == $key){
+                      $fb_type = $type_option;
+                    }
+                  }
+                  $fb_stat = $res[0]->status;
+                  $status_options = get_option("fact_bid_status", true);
+                  foreach($status_options as $key => $status_option){
+                    if($fb_stat == $key){
+                      $fb_status = $status_option;
+                    }
+                  }
+                  $fb_country = $res[0]->country;
+                  $countries = $wpdb->get_results($wpdb->prepare("SELECT name FROM ct_countries WHERE iso=%s", $fb_country));
+                  $fb_country = $countries[0]->name;
+                  $fb_languages = $res[0]->language;
+                  $fb_language = "";
+                  $languages = get_option("languages", true);
+                  foreach($languages as $key => $language){
+                    if($key == $fb_languages){
+                      $fb_language = $language['name'];
+                    }
+                  }
+                  $fb_topics = $res[0]->topics;
+                  $fb_topic = "";
+                  $topics_options = get_option("fact_bid_topics", true);
+                  foreach($topics_options as $key => $topics_option){
+                    if($fb_topics == $key){
+                      $fb_topic = $topics_option;
+                    }
+                  }
+                  
+                  $meta_data = $fb_type . ' - ' . $fb_status . ' - ' . $fb_country . ' - ' . $fb_language . ' - ' . $fb_topic;
+
                   if($visibilty != 1){
                     $author_name = 'user';
                   }
-                  echo '<div class="meta-content"><p><small>'.$date. ' - ' . $author_name . ' </small></p>
-                '.display_rating($author).'</div>';
+                  echo '<div class="meta-content"><p>'.$res[0]->id_factbid.' <small>'.$date. ' - ' . show_verified($author) . $author_name . ' </small></p>
+                '.display_rating($author). ' ' .$meta_data. '</div>';
                 ?>
             <div class="edit_post_links">
               <?php if (is_user_logged_in() && ($user_id == $post->post_author || current_user_can('administrator'))) { ?>
