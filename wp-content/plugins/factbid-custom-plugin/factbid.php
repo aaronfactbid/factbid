@@ -382,12 +382,12 @@ function post_factbid (){
         'status'=> 5
     );
     $res = $wpdb->update( $tablename, $data, $where);
-    $new_post = array(
-        'ID' => $post_id[0]->post_id,
-        'post_type' => 'facts',
-        'post_status' => 'publish'
-      );     
-    $nwpost_id = wp_update_post($new_post);
+    // $new_post = array(
+    //     'ID' => $post_id[0]->post_id,
+    //     'post_type' => 'facts',
+    //     'post_status' => 'publish'
+    //   );     
+    // $nwpost_id = wp_update_post($new_post);
 
     if($res == 1){
         echo 1;
