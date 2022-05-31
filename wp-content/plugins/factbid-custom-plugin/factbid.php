@@ -351,14 +351,19 @@ function edit_factbid (){
     $where = [ 'post_id' => $old_post_id ];
     $res = $wpdb->update( $tablename, $data, $where);
 
-    if($res == 1){
-        // echo 1;
-        $res_fact = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%d",$post_id));
-        echo esc_url(home_url('/'. strval(number_format($res_fact[0]->id_factbid, 2))));
-    }
-    else{
-        echo $wpdb->last_error;
-    }
+    $res_fact = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%d",$post_id));
+    $wpdb->query($wpdb->prepare("UPDATE wp_posts SET post_name = %01.2f WHERE id = %d",$res_fact[0]->id_factbid,$post_id));
+    echo esc_url(home_url('/'. strval(number_format($res_fact[0]->id_factbid, 2))));
+    wp_die();
+
+    // if($res == 1){
+    //     // echo 1;
+    //     $res_fact = $wpdb->get_results($wpdb->prepare("SELECT id_factbid FROM ct_factbid WHERE post_id=%d",$post_id));
+    //     echo esc_url(home_url('/'. strval(number_format($res_fact[0]->id_factbid, 2))));
+    // }
+    // else{
+    //     echo $wpdb->last_error;
+    // }
     wp_die();
 }
 
