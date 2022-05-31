@@ -382,6 +382,8 @@ function post_factbid (){
         'status'=> 5
     );
     $res = $wpdb->update( $tablename, $data, $where);
+
+    $wpdb->query($wpdb->prepare("UPDATE wp_posts SET post_name = %01.2f WHERE id = %d",$factbid_id,$post_id));
     // $new_post = array(
     //     'ID' => $post_id[0]->post_id,
     //     'post_type' => 'facts',
