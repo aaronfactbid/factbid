@@ -177,7 +177,7 @@
                                     <td><?php echo $a; ?></td>
                                     <td><?php echo $factbid->id_factbid; ?></td>
                                     <td><?php echo $factbid->title; ?></td>
-                                    <td><a class="btn btn-primary" href="<?php echo get_the_permalink($factbid->post_id); ?>">View</a></td>
+                                    <td><a class="btn btn-primary" href="<?php echo esc_url(home_url('/')) . strval(number_format($factbid->id_factbid, 2)); ?>">View</a></td>
                                 </tr>
                                 <?php
                                     endforeach;
