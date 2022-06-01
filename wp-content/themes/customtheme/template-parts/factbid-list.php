@@ -68,7 +68,8 @@
               $post = get_post($result->post_id);
               $content = get_the_excerpt($result->post_id);
               $title = get_the_title($result->post_id);
-              $link = get_permalink($result->post_id);
+              // $link = get_permalink($result->post_id);
+              $link = esc_url(home_url('/'. strval(number_format($result->id_factbid, 2))));
               $author = $post->post_author;
               $date = get_the_date('d-M-Y', $result->post_id);
               $author_name = factbid_get_author_link($author);

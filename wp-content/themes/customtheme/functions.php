@@ -439,7 +439,8 @@ function filter_facts (){
             $content_post = get_post($result->post_id);
             // $content = $content_post->post_content;
             $content = get_the_excerpt($result->post_id);
-            $link = get_permalink($result->post_id);
+            // $link = get_permalink($result->post_id);
+            $link = esc_url(home_url('/'. strval(number_format($result->id_factbid, 2))));
             $title = get_the_title($result->post_id);
             $author = $content_post->post_author;
             $date = get_the_date('d-M-Y', $result->post_id);
