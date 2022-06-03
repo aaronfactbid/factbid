@@ -6,7 +6,7 @@
 ?>
 <!--Slider menus -->
   <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
-    <div class="carousel-indicators">
+    <!-- <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
       </div>
@@ -32,7 +32,8 @@
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button>
+    </button>  -->
+	<iframe allowfullscreen width="690" height="385" src="https://www.youtube.com/embed/ppmL6hyQl20?rel=0&enablejsapi=1">		</iframe>
   </div>
   <div class="button-container floating-button">
     
