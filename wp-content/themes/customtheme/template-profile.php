@@ -53,7 +53,7 @@
                 }
             ?>
             <div class="col-xs-12 content-area <?php echo $dip_class; ?>">
-                
+				<p>Select edit to change your password, username or name.  Changing the username will require you to login again.
                 <?php if($id_user == "" || ($id_user == $cuser->ID)){ ?>
                 <div class="user_edit-pf">
                     <a href="<?php echo esc_url(home_url('/edit-profile'));?>" class="btn btn-light btn-sm profile-edit">Edit</a>
@@ -62,7 +62,7 @@
 
                 <?php } ?>
 
-                    <h3 class="user_name"><?php echo factbid_get_author_name($cuser->ID) . ' #' . $cuser->ID; ?></h3>
+                    <h3 class="user_name"><small><small>Username</small></small>: <?php echo factbid_get_author_name($cuser->ID); ?></h3>
                         
                         <?php 
                             $profile = $wpdb->get_results($wpdb->prepare("SELECT verified FROM ct_profile WHERE id_user=%d",$cuser->ID));

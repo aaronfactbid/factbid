@@ -63,7 +63,7 @@
                     <h3 class="user_name">
                         <?php // echo $cuser->user_firstname . ' ' . $cuser->user_lastname . ' #' . $cuser->ID; ?>
                         <?php
-                            echo factbid_get_author_name($cuser->ID). ' #' . $cuser->ID;
+                            echo '<small><small>Username</small></small>: ' . factbid_get_author_name($cuser->ID);
                         ?>
                     </h3>
                      <?php 
@@ -85,6 +85,7 @@
                         <?php endif; ?>
                     <div class="row profile-data">
                         <div class="col-sm-6">
+							<p>Send a private message in the <a href="/community/profile/<?php echo factbid_get_author_name($cuser->ID); ?>/">forum</a></p>
                             <p><strong>Name: </strong><?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname; ?></p>
                             <p><strong>Languages:</strong>
                                 <?php 

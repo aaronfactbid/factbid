@@ -91,6 +91,7 @@
                         </label>
                     </div>
                 </div>
+				<!--
                 <div class="payment-method">
                     <h5 class="contents-heading">Payment methods : </h5>
                     <div class="container-fluid">
@@ -136,7 +137,7 @@
                             
 
                         ?>
-                        <!-- Modal -->
+
                         <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -223,18 +224,16 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /Modal -->
-
-
                         
                     </div>
                 </div>
+				-->
                 <?php
                     $claim_post =  get_post($claims_id);
                 ?>
 
                 <div class="listing-claim">
-                    <h6 class="contents-heading">Comments or Restrictions:</h6>
+                    <h6 class="contents-heading">List all the ways bidders can pay you, such as crypto wallets, paypal addresses, detailed SWIFT/IBAN instrucions:</h6>
                     <div class="form-check">
                         <textarea required class="form-control" name="comments" id="comments"><?php echo get_post_meta($claims_id, "claim_comments", true); ?></textarea>
                         
@@ -243,7 +242,7 @@
                 </div>
 
                 <div class="sub-cnt-create">
-                    <h5 class="contents-heading">Explain:</h5>
+                    <h5 class="contents-heading">Your claim:</h5>
                     <?php
                         $content = get_the_content($res[0]->post_id);
                         echo $content;
@@ -252,21 +251,21 @@
 
                     <div class="form-check">
                         <label class="form-label" for="title">
-                            <strong>Title:- </strong>
+                            <strong>Title:</strong>
                         </label>
                         <input required class="form-control" type="text" value="<?php echo $claimD->title; ?>" name="title" id="title">
                         
                     </div>
                     <div class="form-check">
                         <label class="form-label" for="subtitle">
-                            <strong>Sub Title:- </strong>
+                            <strong>Sub Title:</strong>
                         </label>
                         <textarea required class="form-control" name="subtitle" id="subtitle"><?php echo wp_strip_all_tags($claimD->subtitle); ?></textarea>
                         
                     </div>
                     <div class="form-check">
                         <label class="form-label" for="description">
-                            <strong>Description:- </strong>
+                            <strong>Description:</strong>
                         </label>
                             <?php
                                 $content   = $claim_post->post_content;

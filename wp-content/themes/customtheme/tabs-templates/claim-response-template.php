@@ -45,26 +45,26 @@
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status2" value="4">
+                                <input class="form-check-input" type="radio" name="status" id="status2" value="2">
                                 <label class="form-check-label" for="status2">
                                 <strong>Accepted & paid already</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status3" value="2">
+                                <input class="form-check-input" type="radio" name="status" id="status3" value="3">
                                 <label class="form-check-label" for="status3">
-                                <strong>Rejected</strong>
+                                <strong>Rejected (explain why below)</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status4" value="3">
+                                <input class="form-check-input" type="radio" name="status" id="status4" value="4">
                                 <label class="form-check-label" for="status4">
-                                <strong>Need more information</strong>
+                                <strong>Need more information to pay (another payment method, missing bank details, etc.)</strong>
                                 </label>
                         </div>
                         <div id="pay-amount">
                             <label class="form-check-label" for="amount">
-                                <strong>Amount</strong>
+                                <strong>Amount you paid or will pay</strong>
                             </label>
                             <div class="col-auto">
                                 <input type="number" id="amount" class="form-control"> 
@@ -72,7 +72,7 @@
                         </div>    
                         
                         <div class="child-content">
-                                <small><strong>Please Explain :</strong></small>
+                                <small><strong>Details (confirmation number, explanation of rejection, etc.):</strong></small>
                                 
                                 <?php
                                     $content   = '';
@@ -88,6 +88,7 @@
                                 
                                 
                         </div>
+						<!--
                         <div class="payment-method">
         
                             <h5 class="modal-title" id="exampleModalLabel">Add Payment Method</h5>
@@ -157,6 +158,7 @@
                                 </div>
                             </div>
                         </div> 
+						-->
                         <?php
 
                         ?>
@@ -226,18 +228,18 @@
                         <div class="form-check">
                                 <input class="form-check-input" type="radio" name="status" id="status3" value="3">
                                 <label class="form-check-label" for="status3">
-                                <strong>Rejected</strong>
+                                <strong>Rejected (explain why below)</strong>
                                 </label>
                         </div>
                         <div class="form-check">
                                 <input class="form-check-input" type="radio" name="status" id="status4" value="4">
                                 <label class="form-check-label" for="status4">
-                                <strong>Need more information</strong>
+                                <strong>Need more information to pay (another payment method, missing bank details, etc.)</strong>
                                 </label>
                         </div>
                         <div id="pay-amount">
                             <label class="form-check-label" for="amount">
-                                <strong>Amount</strong>
+                                <strong>Amount you paid or will pay</strong>
                             </label>
                             <div class="col-auto">
                                 <input type="number" id="amount" class="form-control" value="<?php echo $response->amount_paid;?>"> 
@@ -245,7 +247,7 @@
                         </div>    
                         
                         <div class="child-content">
-                                <small><strong>Please Explain :</strong></small>
+                                <small><strong>Details (confirmation number, explanation of rejection, etc.):</strong></small>
                                 
                                 <?php
                                     $content   = $response->comments;
@@ -261,6 +263,7 @@
                                 
                                 
                         </div>
+						<!--
                         <div class="payment-method">
         
                             <h5 class="modal-title" id="exampleModalLabel">Add Payment Method</h5>
@@ -330,6 +333,7 @@
                                 </div>
                             </div>
                         </div> 
+						-->
                         <?php
 
                         ?>

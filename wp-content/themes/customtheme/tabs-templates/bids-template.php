@@ -74,7 +74,7 @@
                                         </tbody>
                                 </table>
                                 <div class="child-content">
-                                        <small><strong>Comments or Restrictions :</strong></small>
+                                        <small><strong><small>optional</small> Comments or restrictions on claims (e.g. documents must be verified):</strong></small>
                                         
                                         <?php
                                         $content   = '';
@@ -88,7 +88,7 @@
                                         wp_editor($content, $editor_id, $settings); 
                                         ?>
                                         
-                                        <small><strong>Conditions :</strong></small>
+                                        <small><strong><small>optional</small> Restrictions on payment methods (e.g. no paypal):</strong></small>
                                         <?php
                                         $content   = '';
                                         $editor_id = 'bid_conditions';

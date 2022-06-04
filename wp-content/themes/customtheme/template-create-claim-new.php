@@ -99,13 +99,12 @@
                     </label>
                 </div>
             </div>
-            <div class="payment-method">
+            <!-- <div class="payment-method">
                 <h5 class="contents-heading">Payment methods : </h5>
                 <div class="container-fluid">
                     <a class ="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal" href="#">Add Payment Method</a>
                     
-                    <!-- Modal -->
-                    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                   <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -186,16 +185,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /Modal -->
-
-
-                    
                 </div>
             </div>
-
+			-->
 
             <div class="listing-claim">
-                <h6 class="contents-heading">Comments or Restrictions:</h6>
+                <h6 class="contents-heading">List all the ways bidders can pay you, such as crypto wallets, paypal addresses, detailed SWIFT/IBAN instrucions:</h6>
                 <div class="form-check">
                     <textarea required class="form-control" name="comments" id="comments"></textarea>
                     
@@ -204,7 +199,7 @@
 
 
             <div class="sub-cnt-create">
-                <h5 class="contents-heading">Explain:</h5>
+                <h5 class="contents-heading">Your claim:</h5>
                 <?php
                     $content = get_the_content($res[0]->post_id);
                     echo $content;
@@ -213,21 +208,21 @@
 
                 <div class="form-check">
                     <label class="form-label" for="title">
-                        <strong>Title:- </strong>
+                        <strong>Title:</strong>
                     </label>
                     <input required class="form-control" type="text" value="" name="title" id="title">
                     
                 </div>
                 <div class="form-check">
                     <label class="form-label" for="subtitle">
-                        <strong>Sub Title:- </strong>
+                        <strong>Sub Title:</strong>
                     </label>
                     <textarea required class="form-control" name="subtitle" id="subtitle"></textarea>
                     
                 </div>
                 <div class="form-check">
                     <label class="form-label" for="description">
-                        <strong>Description:- </strong>
+                        <strong>Details of your claim:</strong>
                     </label>
                         <?php
                             $content   = '';
