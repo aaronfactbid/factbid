@@ -33,7 +33,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>  -->
-	<iframe allowfullscreen width="690" height="385" src="https://www.youtube.com/embed/ppmL6hyQl20?rel=0&enablejsapi=1">		</iframe>
+	<iframe allowfullscreen width="1024" height="600" src="https://www.youtube.com/embed/ppmL6hyQl20?rel=0&enablejsapi=1">		</iframe>
   </div>
   <div class="button-container floating-button">
     
