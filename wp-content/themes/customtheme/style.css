@@ -880,7 +880,10 @@ tr.child-bid { background-color: #cecece69; }
 tr.child-bid th,
 tr.child-bid td { padding:3px; }
 tr.child-bid td a.btn-bidView { padding: 3px 5px; font-size: 12px; }
-.verified-tick { position: absolute; top: 57px; left: 18px;}
+.username_wrapper {position: relative;}
+.verified-tick { position: absolute; top: 4px; left: 18px;}
 .content-area {position:relative;}
 
 .carousel-item iframe {width:100%; margin-bottom: -6px;}
+.profile-edit {position: relative; z-index: 99;}
+.text-container > .body-section{width:100%;}

@@ -30,7 +30,7 @@
     <div class="title-bar">
         <div class="container">
             <div class="middled-block">
-                <h1 class="title_left">Claim #<?php echo $total_claims + 1; ?> for <?php echo get_the_title($factbid_id); ?></h1>
+                <h1 class="title_left">Claim #<?php echo $total_claims + 1; ?> for <?php echo get_the_title($claims_id); ?></h1>
                 <div class="like_unlike">
                 <span class="like_b" data-id="<?php echo $factbid_id; ?>" data-user="<?php echo $user_id;?>"><?php echo $res[0]->thumbs_up?></span>
                 <span class="unlike_b" data-id="<?php echo $factbid_id; ?>" data-user="<?php echo $user_id;?>"><?php echo $res[0]->thumbs_down?></span>

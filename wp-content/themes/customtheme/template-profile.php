@@ -61,7 +61,7 @@
                 </div>
 
                 <?php } ?>
-
+                <div class="username_wrapper">
                     <?php /* ?><h3 class="user_name"><?php echo factbid_get_author_name($cuser->ID) . ' #' . $cuser->ID; ?></h3><?php */ ?>
                     <h3 class="user_name"><small><small>Username</small></small>: <?php echo factbid_get_author_name($cuser->ID); ?></h3>
                         
@@ -76,6 +76,7 @@
                         </div>
                         <?php endif;?>
                     </div>
+                </div>
                     <div class="row profile-data">
                         <div class="col-sm-6">
                             <p><strong>Name: </strong><?php echo factbid_get_author_name($cuser->ID) ?></p>

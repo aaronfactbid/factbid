@@ -39,25 +39,25 @@
                         
                         
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status1" value="1" checked>
+                                <input class="form-check-input" type="radio" name="status" id="status1" value="Accepted" checked>
                                 <label class="form-check-label" for="status1">
                                 <strong>Accept & promise to pay</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status2" value="2">
+                                <input class="form-check-input" type="radio" name="status" id="status2" value="Paid">
                                 <label class="form-check-label" for="status2">
                                 <strong>Accepted & paid already</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status3" value="3">
+                                <input class="form-check-input" type="radio" name="status" id="status3" value="Rejected">
                                 <label class="form-check-label" for="status3">
                                 <strong>Rejected (explain why below)</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status4" value="4">
+                                <input class="form-check-input" type="radio" name="status" id="status4" value="Pending">
                                 <label class="form-check-label" for="status4">
                                 <strong>Need more information to pay (another payment method, missing bank details, etc.)</strong>
                                 </label>
@@ -214,35 +214,35 @@
                         
                         
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status1" value="1" checked>
-                                <label class="form-check-label" for="status1">
+                                <input class="form-check-input" type="radio" name="status_<?php echo $response->id_response;?>" id="status1_<?php echo $response->id_response;?>" value="1" <?php if($response->status == "Accepted"){ ?>checked<?php } ?>>
+                                <label class="form-check-label" for="status1_<?php echo $response->id_response;?>">
                                 <strong>Accept & promise to pay</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status2" value="2">
-                                <label class="form-check-label" for="status2">
+                                <input class="form-check-input" type="radio" name="status_<?php echo $response->id_response;?>" id="status2_<?php echo $response->id_response;?>" value="2" <?php if($response->status == "Paid"){ ?>checked<?php } ?>>
+                                <label class="form-check-label" for="status2_<?php echo $response->id_response;?>">
                                 <strong>Accepted & paid already</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status3" value="3">
-                                <label class="form-check-label" for="status3">
+                                <input class="form-check-input" type="radio" name="status_<?php echo $response->id_response;?>" id="status3_<?php echo $response->id_response;?>" value="3" <?php if($response->status == "Rejected"){ ?>checked<?php } ?>>
+                                <label class="form-check-label" for="status3_<?php echo $response->id_response;?>">
                                 <strong>Rejected (explain why below)</strong>
                                 </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status4" value="4">
-                                <label class="form-check-label" for="status4">
+                                <input class="form-check-input" type="radio" name="status_<?php echo $response->id_response;?>" id="status4_<?php echo $response->id_response;?>" value="4" <?php if($response->status == "Pending"){ ?>checked<?php } ?>>
+                                <label class="form-check-label" for="status4_<?php echo $response->id_response;?>">
                                 <strong>Need more information to pay (another payment method, missing bank details, etc.)</strong>
                                 </label>
                         </div>
                         <div id="pay-amount">
-                            <label class="form-check-label" for="amount">
+                            <label class="form-check-label" for="amount_<?php echo $response->id_response;?>">
                                 <strong>Amount you paid or will pay</strong>
                             </label>
                             <div class="col-auto">
-                                <input type="number" id="amount" class="form-control" value="<?php echo $response->amount_paid;?>"> 
+                                <input type="number" id="amount_<?php echo $response->id_response;?>" class="form-control" value="<?php echo $response->amount_paid;?>"> 
                             </div>
                         </div>    
                         
@@ -251,10 +251,10 @@
                                 
                                 <?php
                                     $content   = $response->comments;
-                                    $editor_id = 'status_explain';
+                                    $editor_id = 'status_explain_' . $response->id_response;
                                     $settings  = array( 
                                         'media_buttons' => true, 
-                                        'textarea_name'=> 'status_explain',
+                                        'textarea_name'=> 'status_explain_' . $response->id_response,
                                         'textarea_rows' => 5
 
                                     ); 
@@ -337,7 +337,7 @@
                         <?php
 
                         ?>
-                        <button type="button" class="btn place-response" data-factbid="<?php echo $res[0]->id_factbid;?>" data-user="<?php echo $user_id;?>" data-claim="<?php echo $res[0]->id_claim;?>" data-bid="">Add Response</button>
+                        <button type="button" class="btn place-response" data-factbid="<?php echo $res[0]->id_factbid;?>" data-user="<?php echo $user_id;?>" data-claim="<?php echo $res[0]->id_claim;?>" data-bid="" data-response="<?php echo $response->id_response;?>">Add Response</button>
                         <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn cancel-response">Cancel</button>
                     </div>
 

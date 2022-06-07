@@ -662,53 +662,53 @@ function create_claim (){
 
     $payment_data = [];
 
-    foreach ($selectedPayments as $selectedPayment ) {
-        if($selectedPayment == 'bitcoin'){
-            $wallet = $_REQUEST['wallet'];
-            $data = [$selectedPayment=>$wallet];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'swift'){
-            $swift = $_REQUEST['swift'];
-            $data = [$selectedPayment=>$swift];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'paypal'){
-            $paypalEmail = $_REQUEST['paypalEmail'];
-            $data = [$selectedPayment=>$paypalEmail];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'account'){
-            $bankName = $_REQUEST['bankName'];
-            $beneficiaryName = $_REQUEST['beneficiaryName'];
-            $beneficiaryAddress = $_REQUEST['beneficiaryAddress'];
-            $bank_data= $bankName.', '.$beneficiaryName.', '.$beneficiaryAddress;
-            $data = [$selectedPayment=>$bank_data];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'zelle'){
-            $zelleAddress = $_REQUEST['zelleAddress'];
-            $data = [$selectedPayment=>$zelleAddress];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'aba'){
-            $aba = $_REQUEST['aba'];
-            $data = [$selectedPayment=>$aba];
-            array_push($payment_data, $data);
+    if(!empty($selectedPayments)){
+        foreach ($selectedPayments as $selectedPayment ) {
+            if($selectedPayment == 'bitcoin'){
+                $wallet = $_REQUEST['wallet'];
+                $data = [$selectedPayment=>$wallet];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'swift'){
+                $swift = $_REQUEST['swift'];
+                $data = [$selectedPayment=>$swift];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'paypal'){
+                $paypalEmail = $_REQUEST['paypalEmail'];
+                $data = [$selectedPayment=>$paypalEmail];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'account'){
+                $bankName = $_REQUEST['bankName'];
+                $beneficiaryName = $_REQUEST['beneficiaryName'];
+                $beneficiaryAddress = $_REQUEST['beneficiaryAddress'];
+                $bank_data= $bankName.', '.$beneficiaryName.', '.$beneficiaryAddress;
+                $data = [$selectedPayment=>$bank_data];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'zelle'){
+                $zelleAddress = $_REQUEST['zelleAddress'];
+                $data = [$selectedPayment=>$zelleAddress];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'aba'){
+                $aba = $_REQUEST['aba'];
+                $data = [$selectedPayment=>$aba];
+                array_push($payment_data, $data);
+            }
         }
     }
  
     if(isset($_POST['description'])){
-        $description = wp_specialchars_decode( $_POST['description'], $quote_style = ENT_QUOTES );
+        $description = wp_specialchars_decode( $_REQUEST['description'], $quote_style = ENT_QUOTES );
     } else {
         $description = "";
     }
 
-
-
-
     $json_payment = json_encode($payment_data);
     $i = 1;
+
     foreach($selectedFacts as $selectedFact){
         $claim_num = $wpdb->get_results( 
             $wpdb->prepare(
@@ -722,13 +722,13 @@ function create_claim (){
         $new_post = array(
           'post_type' => 'claims',
           'post_status' => 'publish',
-          'post_title' => $_POST['title'],
+          'post_title' => $_REQUEST['title'],
           'post_content' => $description
         );        
 
         $post_id = wp_insert_post($new_post);
         $link_to_claim = get_permalink($post_id);
-        update_post_meta($post_id, "claim_comments", $_POST['comments']);
+        update_post_meta($post_id, "claim_comments", $_REQUEST['comments']);
         $res = $wpdb->insert('ct_claim',array(
             'id_user'=>$user_id,
             'id_factbid'=>$selectedFact,
@@ -747,8 +747,8 @@ function create_claim (){
             'comment_count'=>0,
             'thumbs_up'=> 0,
             'thumbs_down'=> 0,
-            'title'=>$_POST['title'],
-            'subtitle'=>sanitize_textarea_field($_POST['subtitle'])
+            'title'=>$_REQUEST['title'],
+            'subtitle'=>sanitize_textarea_field($_REQUEST['subtitle'])
         ));
         $i++;
         echo $link_to_claim;
@@ -769,44 +769,46 @@ function update_claim (){
     $selectedPayments = $_REQUEST['selectedPayments'];
 
     $payment_data = [];
-    foreach ($selectedPayments as $selectedPayment ) {
-        if($selectedPayment == 'bitcoin'){
-            $wallet = $_REQUEST['wallet'];
-            $data = [$selectedPayment=>$wallet];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'swift'){
-            $swift = $_REQUEST['swift'];
-            $data = [$selectedPayment=>$swift];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'paypal'){
-            $paypalEmail = $_REQUEST['paypalEmail'];
-            $data = [$selectedPayment=>$paypalEmail];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'account'){
-            $bankName = $_REQUEST['bankName'];
-            $beneficiaryName = $_REQUEST['beneficiaryName'];
-            $beneficiaryAddress = $_REQUEST['beneficiaryAddress'];
-            $bank_data= $bankName.', '.$beneficiaryName.', '.$beneficiaryAddress;
-            $data = [$selectedPayment=>$bank_data];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'zelle'){
-            $zelleAddress = $_REQUEST['zelleAddress'];
-            $data = [$selectedPayment=>$zelleAddress];
-            array_push($payment_data, $data);
-        }
-        if($selectedPayment == 'aba'){
-            $aba = $_REQUEST['aba'];
-            $data = [$selectedPayment=>$aba];
-            array_push($payment_data, $data);
+    if(!empty($selectedPayments)){
+        foreach ($selectedPayments as $selectedPayment ) {
+            if($selectedPayment == 'bitcoin'){
+                $wallet = $_REQUEST['wallet'];
+                $data = [$selectedPayment=>$wallet];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'swift'){
+                $swift = $_REQUEST['swift'];
+                $data = [$selectedPayment=>$swift];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'paypal'){
+                $paypalEmail = $_REQUEST['paypalEmail'];
+                $data = [$selectedPayment=>$paypalEmail];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'account'){
+                $bankName = $_REQUEST['bankName'];
+                $beneficiaryName = $_REQUEST['beneficiaryName'];
+                $beneficiaryAddress = $_REQUEST['beneficiaryAddress'];
+                $bank_data= $bankName.', '.$beneficiaryName.', '.$beneficiaryAddress;
+                $data = [$selectedPayment=>$bank_data];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'zelle'){
+                $zelleAddress = $_REQUEST['zelleAddress'];
+                $data = [$selectedPayment=>$zelleAddress];
+                array_push($payment_data, $data);
+            }
+            if($selectedPayment == 'aba'){
+                $aba = $_REQUEST['aba'];
+                $data = [$selectedPayment=>$aba];
+                array_push($payment_data, $data);
+            }
         }
     }
-    
+
     if(isset($_POST['description'])){
-        $description = wp_specialchars_decode( $_POST['description'], $quote_style = ENT_QUOTES );
+        $description = wp_specialchars_decode( $_REQUEST['description'], $quote_style = ENT_QUOTES );
     } else {
         $description = "";
     }
@@ -828,15 +830,15 @@ function update_claim (){
           $total_claims = count($claim_num);
           $nextc = $total_claims + 1;
         $new_post = array(
-            'ID' => $_POST['claim_id'],
+            'ID' => $_REQUEST['claim_id'],
             'post_type' => 'claims',
             'post_status' => 'publish',
-            'post_title' => $_POST['title'],
+            'post_title' => $_REQUEST['title'],
             'post_content' => $description
         );        
 
         $post_id = wp_update_post($new_post);
-        update_post_meta($post_id, "claim_comments", $_POST['comments']);
+        update_post_meta($post_id, "claim_comments", $_REQUEST['comments']);
         $tablename = 'ct_claim';
         $data=array(
             'id_user'=>(int)$user_id,
@@ -856,10 +858,10 @@ function update_claim (){
             'comment_count'=>0,
             'thumbs_up'=> 0,
             'thumbs_down'=> 0,
-            'title'=>$_POST['title'],
-            'subtitle'=>sanitize_textarea_field($_POST['subtitle'])
+            'title'=>$_REQUEST['title'],
+            'subtitle'=>sanitize_textarea_field($_REQUEST['subtitle'])
         );
-        $old_post_id= $_POST['claim_id'];
+        $old_post_id= $_REQUEST['claim_id'];
         $where = [ 'post_id' => $old_post_id ];
         $res = $wpdb->update( $tablename, $data, $where);
         $i++;

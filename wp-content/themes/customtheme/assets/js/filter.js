@@ -333,12 +333,13 @@ jQuery(document).ready(function(){
 	jQuery('.place-response').on('click',function(e){
 		e.preventDefault();
 		
-		var status = jQuery('input[name="status"]:checked').val();
+		
 		var user_id = jQuery(this).data('user');
 		var id_factbid = jQuery(this).data('factbid');
 		var id_claim = jQuery(this).data('claim');
-		var status_explain = get_wyswig_content('status_explain');
-		// var status_explain = tinyMCE.get('status_explain').getContent();
+		var id_response = jQuery(this).data('response');
+		
+
 		var paymentMethods = document.getElementsByClassName('selected-method');
 		var wallet = jQuery('#wallet').val();
 		var swift = jQuery('#swift').val();
@@ -346,7 +347,23 @@ jQuery(document).ready(function(){
 		var account = jQuery('#account').val();
 		var zelleAddress = jQuery('#zelle-address').val();
 		var aba = jQuery('#aba').val();
-		var amount = jQuery('#amount').val();
+		
+
+		if(id_response){
+			console.log("if");
+			var status = jQuery('input[name="status_'+id_response+'"]:checked').val();
+			var status_explain = get_wyswig_content('status_explain_'+id_response);
+			var amount = jQuery('#amount_'+id_response).val();
+
+		} else {
+			console.log("else");
+			var status = jQuery('input[name="status"]:checked').val();
+			var status_explain = get_wyswig_content('status_explain');
+			var amount = jQuery('#amount').val();
+
+		}
+
+
 		var selectedPayments = [];
         for(var i=0;i<paymentMethods.length;i++){
             if(paymentMethods[i].checked){

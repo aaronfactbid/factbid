@@ -59,7 +59,7 @@
                     <a href="<?php echo esc_url(home_url('/edit-profile?id=' . $cuser->ID));?>" class="btn btn-light btn-sm profile-edit">Edit</a>
                 </div>
                 <?php } ?>
-
+                <div class="username_wrapper">
                     <h3 class="user_name">
                         <?php // echo $cuser->user_firstname . ' ' . $cuser->user_lastname . ' #' . $cuser->ID; ?>
                         <?php
@@ -84,6 +84,7 @@
                             </div>
                             <?php } ?>
                         <?php endif; ?>
+                    </div>
                     <div class="row profile-data">
                         <div class="col-sm-6">
                             <p>Send a private message in the <a href="/community/profile/<?php echo factbid_get_author_name($cuser->ID); ?>/">forum</a></p>

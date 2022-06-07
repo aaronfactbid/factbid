@@ -9,6 +9,6 @@
     </div>
     <div class="sub-cnt">
         <h5>Comments or Restrictions</h5>
-        <?php echo get_post_meta('claim_comments', true); ?>
+        <?php echo get_post_meta($post_id, 'claim_comments', true); ?>
     </div>
 </div>
