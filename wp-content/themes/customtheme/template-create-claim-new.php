@@ -99,12 +99,14 @@
                     </label>
                 </div>
             </div>
-            <!-- <div class="payment-method">
+            <?php /* ?>
+            <div class="payment-method">
                 <h5 class="contents-heading">Payment methods : </h5>
                 <div class="container-fluid">
                     <a class ="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal" href="#">Add Payment Method</a>
                     
-                                   <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- Modal -->
+                    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -185,9 +187,10 @@
                             </div>
                         </div>
                     </div>
+                    <!-- /Modal -->
                 </div>
             </div>
-			-->
+			<?php */ ?>
 
             <div class="listing-claim">
                 <h6 class="contents-heading">List all the ways bidders can pay you, such as crypto wallets, paypal addresses, detailed SWIFT/IBAN instrucions:</h6>

@@ -91,7 +91,7 @@
                         </label>
                     </div>
                 </div>
-				<!--
+                <?php /* ?>
                 <div class="payment-method">
                     <h5 class="contents-heading">Payment methods : </h5>
                     <div class="container-fluid">
@@ -137,7 +137,7 @@
                             
 
                         ?>
-
+                        <!-- Modal -->
                         <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -224,10 +224,11 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /Modal -->
                         
                     </div>
                 </div>
-				-->
+                <?php */ ?>
                 <?php
                     $claim_post =  get_post($claims_id);
                 ?>

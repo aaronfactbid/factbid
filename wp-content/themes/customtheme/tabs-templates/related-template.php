@@ -92,7 +92,6 @@
                                                                 <span> <?php echo $country->name; ?>  </span>
                                                                 <?php } ?>
                                                         </p>
-                                                        <p> <span> <strong>User:  </span></strong> <span> Lorem ipsum, Lorem, Ipsum, Lorem Ipsum,Lorem Ipsum  </span></p>
                                                 </div>
 
                                                 <p><?php echo $content; ?></p>

@@ -2000,7 +2000,10 @@ function edit_profile_redirect(){
                             ),array('id_user' => $cuser->ID));
                     }
                     if(!empty($old_username) && ($old_username != $susername)) {
+                        // if(is_user_logged_in()) {
+                        wp_logout();
                         wp_redirect( home_url("/sign-in") ); exit;
+                        // }
                     }
                     global $signUpSuccess;
                     $signUpSuccess='<p style="color:#466bb8; text-aling:left;"><strong>Success</strong>: Your Profile has been successfully saved..!!!<br /></p>';
