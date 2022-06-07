@@ -32,11 +32,12 @@
                         if ( ! empty( $response_user ) ) {
                             $userName = $response_user->first_name . ' ' . $response_user->last_name;
                         }
-                        if($bid->visibility != 1) {
-                            $userNameshow = "Anonymous";
-                        } else {
-                                $userNameshow = $userName;
-                        }
+                        // if($bid->visibility != 1) {
+                        //     $userNameshow = "Anonymous";
+                        // } else {
+                        //         $userNameshow = $userName;
+                        // }
+                        $userNameshow = $userName;
                         $factbid_title = "";
                         if(!empty($factbid)){
                             $factbid_title = $factbid[0]->title;
