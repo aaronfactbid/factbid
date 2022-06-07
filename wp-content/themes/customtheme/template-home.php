@@ -6,22 +6,22 @@
 ?>
 <!--Slider menus -->
   <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
-    <!-- <div class="carousel-indicators">
+    <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      </div>
+    </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="<?php echo get_stylesheet_directory_uri() .'/assets/images/slider1.png'; ?>" width="100%" height="100%"  alt="...">
-        <div class="carousel-caption-text">
-          <p class="text-left"></p>
-        </div>
+        <!-- div class="carousel-caption-text">
+          <p class="text-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div -->
       </div>
       <div class="carousel-item">
-        <img src="<?php echo get_stylesheet_directory_uri() .'/assets/images/slider1.png'; ?>" width="100%" height="100%" alt="...">
-        <div class="carousel-caption-text">
-          <p class="text-left"></p>
-        </div>
+        <!-- img src="<?php // echo get_stylesheet_directory_uri() .'/assets/images/slider2.png'; ?>" width="100%" height="100%" alt="..."-->
+        <iframe allowfullscreen width="100%" height="600" src="https://www.youtube.com/embed/ppmL6hyQl20?rel=0&enablejsapi=1"></iframe>
+        <!-- div class="carousel-caption-text">
+        </div -->
       </div>
       
     </div>
@@ -32,8 +32,7 @@
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button>  -->
-	<iframe allowfullscreen width="1024" height="600" src="https://www.youtube.com/embed/ppmL6hyQl20?rel=0&enablejsapi=1">		</iframe>
+    </button>
   </div>
   <div class="button-container floating-button">
     

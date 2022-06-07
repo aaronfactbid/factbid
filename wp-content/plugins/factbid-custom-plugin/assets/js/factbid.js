@@ -108,7 +108,7 @@ jQuery(document).ready(function(){
 		var parent = jQuery('#factbid-form #parent').val();
 		var title = jQuery('#factbid-form #title').val();
 		var user = jQuery(this).data("user");
-		var image = jQuery('#factbid-form #factbid-img').val();
+		var image = jQuery('#factbid-form input[name="factbid-img"]').val();
 		// var description = jQuery('#factbid-form #description').val();
 		var type = jQuery('#factbid-form #type').val();
 		var country = jQuery('#factbid-form #country').val();

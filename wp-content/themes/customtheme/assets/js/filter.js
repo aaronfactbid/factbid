@@ -1,4 +1,20 @@
 jQuery(document).ready(function(){
+	function get_wyswig_content(id) {
+		var returnItem = "";
+		if (jQuery("#wp-"+id+"-wrap").hasClass("tmce-active")){
+			returnItem = tinyMCE.get(id).getContent();
+			console.log("Visual " + returnItem);
+			return returnItem;
+		}else{
+			item = "#"+id;
+			console.log("item " + item);
+			returnItem = jQuery(item).val();
+			console.log("TEXT " + returnItem);
+			return returnItem;
+		}
+	
+	}
+
 	jQuery('.filter_select').on('change',function(){
 
 		var status_filter = jQuery('#status_filter').val();
@@ -66,14 +82,18 @@ jQuery(document).ready(function(){
 			console.log("if");
 			var visibility = jQuery('input[name="visibility'+bidid+'"]:checked').val();
 			var amount = jQuery('#totalAmount'+bidid).val();
-			var bid_comments = tinyMCE.get('bid_comments'+bidid).getContent();
-			var bid_conditions = tinyMCE.get('bid_conditions'+bidid).getContent();
+			var bid_comments = get_wyswig_content('bid_comments'+bidid);
+			var bid_conditions = get_wyswig_content('bid_conditions'+bidid);
+			// var bid_comments = tinyMCE.get('bid_comments'+bidid).getContent();
+			// var bid_conditions = tinyMCE.get('bid_conditions'+bidid).getContent();
 		} else {
 			console.log("else");
 			var visibility = jQuery('input[name="visibility"]:checked').val();
 			var amount = jQuery('#totalAmount').val();
-			var bid_comments = tinyMCE.get('bid_comments').getContent();
-			var bid_conditions = tinyMCE.get('bid_conditions').getContent();
+			var bid_comments = get_wyswig_content('bid_comments');
+			var bid_conditions = get_wyswig_content('bid_conditions');
+			// var bid_comments = tinyMCE.get('bid_comments').getContent();
+			// var bid_conditions = tinyMCE.get('bid_conditions').getContent();
 		}
 		var data_array = {
 			"visibility":visibility,
@@ -145,7 +165,8 @@ jQuery(document).ready(function(){
 		var title = jQuery('#title').val();
 		var subtitle = jQuery('#subtitle').val();
 		var comments = jQuery('#comments').val();
-		var description = tinyMCE.get('description').getContent();
+		var description = get_wyswig_content('description');
+		// var description = tinyMCE.get('description').getContent();
 
 
 
@@ -221,7 +242,8 @@ jQuery(document).ready(function(){
 		var title = jQuery('#title').val();
 		var subtitle = jQuery('#subtitle').val();
 		var comments = jQuery('#comments').val();
-		var description = tinyMCE.get('description').getContent();
+		var description = get_wyswig_content('description');
+		// var description = tinyMCE.get('description').getContent();
 
 
 
@@ -315,7 +337,8 @@ jQuery(document).ready(function(){
 		var user_id = jQuery(this).data('user');
 		var id_factbid = jQuery(this).data('factbid');
 		var id_claim = jQuery(this).data('claim');
-		var status_explain = tinyMCE.get('status_explain').getContent();
+		var status_explain = get_wyswig_content('status_explain');
+		// var status_explain = tinyMCE.get('status_explain').getContent();
 		var paymentMethods = document.getElementsByClassName('selected-method');
 		var wallet = jQuery('#wallet').val();
 		var swift = jQuery('#swift').val();
@@ -692,5 +715,23 @@ jQuery(':radio[name="status"]').change(function() {
 				}
 			}
 		});
-	});	
+	});
+	function onPlayerStateChange(event) // triggered everytime ANY iframe video player among the "players" list is played, paused, ended, etc.
+	{
+		// Check if any iframe video is being played (or is currently buffering to be played)
+		// Reference: https://developers.google.com/youtube/iframe_api_reference#Events
+		if (event.data == YT.PlayerState.PLAYING || event.data == YT.PlayerState.BUFFERING)
+		{
+			// If any player has been detected to be currently playing or buffering, pause the carousel from sliding
+			// .carousel('pause') - Stops the carousel from cycling through items.
+			// Reference: https://getbootstrap.com/docs/4.4/components/carousel/#methods
+			$('#carouselExampleIndicators').carousel('pause');
+		}
+		else
+		{
+			// If there are no currently playing nor buffering videos, resume the sliding of the carousel
+			// This means that once the current video is in a state that is not playing (aside from buffering so either it was paused, or has ended, or wasn't totally played), then the carousel would now resume sliding
+			$('#carouselExampleIndicators').carousel();
+		}
+	}
 });
