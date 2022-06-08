@@ -13,38 +13,40 @@
               array_push($post_ids1, $result1->ID);
           }
           $post_ids = "(" . implode(",", $post_ids1) . ")";
-          $sql2 = "SELECT id_factbid,post_id,bids_count,bids_total,bids_paid,claims_total,view_count,thumbs_up,thumbs_down,comment_count FROM ct_factbid WHERE post_id IN ".$post_ids." AND status=5";
+          $sql2 = "SELECT * FROM ct_factbid WHERE post_id IN ".$post_ids." AND status=5";
           $results = $wpdb->get_results($sql2);
           
         }
         else{
           $post_count = 10;
           if(is_front_page()){
-            $post_count = 10;
+            $post_count = 6;
+            // $home_facts_sql = "SELECT post_id FROM ct_factbid WHERE status=5 ORDER BY priority * CASE WHEN bids_count > 0 THEN bids_count ELSE 1 END DESC LIMIT 6";
+            $home_facts_sql = "SELECT post_id FROM ct_factbid WHERE status=5 ORDER BY priority DESC LIMIT 6";
+            $home_facts = $wpdb->get_results($home_facts_sql);
+            $post_ids2 = array();
+            foreach($home_facts as $home_fact){
+              array_push($post_ids2, $home_fact->post_id);
+            }
           } else {
             $post_count = -1;
+
+            $args = array(
+              'post_type' => 'facts',
+              'posts_per_page' => $post_count,
+              'fields' => 'ids',
+              'orderby' => 'date',
+              'order' => 'DESC',
+            );
+            $result_query = new WP_Query( $args );
+            $post_ids2 = $result_query->posts;
+            wp_reset_postdata();
           }
             
-                query_posts(array( 
-                'post_type' => 'facts',
-                'showposts' => $post_count,
-                'orderby' => 'date', 
-                'order' => 'DESC',
-                ) );
           
-            
-          $post_ids2 = [];
-          if (have_posts() ){
-            while(have_posts()){
-                the_post();
-                $post_id = get_the_ID();
-                array_push($post_ids2, $post_id);
-                
-            }
-          } 
           if(!empty($post_ids2)){
             $post_ids = "(" . implode(",", $post_ids2) . ")";
-            $sql3 = "SELECT id_factbid,post_id,bids_count,bids_total,bids_paid,claims_total,view_count,thumbs_up,thumbs_down,comment_count,visibility FROM ct_factbid WHERE post_id IN ".$post_ids." AND status=5";
+            $sql3 = "SELECT * FROM ct_factbid WHERE post_id IN ".$post_ids." AND status=5";
             $results = $wpdb->get_results($sql3); 
           }
             
