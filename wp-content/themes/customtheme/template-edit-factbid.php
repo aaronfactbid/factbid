@@ -186,11 +186,12 @@
                                     if($priority_options){
                                         $sel1 = "";
                                         foreach($priority_options as $key => $priority_option){
-                                            if($factbid_data->priority == $key){
+                                            $ac_key = (int)$key + 1;
+                                            if($factbid_data->priority == $ac_key){
                                                 $sel1 = "selected";
                                             }
                                 ?>
-                                    <option <?php echo $sel1; ?> value="<?php echo $key; ?>"><?php echo $priority_option; ?></option>
+                                    <option <?php echo $sel1; ?> value="<?php echo $ac_key; ?>"><?php echo $priority_option; ?></option>
                                 <?php
                                     unset($sel1);
                                     }
