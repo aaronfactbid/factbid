@@ -44,7 +44,7 @@
     <?php echo show_create_factbid_button(); ?>
   </div>
 <!-- menus -->
-<p>Within hours of posting this video on YouTube, Google suspended the account and removed 
+<p>The lab leak is the US's Tiananmen Square: Within hours of posting this video on YouTube, Google suspended the account and removed 
 the <a href="https://www.youtube.com/embed/6Y2UO7OOHfA" target="_blank">video</a>, providing a plainly false justification<a href="/launch">(read more)</a>.
 Discussing the Lab Leak Theory is clearly still banned, even when the goal is to collect facts,
 and the points made come from respected, mainstream sources.
