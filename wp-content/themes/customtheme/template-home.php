@@ -49,7 +49,7 @@ Unless a whistleblower comes forward, we'll probably never know, there will be n
 You can help stop the pandemic in 60 seconds.  Start with <a href="/1.01">1.01, a reward for the Wuhan lab's missing database</a>.
 Sign up with an  email, and make a pledge, or bid, to compensate the whistleblower for the hardship and costs.
 It's free, non-profit, open-source.  If our leaders told us the truth, nothing happens.  If they're hiding 
-something, your reward may help expose it.  You can then pay the whistleblower directly.
+something, your reward may help expose it.  You can then pay the whistleblower directly.  <a href="/about">learn more</a>
 
 The launch video is public domain.  It's on <a href="https://vimeo.com/717614886"><img src="/wp-content/uploads/2022/06/vimeo.png" height="25"/></a> and <a href="https://archive.org/details/factbid1"><img src="/wp-content/uploads/2022/06/InternetArchive.jpg" height="25"/></a>.
 All source files and mp4's to mirror or make your own version are <a href="https://drive.google.com/drive/folders/12jowu830StoWdjTzKwccV3oXPAVtC3vb?usp=sharing">here</a>.
