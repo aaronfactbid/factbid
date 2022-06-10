@@ -44,12 +44,15 @@
     <?php echo show_create_factbid_button(); ?>
   </div>
 <!-- menus -->
-<p>The lab leak is the US's Tiananmen Square: Within hours of posting this video on YouTube, Google suspended the account and removed 
-the <a href="https://www.youtube.com/embed/6Y2UO7OOHfA" target="_blank">video</a>, providing a plainly false justification<a href="/launch">(read more)</a>.
-Discussing the Lab Leak Theory is clearly still banned, even when the goal is to collect facts,
-and the points made come from respected, mainstream sources.
-It is still on <a href="https://vimeo.com/717614886"><img src="/wp-content/uploads/2022/06/vimeo.png" height="25"/></a> and <a href="https://archive.org/details/factbid1"><img src="/wp-content/uploads/2022/06/InternetArchive.jpg" height="25"/></a>.
-The video is public domain. Download and mirror the mp4, or get a 40GB zip all the source files (Premiere, etc.) from <a href="https://drive.proton.me/urls/32BCFJ3628#awmpIMVsPudh"><img src="/wp-content/uploads/2022/06/Proton-Drive.png" height="25"/></a>.  Feel free to make your own version of the video, especially a shorter version for a younger audience.
+<p>The lab leak is the US's Tiananmen Square and still <a href="/launch">heavily censored.</a>
+Unless a whistleblower comes forward, we'll probably never know, there will be no accountability, and it will keep happening.
+You can help stop the pandemic in 60 seconds.  Start with <a href="/1.01">1.01, a reward for the Wuhan lab's missing database</a>.
+Sign up with an  email, and make a pledge, or bid, to compensate the whistleblower for the hardship and costs.
+It's free, non-profit, open-source.  If our leaders told us the truth, nothing happens.  If they're hiding 
+something, your reward may help expose it.  You can then pay the whistleblower directly.
+
+The launch video is public domain.  It's on <a href="https://vimeo.com/717614886"><img src="/wp-content/uploads/2022/06/vimeo.png" height="25"/></a> and <a href="https://archive.org/details/factbid1"><img src="/wp-content/uploads/2022/06/InternetArchive.jpg" height="25"/></a>.
+All source files and mp4's to mirror or make your own version are <a href="https://drive.google.com/drive/folders/12jowu830StoWdjTzKwccV3oXPAVtC3vb?usp=sharing">here</a>.
 </p>
 
 <?php get_template_part( "template-parts/factbid", "filter" ); ?>
