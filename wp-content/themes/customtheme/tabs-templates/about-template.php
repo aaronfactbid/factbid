@@ -2,6 +2,11 @@
     $postId =  get_the_ID();
 ?>
 <div class="content-area">
+    <div class="sub-cnt ">
+        <h5 class="contents-heading">Description:</h5>
+        <?php the_content(); ?>
+    </div>
+
     <div class="sub-cnt">
         <?php
              $acceptable_claim = get_post_meta($postId, "acceptable_claim", true);
@@ -41,8 +46,4 @@
         ?>
     </div>
 
-    <div class="sub-cnt ">
-        <h5 class="contents-heading">Description:</h5>
-        <?php the_content(); ?>
-    </div>
 </div>
