@@ -53,7 +53,19 @@
                 }
             ?>
             <div class="col-xs-12 content-area <?php echo $dip_class; ?>">
-				<p>Select edit to change your password, username or name.  Changing the username will require you to login again.</p>
+			<p>
+			<img width="20" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png"> 
+			To show this verified check next to your username and bids, provide a link to a social media post which references your FactBid username <b><?php echo factbid_get_author_name($cuser->ID); ?></b>
+			</p>
+			<div class="social-media-block">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Social Media Verifiation Link:</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" placeholder="link to your social media post" value="<?php echo get_user_meta($cuser->ID, "verify_link", true); ?>" aria-label="input example">
+                                </div>
+                            </div>
+                        </div>
+						<p>Select edit to change your password, username or name.  Changing the username will require you to login again.</p>
                 <?php if($id_user == "" || ($id_user == $cuser->ID)){ ?>
                 <div class="user_edit-pf">
                     <a href="<?php echo esc_url(home_url('/edit-profile'));?>" class="btn btn-light btn-sm profile-edit">Edit</a>

@@ -74,6 +74,9 @@
 
 
                         ?>
+						<p>Verify the user references his FactBid username at this link: <a href="instagram.com/madonna" target="_blank">www.instagram.com/madonna</a>
+						If this link is incorrect, please <u>report</u> it so the verified check can be removed.
+						</p>
                         <div class="verified-tick" style="top:26px">
                             <img width="40" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png">
                         </div>
