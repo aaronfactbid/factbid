@@ -74,9 +74,8 @@ all the bidders will get an email with the whisteblower's payment instructions. 
 you can then pay the whistleblower directly.  It’s an honor system and there’s no ulterior motive.
 FactBid doesn’t have ads, or revenue, or use your personal data.  It’s just a free forum for us to crowd fund rewards for whistleblowers to show them we appreciate their service. 
 </p>
-<?php get_template_part( "template-parts/factbid", "filter" ); ?>
- 
-<?php get_template_part( "template-parts/factbid", "list" ); ?>
+<!--?php get_template_part( "template-parts/factbid", "filter" ); ?->
+<!--?php get_template_part( "template-parts/factbid", "list" ); ?->
      
 
     </div>
