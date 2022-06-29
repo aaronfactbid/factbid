@@ -141,6 +141,13 @@ function extra_profile_fields( $user ) { ?>
     <h3><?php _e('Extra User Details'); ?></h3>
     <table class="form-table">
         <tr>
+            <th><label for="verifylink">Verification Link</label></th>
+            <td>
+            <input type="text" name="verifylink" id="verifylink" value="<?php echo esc_attr( get_the_author_meta( 'verifylink', $user->ID ) ); ?>" class="regular-text" /><br />
+            <span class="description">Enter your Verification Link.</span>
+            </td>
+        </tr>
+        <tr>
             <th><label for="facebook">Facebook Page</label></th>
             <td>
             <input type="text" name="facebook" id="facebook" value="<?php echo esc_attr( get_the_author_meta( 'facebook', $user->ID ) ); ?>" class="regular-text" /><br />
@@ -202,7 +209,8 @@ function save_extra_profile_fields( $user_id ) {
         return false;
 
     /* Edit the following lines according to your set fields */
-    update_usermeta( $user_id, 'facebook', $_POST['facebook'] );
+    update_usermeta( $user_id, 'verifylink', $_POST['verifylink'] );
+	update_usermeta( $user_id, 'facebook', $_POST['facebook'] );
     update_usermeta( $user_id, 'twitter', $_POST['twitter'] );
     update_usermeta( $user_id, 'substack', $_POST['substack'] );
     update_usermeta( $user_id, 'youtube', $_POST['youtube'] );
@@ -1922,6 +1930,7 @@ function edit_profile_redirect(){
                 $sphone = $_POST['phone'];
                 $swebsite = $_POST['website'];
 
+                $sverifylink = $_POST['verifylink'];
                 $sfacebook = $_POST['facebook'];
                 $stwitter = $_POST['twitter'];
                 $ssubstack = $_POST['substack'];
@@ -1982,6 +1991,7 @@ function edit_profile_redirect(){
                         ['user_login' => $username, 'display_name'=> $username], 
                         ['ID' => $cuser->ID]
                     );
+                    update_user_meta($cuser->ID, "verifylink", $sverifylink);
                     update_user_meta($cuser->ID, "facebook", $sfacebook);
                     update_user_meta($cuser->ID, "twitter", $stwitter);
                     update_user_meta($cuser->ID, "substack", $ssubstack);

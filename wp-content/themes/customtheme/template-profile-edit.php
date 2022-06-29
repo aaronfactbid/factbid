@@ -113,7 +113,9 @@
                                 <a href="<?php echo esc_url(home_url('/reset-password')) ?>" class="btn change-psw">Change password</a>
 
                             </div>
-                            
+							<p>
+							<b>To let potential whistleblowers know your bids are legitimate, post something in your social media that references your FactBid username and provide the link below:</b>
+							</p>
 
                             <div class="row g-3 edit-form">
                                 <div class="row">
@@ -124,6 +126,15 @@
                                         <input type="text" name="fusername" class="form-control" placeholder="Enter Username" aria-label="Enter Username" value="<?php echo $cuser->user_login;?>">
                                         <input type="hidden" name="old_username" value="<?php echo $cuser->user_login;?>">
                                     </div>
+                                </div>
+                                <div class="row">
+									<div class="col-6 ">
+										<img width="20" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png">
+										<lable class="text-right">Verification link:</lable>
+									</div>
+									<div class="col-6 ">
+										<input type="text" name="verifylink" class="form-control" placeholder="Enter verification link" aria-label="Enter verification link" value="<?php echo get_user_meta($cuser->ID, "verifylink", true); ?>">
+									</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6 ">

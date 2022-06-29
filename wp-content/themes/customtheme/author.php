@@ -74,8 +74,8 @@
 
 
                         ?>
-						<p>Verify the user references his FactBid username at this link: <a href="instagram.com/madonna" target="_blank">www.instagram.com/madonna</a>
-						If this link is incorrect, please <u>report</u> it so the verified check can be removed.
+						<p>If the user provided a verification link in his profile, but it is not valid or does not references his FactBid username 
+						please emai admin@factbid.org so the verified check can be removed.
 						</p>
                         <div class="verified-tick" style="top:26px">
                             <img width="40" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png">
@@ -91,6 +91,7 @@
                     <div class="row profile-data">
                         <div class="col-sm-6">
                             <p>Send a private message in the <a href="/community/profile/<?php echo factbid_get_author_name($cuser->ID); ?>/">forum</a></p>
+                            <p><strong>Verification Link: </strong><a href="<?php echo get_user_meta($cuser->ID, "verifylink", true); ?>"><?php echo get_user_meta($cuser->ID, "verifylink", true); ?></a></p>
                             <p><strong>Name: </strong><?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname; ?></p>
                             <p><strong>Languages:</strong>
                                 <?php 
