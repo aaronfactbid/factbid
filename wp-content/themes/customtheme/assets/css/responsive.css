@@ -11,6 +11,13 @@
         display: grid;
         
     }
+    .about-page-vew .tab-content {
+        padding-left: 0 !important;
+        font-size: 12px;
+    }
+    .btn-primary{
+        font-size: 12px;
+    }
     .content-area p img.alignright{
         width: 100%;
         padding-left: 0;
@@ -179,10 +186,7 @@
     .about-page-vew .nav-tabs {
         padding-left: 6rem;
     }
-    .about-page-vew .tab-content {
-        padding: 0 !important;
-        font-size: 10px;
-    }
+    
     a.btn.btn-claim-response-view, .payment-instuction {
         padding: 2px !important;;
         font-size: 12px !important;;
