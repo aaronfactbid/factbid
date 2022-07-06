@@ -14,7 +14,7 @@ a:hover, a:focus {
 
 .title-bar {
     background: #f7f7f7;
-    height: 200px;
+    /* height: 200px; */
     padding: 70px;
     display: flex;
     justify-content: center;
@@ -366,7 +366,7 @@ a.logo a:hover, a.logo a:focus { background-color: transparent;text-decoration: 
 .bid_count strong { font-size:12px;}
 .bid_count span {color:#466BB8;font-size:0.70rem;}
 .bid_count .col {padding: 0 8px;}
-/* about page view */
+/* about page view */ 
 .about-page-vew .tab-content{ padding-top: 40px; padding-bottom: 40px; padding-left:4rem }
 .about-page-vew .nav-tabs { padding-left: 8rem;}
 .about-page-vew { padding-top: 40px; padding-bottom: 40px;  background: #9eb4e1a6;}
