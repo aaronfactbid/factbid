@@ -1,6 +1,7 @@
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
     .text {font-size: 12px;}
+
     
     
 }
@@ -52,9 +53,16 @@
       div#sidebar-news{
           padding: 0;
       }
-      
-    .table > :not(caption) > * > * {
-        padding: 0.5rem 0.3rem;
+      a.btn.btn-claim-response-view{
+        font-size: 12px;
+        padding: 0;
+      }
+      .btn.crate-bit {
+        font-size: 12px;
+        padding: 6px 14px;
+      }
+      .table>:not(caption)>*>* {
+        padding: 0 !important;
     }
     
 }
