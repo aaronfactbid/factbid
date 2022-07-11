@@ -44,38 +44,23 @@
     <?php echo show_create_factbid_button(); ?>
   </div>
 <!-- menus -->
+<h1>Do you want to uncover the origins of covid?</h1>
+<h2>To prevent future pandemics we need to understand where they come from</h2>
+<p><b>1.</b> Click sign up and provide an email.  It's free, there's no tracking or collection of personal information.</p>
+<p><b>2.</b> Go to <a href="/1.01">FactBid.org/1.01</a>, click 'Bids' and 'Create New Bid' to pledge to support a whistleblower who comes forward with the data about the origins of COVID.  Even the WHO and intelligence agencies concede the data is out there and unless a whistleblower comes forward we will never get to the bottom of the mystery.</p>
+<p><b>3.</b> Post your support on social media and include the link in your <a href="/profile">FactBid profile</a> so your pledge has a verified logo, showing a whistleblower you're serious.</p>
+<p>That's it.  If a whisteblower courageously risks it all to come forward with the hard evidence to claim FactBid 1.01, you will get an email with the whistleblower's donation instructions.  FactBid never touches the money and is purely an altruistic forum to connect whistleblowers with those who want to support their service.</p>
+<p>To learn more about the lab leak theory and how the very same bureaucrats and scientists investigating this lab leak successfully swept under the rug 20 years ago a different lab leak that was much bigger and more obvious see <a href="/1.00">FactBid.org/1.00</a>.</p>
+
 <h1>What is FactBid?</h1>
 
 <p>
-FactBid is the 21st century answer to the question: what is the truth?
-Are those in power trying to keep it from me and how can I get the answers still?
-FactBid uses a simple, intuitive system to crowd fund the truth.
-To offer potential whistle blowers crowd sourced rewards to answer simple questions,
-provide evidence and to be able to avoid the financial risks associated with speaking truth to power.
-More and more wealthy and powerful elites control both the presses,
-influences our democracy and threaten others with financial ruin.
-We at FactBid believe we can’t take the blindfold off of truth or their thumbs off of the scales of justice. We can however lift that thumb and loosen that blindfold.
+Uncovering the origins of covid is just the topic of FactBid #1.  FactBid is an unbiased, truth-finding platform to uncover any type of fact that requires a whistleblower.
+Are those in power trying to keep us from finding the truth?  We know powerful elites control much of the press, influence our democracy, and threaten with financial ruin those who dare speak truth to power.
+We can’t take the blindfold off of truth or their thumbs off of the scales of justice.  But we can however lift that thumb and loosen that blindfold by pledging to support whistleblowers who risk their livelihood to do the right thing and expose injustice.
 </p>
-<h1>Would you like to help us?</h1>
-<p>
-Let's try out FactBid by crowd sourcing the origins of COVID.  It's been reported that most people believe the
-Wuhan Lab had something to do with the pandemic.  Government officials concede that is a possiblity. The <a href="https://www.france24.com/en/live-news/20220609-covid-lab-leak-theory-needs-more-research-who-advisors">WHO said</a> it is important "to evaluate the possibility [COVID came from] a laboratory incident".
-Yet <a href="https://unherd.com/2022/06/what-happened-to-the-lab-leak-hypothesis/">scientists report</a> "the topic remains taboo in much of the mainstream media" and mainstream scientific organizations have said "it’s not a proper topic for scientific discussion."
-The lab leak is the new Tiananmen Square.  Even the Wuhan Lab's formerly-public database of their research experiments
-has mysteriously disappeared and is being withheld from the scientists who need it to investigate the <a href="https://twitter.com/hashtag/OriginsOfCOVID">Origins of COVID</a>.
-Unless a whistleblower comes forward, 
-we'll probably never know what happened. Without that, there will be no accountability, and it will keep happening.
-You can help stop the next pandemic in 60 seconds.  Visit <a href="/1.01">FactBid.org/1.01: a reward for the Wuhan lab's missing database</a>.
-Sign up with an email, and make a pledge, or bid, to compensate the whistleblower for the hardship and costs.
-Then share on your social media and copy the link in your <a href="/profile">profile</a> so your bid shows up as verified
-It's free, non-profit, open-source.  If our leaders told us everything, nothing happens.  If they're hiding 
-something, your reward may help expose it.  If a whistleblower posts the data and claims the reward,
-all the bidders will get an email with the whisteblower's payment instructions.  If you are satisfied, 
-you can then pay the whistleblower directly.  It’s an honor system and there’s no ulterior motive.
-FactBid doesn’t have ads, or revenue, or use your personal data.  It’s just a free forum for us to crowd fund rewards for whistleblowers to show them we appreciate their service. 
-</p>
-<p>
-If you have a few minutes to spare, <a href="/1.00">FactBid 1.00</a> contains the background story and a couple additional rewards for whistleblowers to flush out evidence that covering up lab leaks may have been going on for decades.
+<h1>Would you like to help?</h1>
+<p>FactBid is free, open-source, non-commercial and has no ads or tracking or business model.  It is a grassroots effort uncover facts for the public good.  The most important thing you can do is spread the word.  You can also <a href="/contribute">contribute</a> to the platform.</p>
 </p>
 <!--?php get_template_part( "template-parts/factbid", "filter" ); ?->
 <!--?php get_template_part( "template-parts/factbid", "list" ); ?->
