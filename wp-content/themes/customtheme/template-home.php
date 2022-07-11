@@ -50,7 +50,7 @@
 <p><b>2.</b> Go to <a href="/1.01">FactBid.org/1.01</a>, click 'Bids' and 'Create New Bid' to pledge to support a whistleblower who comes forward with the data about the origins of COVID.  Even the WHO and intelligence agencies concede the data is out there and unless a whistleblower comes forward we will never get to the bottom of the mystery.</p>
 <p><b>3.</b> Post your support on social media and include the link in your <a href="/profile">FactBid profile</a> so your pledge has a verified logo, showing a whistleblower you're serious.</p>
 <p>That's it.  If a whisteblower courageously risks it all to come forward with the hard evidence to claim FactBid 1.01, you will get an email with the whistleblower's donation instructions.  FactBid never touches the money and is purely an altruistic forum to connect whistleblowers with those who want to support their service.</p>
-<p>To learn more about the lab leak theory and how the very same bureaucrats and scientists investigating this lab leak successfully swept under the rug 20 years ago a different lab leak that was much bigger and more obvious see <a href="/1.00">FactBid.org/1.00</a>.</p>
+<p>To learn more about the lab leak theory and how the very same bureaucrats and scientists investigating this lab leak successfully swept under the rug 20 years ago a different lab leak that was even bigger and more obvious see <a href="/1.00">FactBid.org/1.00</a>.</p>
 
 <h1>What is FactBid?</h1>
 
