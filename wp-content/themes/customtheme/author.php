@@ -63,7 +63,7 @@
                     <h3 class="user_name">
                         <?php // echo $cuser->user_firstname . ' ' . $cuser->user_lastname . ' #' . $cuser->ID; ?>
                         <?php
-                            echo '<small><small>Username</small></small>: ' . factbid_get_author_name($cuser->ID);
+                            echo factbid_get_author_name($cuser->ID);
                             // echo factbid_get_author_name($cuser->ID). ' #' . $cuser->ID;
                         ?>
                     </h3>
@@ -74,8 +74,7 @@
 
 
                         ?>
-						<p>If the user provided a verification link in his profile, but it is not valid or does not references his FactBid username 
-						please emai admin@factbid.org so the verified check can be removed.
+						<p>If the user's verification link is invalid, email <a href="mailto:admin@factbid.org">admin@factbid.org</a> so the verified check can be removed.
 						</p>
                         <div class="verified-tick" style="top:26px">
                             <img width="40" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png">
@@ -90,33 +89,7 @@
                     </div>
                     <div class="row profile-data">
                         <div class="col-sm-6">
-                            <p>Send a private message in the <a href="/community/profile/<?php echo factbid_get_author_name($cuser->ID); ?>/">forum</a></p>
                             <p><strong>Verification Link: </strong><a href="<?php echo get_user_meta($cuser->ID, "verifylink", true); ?>"><?php echo get_user_meta($cuser->ID, "verifylink", true); ?></a></p>
-                            <p><strong>Name: </strong><?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname; ?></p>
-                            <p><strong>Languages:</strong>
-                                <?php 
-                                    $lang =  get_user_meta($cuser->ID, "languages", true);
-                                    echo show_language_from_id ($lang);
-                                ?>
-                            </p>
-                            <p><strong>Phone:</strong><?php echo get_user_meta($cuser->ID, "phone", true); ?></p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><strong>Country: </strong><?php echo get_user_meta($cuser->ID, "country", true); ?></p>
-                            <?php 
-                                $show_email = get_user_meta($cuser->ID, "show_email", true);
-                                if($show_email == "show"){
-                                    $emailid = $cuser->user_email;
-                                } else if($show_email == "alternate"){
-                                    $emailid = get_user_meta($cuser->ID, "alternate_email", true);
-                                } else if($show_email == "hide") {
-                                    $emailid = "This user's Privacy settings doesn't allow to show email ID";
-                                } else {
-                                    $emailid = $cuser->user_email;
-                                }
-                            ?>
-                            <p><strong>Email: </strong><?php echo $emailid; ?></p>
-                            <p><strong>Website: </strong><?php echo $cuser->user_url; ?></p>
                         </div>
                     </div>
                     <div class="social_media">
