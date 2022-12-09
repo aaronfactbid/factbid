@@ -66,175 +66,46 @@
                     <?php   
                         }
                     ?>
-                        <h3 class="user_name">Edit Profile</h3>
+                        <h3 class="user_name"><?php echo $cuser->user_login;?></h3>
 
                         <div class="row profile-data">
                             <div class="col-sm-12">
-                                <?php 
-                                    $show_email = get_user_meta($cuser->ID, "show_email", true);
-                                    $checked1 = $checked2 = $checked3 = "";
-                                    if($show_email == "show"){
-                                        $checked1 = "checked";
-                                    } else if($show_email == "alternate"){
-                                        $checked2 = "checked";
-                                    } else if($show_email == "hide") {
-                                        $checked3 = "checked";
-                                    } else {
-                                        $checked1 = "checked";
-                                    }
-                                ?>
                                 <p><strong>Email: </strong>
-                                <input type="text" placeholder="Enter your email Address" class="form-control edit-profile-email-1" value="<?php echo $cuser->user_email; ?>">
+                                <input type="text" readonly placeholder="Enter your email Address" class="form-control edit-profile-email-1" value="<?php echo $cuser->user_email; ?>">
                                 </p>
-                                <div class="form-check-edit">
-                                    <input class="form-check-input" value="show" type="radio" name="show_email" <?php echo $checked1; ?> id="show_email1">
-                                    <label class="form-check-label" for="show_email">
-                                        Show my email on my profile
-                                    </label>
-                                </div>
-                                <?php
-                                    $alternate_email = get_user_meta($cuser->ID, "alternate_email", true);
-                                ?>
-                                <div class="form-check-edit">
-                                    <input class="form-check-input" <?php echo $checked2; ?> value="alternate" type="radio" name="show_email" id="show_email2">
-                                    <label class="form-check-label" for="show_email2">
-                                        Show another email on my profile
-                                    </label>
-                                    <input name="alternate_email" type="text" value="<?php if($alternate_email): echo $alternate_email; endif; ?>" class="form-control form-control edit-profile-email-2" placeholder="Enter your email Address" aria-label="email">
-                                    
-                                </div>
-                                <div class="form-check-edit">
-                                    <input class="form-check-input" <?php echo $checked3; ?> value="hide" type="radio" name="show_email" id="show_email3">
-                                    <label class="form-check-label" for="show_email3">
-                                        Do not show reveal my email
-                                    </label>
-                                </div>
 
                                 <a href="<?php echo esc_url(home_url('/reset-password')) ?>" class="btn change-psw">Change password</a>
 
                             </div>
-							<p>
-							<b>To let potential whistleblowers know your bids are legitimate, post something in your social media that references your FactBid username and provide the link below:</b>
-							</p>
 
                             <div class="row g-3 edit-form">
                                 <div class="row">
-                                    <div class="col-6 ">
-                                        <lable class="text-right">Username :</lable>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <input type="text" name="fusername" class="form-control" placeholder="Enter Username" aria-label="Enter Username" value="<?php echo $cuser->user_login;?>">
-                                        <input type="hidden" name="old_username" value="<?php echo $cuser->user_login;?>">
-                                    </div>
-                                </div>
-                                <div class="row">
+									<p>
+									<b>IMPORTANT: So potential whistleblowers know you are legitimate, post something in your social media that includes this:
+									<a style="color:lightblue" href="https://factbid.org/author/<?php echo $cuser->user_login;?>">https://factbid.org/author/<?php echo $cuser->user_login;?></a>
+									</b>
+									</p>
+
 									<div class="col-6 ">
-										<img width="20" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png">
-										<lable class="text-right">Verification link:</lable>
+										<lable class="text-right"><b>Then copy/paste the link to your post here:</b></lable>
 									</div>
 									<div class="col-6 ">
 										<input type="text" name="verifylink" class="form-control" placeholder="Enter verification link" aria-label="Enter verification link" value="<?php echo get_user_meta($cuser->ID, "verifylink", true); ?>">
 									</div>
+									<p>
+									<b>Your FactBid username will then have this verified check <img width="20" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png"> 
+									which takes a potential whistleblower to your social media post.</b>
+									</p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <lable>Name :</lable>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <input type="text" name="fname" class="form-control" placeholder="Enter Name" aria-label="Enter Name" value="<?php echo $cuser->user_firstname . ' ' . $cuser->user_lastname; ?>">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <lable>Country :</lable>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <?php $countryname = get_user_meta($cuser->ID, "country", true); ?>
-                                        <select name="country" aria-label="Country" class="form-control">
-                                            <?php
-                                                global $wpdb;
-                                                
-                                                $cntry = $wpdb->get_results("SELECT id,name,iso FROM ct_countries");
-                                                if($countryname):
-                                                    if(!empty($cntry)):
-                                                        foreach($cntry as $cn):
-                                            ?>
-                                            <option <?php selected($countryname, $cn->iso); ?> value="<?php echo $cn->iso; ?>"><?php echo $cn->name; ?></option>
-                                            <?php
-                                                        endforeach;
-                                                    endif;
-                                                else:
-                                                    if(!empty($cntry)):
-                                                        foreach($cntry as $cn):
-                                            ?>
-                                            <option <?php selected($cn->iso, "US"); ?> value="<?php echo $cn->iso; ?>"><?php echo $cn->name; ?></option>
-                                            <?php
-                                                        endforeach;
-                                                    endif;
-                                                endif;
-                                            ?>
-                                        </select>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <lable>Preferred Language :</lable>
-                                    </div>
-                                    <div class="col-6 ">
-                                    <?php 
-                                        $lang = get_user_meta($cuser->ID, "languages", true);
-                                        $langs = get_option("languages", true);
-                                    ?>
-                                    
-
-                                        <select class="form-select" aria-label="language" name="language">
-                                            <?php
-                                                if($lang){
-                                                    if($langs && !empty($langs)){
-                                                        foreach($langs as $key => $language){
-                                                            $lan = $language['name'];
-                                                            echo '<option '.$class.' value="'.$key.'"'.selected($key, $lang).'>'.$lan.'</option>';
-                                                        }
-                                                    } else {
-                                                        echo "<option value='en'>English</option>";
-                                                    }
-                                                } else {
-                                                    if($langs && !empty($langs)){
-                                                        foreach($langs as $key => $language){
-                                                            $lan = $language['name'];
-                                                            echo '<option '.$class.' value="'.$key.'"'.selected($key, "en").'>'.$lan.'</option>';
-                                                        }
-                                                    } else {
-                                                        echo "<option value='en'>English</option>";
-                                                    }
-                                                }
-                                            
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <lable>Phone :</lable>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <input type="text" name="phone" class="form-control" placeholder="Enter Phone Number" aria-label="Enter Phone Number" value="<?php echo get_user_meta($cuser->ID, "phone", true); ?>">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <lable>Website :</lable>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <input type="text" name="website" class="form-control" placeholder="Enter Website" aria-label="Enter Website" value="<?php echo $cuser->user_url; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            
+                            </div>                            
                         </div>
+						
+						<div class="edit-submit-btn">
+							<input type="submit" class="btn btn-submit-edit" value="Save" name="edit_profile">
+						</div>
+
                         <div class="social_media">
-                            <h3>Social Media:</h3>
+                            <h3>Social Media (optional):</h3>
                             
                             <div class="social-media-block">
                                 <div class="row">
@@ -272,10 +143,9 @@
                         <div class="profile-comments">
                             <textarea class="form-control" name="description" placeholder="Enter your comments here"  aria-label="input example"><?php echo normalize_whitespace(get_user_meta($cuser->ID, "description", true)); ?></textarea>
                         </div>
-                        <div class="edit-submit-btn">
-                            <input type="submit" class="btn btn-submit-edit" value="Save" name="edit_profile">
-                        </div>
-                    
+						<div class="edit-submit-btn">
+							<input type="submit" class="btn btn-submit-edit" value="Save" name="edit_profile">
+						</div>
                     </form >
                 </div>
             </div>

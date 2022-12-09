@@ -1919,17 +1919,6 @@ function edit_profile_redirect(){
                 global $reg_errors, $signUpError;
                 $reg_errors = new WP_Error;
 
-                $old_username = $_POST['old_username'];
-                $semail_show = $_POST['show_email']; // alternate, show, hide
-                $salternate_email = $_POST['alternate_email'];
-
-                $susername = $_POST['fusername'];
-                $sname = trim($_POST['fname']);
-                $scountry = $_POST['country'];
-                $slanguage = $_POST['language'];
-                $sphone = $_POST['phone'];
-                $swebsite = $_POST['website'];
-
                 $sverifylink = $_POST['verifylink'];
                 $sfacebook = $_POST['facebook'];
                 $stwitter = $_POST['twitter'];
@@ -1942,80 +1931,25 @@ function edit_profile_redirect(){
                 $sfirst_name = @$fullname[0];
                 $slast_name = @$fullname[1];
                 
-                
-                
-                if(!empty($old_username) && ($old_username != $susername)) {
-                    if(empty( $susername ))
-                    {
-                        $reg_errors->add('field', 'Required form field is missing');
-                    }    
-                    if ( 6 > strlen( $susername ) )
-                    {
-                        $reg_errors->add('username_length', 'Username too short. At least 6 characters is required' );
-                    }
-                    if ( username_exists( $susername ) )
-                    {
-                        $reg_errors->add('user_name', 'The username you entered already exists!');
-                    }
-                    if ( ! validate_username( $susername ) )
-                    {
-                        $reg_errors->add( 'username_invalid', 'The username you entered is not valid!' );
-                    } 
-                }
-                if (is_wp_error( $reg_errors ))
-                { 
-                    foreach ( $reg_errors->get_error_messages() as $error )
-                    {
-                        $signUpError='<p style="color:#FF0000; text-aling:left;"><strong>ERROR</strong>: '.$error . '<br /></p>';
-                    }
-                }
-                
-                
                 if ( 1 > count( $reg_errors->get_error_messages() ) )
                 {
                     // sanitize user form input
                     global $username, $wpdb;
                     $username   =   sanitize_user( $susername );
                     
-                    $userdata = array(
-                        'ID' => $cuser->ID,
-                        'user_url'    =>   $swebsite,
-                        'user_nicename'     =>   $username,
-                        'first_name'     =>   $sfirst_name,
-                        'last_name'     =>   $slast_name,
-                        'description'     =>   $sdescription,
-                        );
-                    $user = wp_update_user( $userdata );
-                    $wpdb->update(
-                        $wpdb->users, 
-                        ['user_login' => $username, 'display_name'=> $username], 
-                        ['ID' => $cuser->ID]
-                    );
+                    update_user_meta($cuser->ID, "description", $sdescription);
                     update_user_meta($cuser->ID, "verifylink", $sverifylink);
                     update_user_meta($cuser->ID, "facebook", $sfacebook);
                     update_user_meta($cuser->ID, "twitter", $stwitter);
                     update_user_meta($cuser->ID, "substack", $ssubstack);
                     update_user_meta($cuser->ID, "youtube", $syoutube);
 
-                    update_user_meta($cuser->ID, "country", $scountry);
-                    update_user_meta($cuser->ID, "phone", $sphone);
-                    update_user_meta($cuser->ID, "languages", $slanguage);
-                    update_user_meta($cuser->ID, "show_email", $semail_show);
-                    if($semail_show == "alternate"){
-                        update_user_meta($cuser->ID, "alternate_email", $salternate_email);
-                    }
                     $profile = $wpdb->get_results($wpdb->prepare("SELECT verified FROM ct_profile WHERE id_user=%d",$cuser->ID));
                     if($profile[0]->verified != "Link Verified"){
                         $res = $wpdb->update('ct_profile',array(
                                 'verify_url'=> $swebsite,
                                 'verified'=> 'Link posted'
                             ),array('id_user' => $cuser->ID));
-                    }
-                    if(!empty($old_username) && ($old_username != $susername)) {
-                        // if(is_user_logged_in()) {
-                        wp_logout();
-                        wp_redirect( home_url("/sign-in") ); exit;
-                        // }
                     }
                     global $signUpSuccess;
                     $signUpSuccess='<p style="color:#466bb8; text-aling:left;"><strong>Success</strong>: Your Profile has been successfully saved..!!!<br /></p>';

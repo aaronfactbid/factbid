@@ -53,8 +53,6 @@
                 }
             ?>
             <div class="col-xs-12 content-area <?php echo $dip_class; ?>">
-
-						<p>Select edit to change your password, username or name.  Changing the username will require you to login again.</p>
                 <?php if($id_user == "" || ($id_user == $cuser->ID)){ ?>
 			<p>
 			<img width="20" height="auto" src="<?php echo get_template_directory_uri();?>/assets/images/verified-profile.png"/> 
@@ -67,7 +65,7 @@
                 <?php } ?>
                 <div class="username_wrapper">
                     <?php /* ?><h3 class="user_name"><?php echo factbid_get_author_name($cuser->ID) . ' #' . $cuser->ID; ?></h3><?php */ ?>
-                    <h3 class="user_name"><small><small>Username</small></small>: <?php echo factbid_get_author_name($cuser->ID); ?></h3>
+                    <h3 class="user_name"><?php echo factbid_get_author_name($cuser->ID); ?></h3>
                         
                         <?php 
                             $profile = $wpdb->get_results($wpdb->prepare("SELECT verified FROM ct_profile WHERE id_user=%d",$cuser->ID));
@@ -83,24 +81,10 @@
                 </div>
                     <div class="row profile-data">
                         <div class="col-sm-6">
-                            <p><strong>Name: </strong><?php echo factbid_get_author_name($cuser->ID) ?></p>
-                            <p><strong>Languages:</strong>
-                                <?php 
-                                    $lang =  get_user_meta($cuser->ID, "languages", true);
-                                    echo show_language_from_id ($lang);
-                                ?>
-                            </p>
                             <p><strong>Verification Link: </strong><a href="<?php echo get_user_meta($cuser->ID, "verifylink", true); ?>"><?php echo get_user_meta($cuser->ID, "verifylink", true); ?></a></p>
-                            <p><strong>Phone:</strong><?php echo get_user_meta($cuser->ID, "phone", true); ?></p>
                         </div>
                         <div class="col-sm-6">
-                            <p><strong>Country: </strong><?php echo get_user_meta($cuser->ID, "country", true); ?></p>
-                            <?php 
-                                $show_email = get_user_meta($cuser->ID, "show_email", true);
-                                $emailid = $cuser->user_email;
-                            ?>
-                            <p><strong>Email: </strong><?php echo $emailid; ?></p>
-                            <p><strong>Website: </strong><?php echo $cuser->user_url; ?></p>
+                            <p><strong>Email: </strong><?php echo $cuser->user_email; ?></p>
                         </div>
                     </div>
                     <div class="social_media">
