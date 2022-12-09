@@ -75,9 +75,6 @@
           ) );
         ?>
         <?php endif; ?>
-        <select class="header_lan_select">
-          <option value="en">EN</option>
-        </select>
       </div>
     </div>
   </nav>

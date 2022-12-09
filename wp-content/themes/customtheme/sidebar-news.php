@@ -43,14 +43,6 @@
                 </select>
             </li>
             <li>
-                <label>Languages:</label>
-                <select id="language_filter">
-                    <option value="1">English</option>
-                    <option value="2">French</option>
-                    <option value="3">Dutch</option>
-                </select>
-            </li>
-            <li>
                 <label>Status:</label>
                 <select id="status_filter">
                     <option value="1">Closed</option>

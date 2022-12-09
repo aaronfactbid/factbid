@@ -89,14 +89,6 @@
                   $fb_country = $res[0]->country;
                   $countries = $wpdb->get_results($wpdb->prepare("SELECT name FROM ct_countries WHERE iso=%s", $fb_country));
                   $fb_country = $countries[0]->name;
-                  $fb_languages = $res[0]->language;
-                  $fb_language = "";
-                  $languages = get_option("languages", true);
-                  foreach($languages as $key => $language){
-                    if($key == $fb_languages){
-                      $fb_language = $language['name'];
-                    }
-                  }
                   $fb_topics = $res[0]->topics;
                   $fb_topic = "";
                   $topics_options = get_option("fact_bid_topics", true);
@@ -106,7 +98,7 @@
                     }
                   }
                   
-                  $meta_data = $fb_type . ' - ' . $fb_status . ' - ' . $fb_country . ' - ' . $fb_language . ' - ' . $fb_topic;
+                  $meta_data = $fb_type . ' - ' . $fb_status . ' - ' . $fb_country . ' - ' . $fb_topic;
 
                   if($visibilty != 1){
                     $author_name = 'user';

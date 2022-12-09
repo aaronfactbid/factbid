@@ -159,25 +159,6 @@
                         ?>                               
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="language" class="form-label">Language</label>
-                            <?php
-                                $languages = get_option("languages", true);
-                            ?>
-                            <select class="form-select" aria-label="Language" id="language">
-                                <?php
-                                    if($languages){
-                                        foreach($languages as $key => $language){
-                                            $sel1 = "";
-                                            
-                                            $lan = $language['name'];
-                                            echo '<option value="'.$key.'"'.selected($key, $factbid_data->language).'>'.$lan.'</option>';
-                                            unset($sel1);
-                                        }
-                                    }
-                                ?>
-                            </select>
-                        </div>
                         <div class="mb-3 <?php if(!current_user_can('administrator')){ ?>d-none<?php } ?>">
                             <label for="priority" class="form-label">Priority</label>
                             <select class="form-select" aria-label="Language" id="priority">

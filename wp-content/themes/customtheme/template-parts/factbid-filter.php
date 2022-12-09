@@ -28,26 +28,6 @@
         </span>
       </div>
 
-      <div class="option-cols">
-      <span class="lable">Languages:</span> 
-        <span>
-          <select class="filter_select" id="language_filter">
-            <option value="">SELECT</option>
-            <?php 
-              $langs = get_option("languages");
-              if($langs && !empty($langs)){
-                foreach($langs as $key => $lan){
-                ?>
-                    <option value="<?php echo $key; ?>"><?php echo $lan['name']; ?></option>
-                <?php
-                }
-            } else {
-                echo "<option value='en'>English</option>";
-            }
-            ?>
-          </select>
-        </span>
-      </div>
 
       <div class="option-cols">
       <span class="lable">Author:</span> 

@@ -115,22 +115,7 @@
                         ?>                               
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="language" class="form-label">Language</label>
-                            <?php
-                                $languages = get_option("languages", true);
-                            ?>
-                            <select class="form-select" aria-label="Language" id="language">
-                                <?php
-                                    if($languages){
-                                        foreach($languages as $key => $language){
-                                            $lan = $language['name'];
-                                            echo '<option value="'.$key.'"'.selected($key,"en").'>'.$lan.'</option>';
-                                        }
-                                    }
-                                ?>
-                            </select>
-                        </div>
+
                         <div class="mb-3 <?php if(!current_user_can('administrator')){ ?>d-none<?php } ?>">
                             <label for="priority" class="form-label">Priority</label>
                             <select class="form-select" aria-label="Language" id="priority">

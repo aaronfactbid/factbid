@@ -63,16 +63,6 @@ get_header();
                         </select>
                     </span>
                 </div>
-                <div class="fl-lang">
-                    <span class="lable">Languages:</span> 
-                    <span>
-                        <select>
-                        <option value=""></option>
-                        <option value="demo-1">demo-1</option>
-                        <option value="demo-2">demo-1</option>
-                        </select>
-                    </span>
-                </div>
                 <div class="fl-status">
                     <span class="lable">Status:</span> 
                     <span>

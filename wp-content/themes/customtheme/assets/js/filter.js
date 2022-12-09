@@ -21,8 +21,7 @@ jQuery(document).ready(function(){
 		var sort_filter = jQuery('#sort_filter').val();
 		var topic_filter = jQuery('#topic_filter').val();
 		var author_filter = jQuery('#author_filter').val();
-		var language_filter = jQuery('#language_filter').val();
-		listFacts(status_filter,sort_filter,topic_filter,language_filter,author_filter);
+		listFacts(status_filter,sort_filter,topic_filter,author_filter);
 	});
 
 	// jQuery('#search_go').on('click',function(e){
@@ -30,11 +29,11 @@ jQuery(document).ready(function(){
 	// 	var search2 = jQuery('#search2').val();
 	// 	listFactsSearch(search2);
 	// });
-	function listFacts(status_filter='',sort_filter='',topic_filter='',language_filter='',author_filter='') {
+	function listFacts(status_filter='',sort_filter='',topic_filter='',author_filter='') {
 	    var x = jQuery.ajax({
 	            url:my_ajax_object.ajaxurl,
 	            method:'POST',
-	            data:{'action':'filter_facts','status_filter':status_filter,'sort_filter':sort_filter,'topic_filter':topic_filter,'language_filter':language_filter,'author_filter':author_filter},
+				data:{'action':'filter_facts','status_filter':status_filter,'sort_filter':sort_filter,'topic_filter':topic_filter,'author_filter':author_filter},
 	            // success:function(response) {
 	            // 	console.log('came');
 	            //     // jQuery('#append-html').html('');

@@ -175,25 +175,6 @@ function extra_profile_fields( $user ) { ?>
             <span class="description">Enter your Youtube.</span>
             </td>
         </tr>
-        <tr>
-            <th><label for="languages">Languages</label></th>
-            <td>
-            <input type="text" name="languages" id="languages" value="<?php echo esc_attr( get_the_author_meta( 'languages', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description">Enter your Languages known separated by comma.</span>
-            </td>
-        </tr>
-        <tr>
-            <th><label for="country">Country</label></th>
-            <td>
-            <input type="text" name="country" id="country" value="<?php echo esc_attr( get_the_author_meta( 'country', $user->ID ) ); ?>" class="regular-text" /><br />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="phone">Phone</label></th>
-            <td>
-            <input type="text" name="phone" id="phone" value="<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>" class="regular-text" /><br />
-            </td>
-        </tr>
     </table>
 <?php
 
@@ -215,9 +196,6 @@ function save_extra_profile_fields( $user_id ) {
     update_usermeta( $user_id, 'substack', $_POST['substack'] );
     update_usermeta( $user_id, 'youtube', $_POST['youtube'] );
 
-    update_usermeta( $user_id, 'languages', $_POST['languages'] );
-    update_usermeta( $user_id, 'country', $_POST['country'] );
-    update_usermeta( $user_id, 'phone', $_POST['phone'] );
 }
 
 add_action( 'personal_options_update', 'save_extra_profile_fields' );
@@ -379,7 +357,6 @@ function filter_facts (){
     $status_filter = $_REQUEST['status_filter'];
     $sort_filter = $_REQUEST['sort_filter'];
     $topic_filter = $_REQUEST['topic_filter'];
-    $language_filter = $_REQUEST['language_filter'];
     $author_filter = $_REQUEST['author_filter'];
 
         global $wpdb;
@@ -400,14 +377,6 @@ function filter_facts (){
             }
             else{
                 $sql .= "WHERE c.topics='".$topic_filter."'";
-            }
-        }
-        if($language_filter != ''){
-            if (str_contains($sql, 'WHERE')) { 
-                $sql .= " AND c.language='".$language_filter."'";
-            }
-            else{
-                $sql .= "WHERE c.language='".$language_filter."'";
             }
         }
         if($author_filter != ''){
@@ -597,23 +566,6 @@ function send_password_reset_email($email){
         $wp_password_change_notification_email['message'],
         $wp_password_change_notification_email['headers']
     );
-}
-
-
-add_action( 'rest_api_init', function () {
-    register_rest_route( 'factbid/v1', '/update-languages', array(
-      'methods' => 'POST',
-      'callback' => 'update_languages',
-      'permission_callback' => '__return_true',
-    ) );
-  } );
-
-function update_languages($request) {
-    $data = $request->get_params();
-    update_option("languages", $data['data']);
-    $c = get_option("languages", true);
-
-    return new WP_REST_Response( $c, 200 );
 }
 
 add_action( 'wp_ajax_add_bid', 'add_bid' );
@@ -1521,19 +1473,6 @@ function factbid_get_author_link($user_id) {
 function show_all_authors(){
     $authors = wp_list_authors('html=0&style=none&echo=0&exclude_admin=0&optioncount=0&show_fullname=1&hide_empty=1&orderby=name&order=ASC&includeauthorid=1');
     print_r($authors);
-}
-
-function show_language_from_id ($id){
-    $languages = get_option("languages", true);
-    $return = "";
-    if($languages && !empty($languages)){
-        foreach($languages as $key => $language){
-            if($id == $key){
-                $return = $language["name"];
-            }
-        }
-    }
-    return $return;
 }
 
 function show_create_factbid_button() {
