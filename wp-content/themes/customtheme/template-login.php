@@ -21,7 +21,7 @@
                         'remember' => true
                     );
                     wp_login_form( $args );
-                    echo apply_filters( 'cptch_display', '', 'sign-in' );
+					echo apply_filters( 'gglcptch_display_recaptcha', '', 'sign-in' );
                 } else { // If logged in:
                     wp_loginout( home_url() ); // Display "Log Out" link.
                     echo " | ";
@@ -34,9 +34,11 @@
     </div>
     </div>
 </div>
+
 <?php
-if(isset($_GET['errordata']) || isset($_GET['login'])){
-    $errordata = "";
+
+if(isset($_GET['errordata']) || isset($_GET['login']) ){
+	$errordata = "";
     if(isset( $_GET['login'] ) && ($_GET['login'] == 'failed' )){
         $errordata = "The password you entered is incorrect, Please try again.";
     }
@@ -44,7 +46,7 @@ if(isset($_GET['errordata']) || isset($_GET['login'])){
         $errordata = "Please enter both username and password.";
     }
     if(isset( $_GET['errordata'] )){
-        $errordata = $_GET['errordata'];
+        $errordata = $errordata . $_GET['errordata'];
     }
     echo '<div class="toast-container">';
 ?>

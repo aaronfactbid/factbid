@@ -1182,12 +1182,12 @@ add_action( 'pre_get_posts', 'gp_add_cpt_post_names_to_main_query' );
 
 
 
-function add_my_forms( $forms ) {
-    $forms['sign-in'] = "Sign in Form";
-    $forms['register'] = "Custom Register Form";
-    return $forms;
+function add_custom_recaptcha_forms( $forms ) {
+$forms['sign-in'] = array( "form_name" => "Sign in Form" );
+$forms['register'] = array( "form_name" => "Custom Register Form" );
+return $forms;
 }
-add_filter( 'cptch_add_form', 'add_my_forms' );
+add_filter( 'gglcptch_add_custom_form', 'add_custom_recaptcha_forms' );
 
 add_filter('wp_authenticate_user', 'factbid_auth_login',2,2);
 
@@ -1213,8 +1213,7 @@ function factbid_auth_login ($user, $password) {
         
     }
 
-
-    $error = apply_filters( 'cptch_verify', true, 'string', 'sign-in' );
+    $error = apply_filters( 'gglcptch_verify_recaptcha', true, 'string', 'sign-in' );
     if ( true === $error ) { /* the CAPTCHA answer is right */
         return $user;
     } else { /* the CAPTCHA answer is wrong or there are some other errors */
@@ -1223,7 +1222,6 @@ function factbid_auth_login ($user, $password) {
         wp_redirect( home_url("/sign-in?errordata=" . $errordata) ); 
         exit;
     }
-    
 }
 
 add_action('template_redirect', 'user_register_function');
@@ -1239,7 +1237,7 @@ function user_register_function (){
         $password=$_POST['password'];
         $password_confirmation=$_POST['password_confirmation'];
         
-        $error = apply_filters( 'cptch_verify', true, 'string', 'sign-in' );
+        $error = apply_filters( 'gglcptch_verify_recaptcha', true, 'string', 'register' );
         if ( true === $error ) {
 
             if(empty( $username ) || empty( $useremail ) || empty($password))

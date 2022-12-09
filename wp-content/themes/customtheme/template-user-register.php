@@ -26,7 +26,7 @@ get_header();
                             <label>Password <span class="error">*</span></label>
                             <input id="password" type="password" name="password" class="text" placeholder="Enter Your password" required /> <br />
                             <input id="password_confirmation" type="password" name="password_confirmation" class="text" placeholder="Confirm Your password" required /> <br />
-                            <?php echo apply_filters( 'cptch_display', '', 'register' ); ?>
+                            <?php echo apply_filters( 'gglcptch_display_recaptcha', '', 'register' ); ?>
                             <input type="submit" name="user_registeration" value="SignUp" />
                         </form>
                         
