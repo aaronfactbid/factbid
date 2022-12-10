@@ -31,8 +31,6 @@ jQuery(document).ready(function(){
 		var nobid = jQuery('input[name="nobid"]:checked').val();
 
 		var description = get_tinymce_content('description');
-		var if_claimed = get_tinymce_content('if_claimed');
-		var if_unclaimed = get_tinymce_content('if_unclaimed');
 		var acceptable_claim = get_tinymce_content('acceptable_claim');
 		var social_media = get_tinymce_content('social_media');
 
@@ -52,8 +50,6 @@ jQuery(document).ready(function(){
 				'visibility':visibility,
 				'priority':priority,
 				'language':language,
-				'if_claimed':if_claimed,
-				'if_unclaimed':if_unclaimed,
 				'acceptable_claim':acceptable_claim,
 				'social_media':social_media,
 				'footnote':footnote,
@@ -122,8 +118,6 @@ jQuery(document).ready(function(){
 		var nobid = jQuery('input[name="nobid"]:checked').val();
 
 		var description = get_tinymce_content('description');
-		var if_claimed = get_tinymce_content('if_claimed');
-		var if_unclaimed = get_tinymce_content('if_unclaimed');
 		var acceptable_claim = get_tinymce_content('acceptable_claim');
 		var social_media = get_tinymce_content('social_media');
 
@@ -146,8 +140,6 @@ jQuery(document).ready(function(){
 				'visibility':visibility,
 				'priority':priority,
 				'language':language,
-				'if_claimed':if_claimed,
-				'if_unclaimed':if_unclaimed,
 				'acceptable_claim':acceptable_claim,
 				'social_media':social_media,
 				'footnote':footnote,

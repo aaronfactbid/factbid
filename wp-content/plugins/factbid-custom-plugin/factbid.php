@@ -139,16 +139,6 @@ function create_factbid (){
     } else {
         $description = "";
     }
-    if(isset($_POST['if_claimed'])){
-        $if_claimed = wp_specialchars_decode( $_POST['if_claimed'], $quote_style = ENT_QUOTES );
-    } else {
-        $if_claimed = "";
-    }
-    if(isset($_POST['if_unclaimed'])){
-        $if_unclaimed = wp_specialchars_decode( $_POST['if_unclaimed'], $quote_style = ENT_QUOTES );
-    } else {
-        $if_unclaimed = "";
-    }
     if(isset($_POST['acceptable_claim'])){
         $acceptable_claim = wp_specialchars_decode( $_POST['acceptable_claim'], $quote_style = ENT_QUOTES );
     } else {
@@ -181,8 +171,6 @@ function create_factbid (){
     $attachment_id = $_POST['image'];
     $post_id = wp_insert_post($new_post);
     $link_to_claim = get_permalink($post_id);
-    update_post_meta($post_id, "if_claimed", $if_claimed);
-    update_post_meta($post_id, "if_unclaimed", $if_unclaimed);
     update_post_meta($post_id, "acceptable_claim", $acceptable_claim);
     update_post_meta($post_id, "social_media", $social_media);
     update_post_meta($post_id, "footnote", $footnote);
@@ -267,16 +255,6 @@ function edit_factbid (){
     } else {
         $description = "";
     }
-    if(isset($_POST['if_claimed'])){
-        $if_claimed = wp_specialchars_decode( $_POST['if_claimed'], $quote_style = ENT_QUOTES );
-    } else {
-        $if_claimed = "";
-    }
-    if(isset($_POST['if_unclaimed'])){
-        $if_unclaimed = wp_specialchars_decode( $_POST['if_unclaimed'], $quote_style = ENT_QUOTES );
-    } else {
-        $if_unclaimed = "";
-    }
     if(isset($_POST['acceptable_claim'])){
         $acceptable_claim = wp_specialchars_decode( $_POST['acceptable_claim'], $quote_style = ENT_QUOTES );
     } else {
@@ -308,8 +286,6 @@ function edit_factbid (){
     $post_id = wp_update_post($new_post);
     $link_to_claim = get_permalink($post_id);
     $attachment_id = $_POST['image'];
-    update_post_meta($post_id, "if_claimed", $if_claimed);
-    update_post_meta($post_id, "if_unclaimed", $if_unclaimed);
     update_post_meta($post_id, "acceptable_claim", $acceptable_claim);
     update_post_meta($post_id, "social_media", $social_media);
     update_post_meta($post_id, "footnote", $footnote);

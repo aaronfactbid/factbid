@@ -231,37 +231,7 @@
                         ?>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="q1" class="form-label">What will it prove if claimed?</label>
-                        <?php
-                            $if_claim = get_post_meta($factbid_data->post_id, "if_claimed", true);
 
-                            $content   = $if_claim;
-                            $editor_id = 'if_claimed';
-                            $settings  = array( 
-                                'media_buttons' => true, 
-                                'textarea_name'=> 'if_claimed',
-                                'textarea_rows' => 5
-
-                            ); 
-                            wp_editor($content, $editor_id, $settings); 
-                        ?>
-                    </div>
-                    <div class="mb-3">
-                        <label for="q2" class="form-label">What will it prove if unclaimed?</label>
-                        <?php
-                            $if_unclaim = get_post_meta($factbid_data->post_id, "if_unclaimed", true);
-                            $content   = $if_unclaim;
-                            $editor_id = 'if_unclaimed';
-                            $settings  = array( 
-                                'media_buttons' => true, 
-                                'textarea_name'=> 'if_unclaimed',
-                                'textarea_rows' => 5
-
-                            ); 
-                            wp_editor($content, $editor_id, $settings); 
-                        ?>
-                    </div>
                     
                     <div class="mb-3">
 

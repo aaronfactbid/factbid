@@ -10,7 +10,7 @@
     $post_id = get_the_id();
     $wpdb->query($wpdb->prepare("UPDATE ct_factbid SET view_count=view_count+1 WHERE post_id=%d",$post_id));
 
-    $res = $wpdb->get_results($wpdb->prepare("SELECT nobid, thumbs_up,thumbs_down,id_factbid_parent,id_factbid,type,status,country,language,visibility,topics FROM ct_factbid WHERE post_id = %d",$post_id));
+    $res = $wpdb->get_results($wpdb->prepare("SELECT nobid, thumbs_up,thumbs_down,id_factbid_parent,id_factbid,type,status,language,visibility,topics FROM ct_factbid WHERE post_id = %d",$post_id));
     $tab_class="";
     $tab_status=1;
     $status_code = (int)trim($res[0]->status);
@@ -86,9 +86,6 @@
                       $fb_status = $status_option;
                     }
                   }
-                  $fb_country = $res[0]->country;
-                  $countries = $wpdb->get_results($wpdb->prepare("SELECT name FROM ct_countries WHERE iso=%s", $fb_country));
-                  $fb_country = $countries[0]->name;
                   $fb_topics = $res[0]->topics;
                   $fb_topic = "";
                   $topics_options = get_option("fact_bid_topics", true);
@@ -98,7 +95,7 @@
                     }
                   }
                   
-                  $meta_data = $fb_type . ' - ' . $fb_status . ' - ' . $fb_country . ' - ' . $fb_topic;
+                  $meta_data = $fb_type . ' - ' . $fb_status . ' - ' . $fb_topic;
 
                   if($visibilty != 1){
                     $author_name = 'user';
