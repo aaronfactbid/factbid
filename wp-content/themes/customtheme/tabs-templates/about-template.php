@@ -7,6 +7,20 @@
         <?php the_content(); ?>
     </div>
 
+
+    <div class="sub-cnt">
+        <?php
+             $social_media = get_post_meta($postId, "social_media", true);
+             if($social_media){
+        ?>
+        <h5 class="contents-heading">Related social media thread (comments, videos, etc.)</h5>
+        <?php
+           
+            echo apply_filters('the_content', $social_media);
+        }
+        ?>
+    </div>
+
     <div class="sub-cnt">
         <?php
              $acceptable_claim = get_post_meta($postId, "acceptable_claim", true);

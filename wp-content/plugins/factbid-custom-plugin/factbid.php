@@ -154,6 +154,11 @@ function create_factbid (){
     } else {
         $acceptable_claim = "";
     }
+    if(isset($_POST['social_media'])){
+        $social_media = wp_specialchars_decode( $_POST['social_media'], $quote_style = ENT_QUOTES );
+    } else {
+        $social_media = "";
+    }
     if(isset($_POST['footnote'])){
         $footnote = wp_specialchars_decode( $_POST['footnote'], $quote_style = ENT_QUOTES );
     } else {
@@ -179,6 +184,7 @@ function create_factbid (){
     update_post_meta($post_id, "if_claimed", $if_claimed);
     update_post_meta($post_id, "if_unclaimed", $if_unclaimed);
     update_post_meta($post_id, "acceptable_claim", $acceptable_claim);
+    update_post_meta($post_id, "social_media", $social_media);
     update_post_meta($post_id, "footnote", $footnote);
     set_post_thumbnail( $post_id, $attachment_id );
     $post = get_post($post_id);
@@ -276,6 +282,11 @@ function edit_factbid (){
     } else {
         $acceptable_claim = "";
     }
+    if(isset($_POST['social_media'])){
+        $social_media = wp_specialchars_decode( $_POST['social_media'], $quote_style = ENT_QUOTES );
+    } else {
+        $social_media = "";
+    }
     if(isset($_POST['footnote'])){
         $footnote = wp_specialchars_decode( $_POST['footnote'], $quote_style = ENT_QUOTES );
     } else {
@@ -300,6 +311,7 @@ function edit_factbid (){
     update_post_meta($post_id, "if_claimed", $if_claimed);
     update_post_meta($post_id, "if_unclaimed", $if_unclaimed);
     update_post_meta($post_id, "acceptable_claim", $acceptable_claim);
+    update_post_meta($post_id, "social_media", $social_media);
     update_post_meta($post_id, "footnote", $footnote);
     set_post_thumbnail( $post_id, $attachment_id );
     $post = get_post($post_id);

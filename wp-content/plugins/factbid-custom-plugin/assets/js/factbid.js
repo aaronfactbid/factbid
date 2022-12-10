@@ -34,6 +34,7 @@ jQuery(document).ready(function(){
 		var if_claimed = get_tinymce_content('if_claimed');
 		var if_unclaimed = get_tinymce_content('if_unclaimed');
 		var acceptable_claim = get_tinymce_content('acceptable_claim');
+		var social_media = get_tinymce_content('social_media');
 
 		// var footnote = tinyMCE.get('footnote').getContent();
 		var footnote = "";
@@ -54,6 +55,7 @@ jQuery(document).ready(function(){
 				'if_claimed':if_claimed,
 				'if_unclaimed':if_unclaimed,
 				'acceptable_claim':acceptable_claim,
+				'social_media':social_media,
 				'footnote':footnote,
 				'image':image,
 				'user_id':user
@@ -123,7 +125,7 @@ jQuery(document).ready(function(){
 		var if_claimed = get_tinymce_content('if_claimed');
 		var if_unclaimed = get_tinymce_content('if_unclaimed');
 		var acceptable_claim = get_tinymce_content('acceptable_claim');
-
+		var social_media = get_tinymce_content('social_media');
 
 		
 		// var footnote = tinyMCE.get('footnote').getContent();
@@ -147,6 +149,7 @@ jQuery(document).ready(function(){
 				'if_claimed':if_claimed,
 				'if_unclaimed':if_unclaimed,
 				'acceptable_claim':acceptable_claim,
+				'social_media':social_media,
 				'footnote':footnote,
 				'old_post_id':old_post_id,
 				'image':image,

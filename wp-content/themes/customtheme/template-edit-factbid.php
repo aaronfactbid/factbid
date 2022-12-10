@@ -201,6 +201,21 @@
                         </div>
 
                     <div class="mb-3">
+                        <label for="q3" class="form-label">Social Media Post</label>
+                        <?php
+                            $social_media = get_post_meta($factbid_data->post_id, "social_media", true);
+                            $content   = $social_media;
+                            $editor_id = 'social_media';
+                            $settings  = array( 
+                                'textarea_name'=> 'social_media',
+                                'textarea_rows' => 5
+
+                            ); 
+                            wp_editor($content, $editor_id, $settings); 
+                        ?>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="q3" class="form-label">What is an acceptable claim?</label>
                         <?php
                             $accept_claim = get_post_meta($factbid_data->post_id, "acceptable_claim", true);

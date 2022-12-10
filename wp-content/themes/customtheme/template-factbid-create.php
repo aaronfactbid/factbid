@@ -146,6 +146,20 @@
                             ?>
                         </div>
                         <div class="mb-3">
+                            <label for="q3" class="form-label">Related social media post</label>
+                            <?php
+                                $content   = '';
+                                $editor_id = 'social_media';
+                                $settings  = array( 
+                                    'media_buttons' => true, 
+                                    'textarea_name'=> 'social_media',
+                                    'textarea_rows' => 5
+
+                                ); 
+                                wp_editor($content, $editor_id, $settings); 
+                            ?>
+                        </div>
+                        <div class="mb-3">
                             <label for="q3" class="form-label">What is an acceptable claim?</label>
                             <?php
                                 $content   = '';
