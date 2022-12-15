@@ -14,10 +14,18 @@ get_header();
             <div class="col-md-12"><div class="card-body">
 
                 <?php
-                    global $wpdb, $user_ID;  
+                    global $wpdb, $user_ID, $referral; 
+					if(isset($_GET['referral'])){
+						$referral = $_GET["referral"];
+					}
+					
+					if(empty($referral) && isset($_COOKIE['referral'])) {
+						$referral = $_COOKIE["referral"];
+					}
+					
                     if (!$user_ID) {  ?>
                         <?php if(isset($signUpError)){echo '<div class="signup_error">'.$signUpError.'</div>';}?>
-                        <h4>Create your account</h4>
+                        <h4>Register</h4>
                         <form id="register_form" action="<?php echo esc_url(home_url('/register')); ?>" method="post" name="user_registeration">
                             <label>Username <span class="error">*</span></label>  
                             <input id="username" type="text" name="username" placeholder="Enter Your Username" class="text" required /><br />
@@ -26,6 +34,8 @@ get_header();
                             <label>Password <span class="error">*</span></label>
                             <input id="password" type="password" name="password" class="text" placeholder="Enter Your password" required /> <br />
                             <input id="password_confirmation" type="password" name="password_confirmation" class="text" placeholder="Confirm Your password" required /> <br />
+                            <label>Did someone refer you?</label>					
+                            <input id="referral" type="text" name="referral" placeholder="Enter username of whoever referred you" class="text" value="<?php echo $referral; ?>"/><br />
                             <?php echo apply_filters( 'cptch_display', '', 'register' ); ?>
                             <input type="submit" name="user_registeration" value="SignUp" />
                         </form>

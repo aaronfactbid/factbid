@@ -1237,6 +1237,7 @@ function user_register_function (){
         $username=$_POST['username'];
         $useremail=$_POST['useremail'];
         $password=$_POST['password'];
+        $referral=$_POST['referral'];
         $password_confirmation=$_POST['password_confirmation'];
         
         $error = apply_filters( 'cptch_verify', true, 'string', 'sign-in' );
@@ -1309,14 +1310,16 @@ function user_register_function (){
             $username   =   sanitize_user( $_POST['username'] );
             $useremail  =   sanitize_email( $_POST['useremail'] );
             $password   =   esc_attr( $_POST['password'] );
+            $referral   =   sanitize_user( $_POST['referral'] );
             
             $userdata = array(
                 'user_login'    =>   $username,
                 'user_email'    =>   $useremail,
                 'user_pass'     =>   $password,
                 );
-            $user = wp_insert_user( $userdata );
-            
+            $user = wp_insert_user( $userdata );			
+		    update_user_meta($user, "referral", $referral);
+
             $errordata = "You are successfully Registered with us. You will recieve a confirmation email soon";
             wp_redirect( home_url("/sign-in?errordata=" . $errordata) ); 
             exit;

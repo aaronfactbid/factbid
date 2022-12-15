@@ -705,6 +705,32 @@ jQuery(':radio[name="status"]').change(function() {
 			}
 		});
 	});
+	jQuery(document).on('change', '#register_form #referral', function(){
+		jQuery(".errorMreferral").remove();
+		let referral = jQuery(this).val();
+		if(referral == ""){
+			return;
+		}
+		jQuery.ajax({
+			url:my_ajax_object.ajaxurl,
+			data:{
+				'action':'checking_referral',
+				'referral':referral
+			},
+			method:'POST',
+			success:function(result){
+				let res = JSON.parse(result);
+				if(res.length != 0){
+					var html = "<div class='errorM errorMreferral'><ul>";
+					res.map(function(value){
+						html += `<li><small><em>${value}</em></small></li>`;
+					});
+					html += "</ul></div>";
+					jQuery(html).insertAfter('#register_form #referral');
+				}
+			}
+		});
+	});
 	jQuery("#verify").on("click",function(e){
 		e.preventDefault();
 		var id_user = jQuery(this).data('user');

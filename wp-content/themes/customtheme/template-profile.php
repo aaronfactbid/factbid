@@ -141,7 +141,10 @@
                         <button class="nav-link" id="claim-tab" data-bs-toggle="tab" data-bs-target="#claimsTab" type="button" role="tab" aria-controls="claimsTab" aria-selected="false">Claims</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="response-tab" data-bs-toggle="tab" data-bs-target="#responseTab" type="button" role="tab" aria-controls="responseTab" aria-selected="false">Response</button>
+                        <button class="nav-link" id="response-tab" data-bs-toggle="tab" data-bs-target="#responseTab" type="button" role="tab" aria-controls="responseTab" aria-selected="false">Responses</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reply-tab" data-bs-toggle="tab" data-bs-target="#referralTab" type="button" role="tab" aria-controls="referralTab" aria-selected="false">Referrals</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="postList">
@@ -284,6 +287,36 @@
                             </tbody>
                         </table>
 
+                    </div>
+					<div class="tab-pane fade" id="referralTab" role="tabpanel" aria-labelledby="referral-tab">
+                        <table class="table table-success table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $responses = $wpdb->get_results($wpdb->prepare("SELECT id_response,id_factbid, status FROM ct_response WHERE id_user = %d",$cuser->ID));
+                                    $c = 0;
+                                    if(!empty($responses)):
+                                    foreach($responses as $response):
+                                        $c++;
+                                ?>
+                                <tr>
+                                    <td><?php echo $c; ?></td>
+                                    <td><?php echo $response->id_factbid; ?></td>
+                                    <td><?php echo $response->status; ?></td>
+                                    <td><a class="btn btn-primary" href="<?php echo esc_url(home_url('/responses/')).$response->id_response; ?>">View</a></td>
+                                </tr>
+                                <?php
+                                    endforeach;
+                                    else:
+                                        echo "<tr><td colspan='1'>No Referrals Yet</td></tr>";
+                                    endif;
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

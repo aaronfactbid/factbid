@@ -1,8 +1,6 @@
 <?php
     get_header();
 ?>
-<?php 
-?>
 <div class="title-bar">
     <h1>Profile</h1>
 </div>
